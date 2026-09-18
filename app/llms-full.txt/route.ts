@@ -1,6 +1,8 @@
 import { getAllPosts } from "@/lib/content";
 import { SITE, absoluteUrl } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export function GET() {
   const sections = ["# " + SITE.name, "", SITE.description, "", "Canonical site: " + SITE.url, "", "## Articles"];
   for (const post of getAllPosts()) {
