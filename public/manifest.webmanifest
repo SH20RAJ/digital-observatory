@@ -1,0 +1,11 @@
+{
+  "name":"Digital Observatory",
+  "short_name":"Observatory",
+  "description":"An open-source digital observatory for source-backed research across the digital world.",
+  "start_url":"/digital-observatory/",
+  "scope":"/digital-observatory/",
+  "display":"standalone",
+  "background_color":"#f7f6f2",
+  "theme_color":"#0a0a09",
+  "lang":"en"
+}
