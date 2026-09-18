@@ -2,7 +2,7 @@ import { getPostBySlug } from "@/lib/content";
 
 export const dynamic = "force-static";
 
-export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
+export async function GET(_request: never, { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return Response.json({ error: "Not found" }, { status: 404 });

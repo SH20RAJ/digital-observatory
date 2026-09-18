@@ -27,5 +27,7 @@ export function assetUrl(path: string) {
 }
 
 export function absoluteUrl(path: string) {
-  return new URL(path, SITE.url.endsWith("/") ? SITE.url : SITE.url + "/").toString();
+  if (/^https?:\/\//i.test(path)) return path;
+  const normalized = path.startsWith("/") ? path : "/" + path;
+  return new URL(BASE_PATH + normalized, new URL(SITE.url).origin).toString();
 }
