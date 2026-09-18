@@ -1,8 +1,9 @@
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const SITE = {
   name: "Digital Observatory",
   shortName: "DO",
-  description:
-    "An open-source digital observatory for tracking public signals across AI, open source, developers, startups, internet infrastructure, security, and digital culture.",
+  description: "An open-source digital observatory for tracking public signals across AI, open source, developers, startups, internet infrastructure, security, and digital culture.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://digital-observatory.dev",
   github: "https://github.com/SH20RAJ/digital-observatory",
   discussions: "https://github.com/SH20RAJ/digital-observatory/discussions",
@@ -19,6 +20,12 @@ export const NAV_ITEMS = [
   { href: "/about", label: "About" }
 ] as const;
 
+export function assetUrl(path: string) {
+  if (/^https?:\/\//i.test(path)) return path;
+  const normalized = path.startsWith("/") ? path : "/" + path;
+  return BASE_PATH + normalized;
+}
+
 export function absoluteUrl(path: string) {
-  return new URL(path, SITE.url).toString();
+  return new URL(path, SITE.url.endsWith("/") ? SITE.url : SITE.url + "/").toString();
 }

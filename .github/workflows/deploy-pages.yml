@@ -1,0 +1,55 @@
+name: Deploy Next.js to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAGES: "true"
+      NEXT_PUBLIC_BASE_PATH: "/digital-observatory"
+      NEXT_PUBLIC_SITE_URL: "https://sh20raj.github.io/digital-observatory"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Validate content
+        run: npm run content:check
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build static export
+        run: npm run build
+      - name: Add .nojekyll
+        run: touch out/.nojekyll
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

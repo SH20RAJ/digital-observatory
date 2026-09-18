@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug, getRelatedPosts, categorySlug, tagSlug } from "@/lib/content";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, assetUrl } from "@/lib/site";
 import { articleJsonLd, breadcrumbJsonLd, jsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Markdown } from "@/components/markdown";
@@ -18,23 +18,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-  const image = absoluteUrl("/og/" + post.slug);
+  const image = absoluteUrl("/og/" + post.slug + ".svg");
   return {
-    title: post.title,
-    description: post.description,
+    title: post.title, description: post.description,
     keywords: post.keywords.length ? post.keywords : post.tags,
-    authors: [{ name: post.author }],
+    authors: [{ name: post.author, url: absoluteUrl("/author/" + encodeURIComponent(post.author)) }],
     alternates: { canonical: post.canonicalUrl || "/blog/" + post.slug },
-    openGraph: {
-      type: "article", title: post.title, description: post.description, url: "/blog/" + post.slug,
-      publishedTime: new Date(post.publishedAt).toISOString(), modifiedTime: new Date(post.updatedAt || post.publishedAt).toISOString(),
-      section: post.category, tags: post.tags,
-      images: [{ url: image, width: 1200, height: 630, alt: post.coverAlt || post.title }]
-    },
+    openGraph: { type: "article", title: post.title, description: post.description, url: absoluteUrl("/blog/" + post.slug), publishedTime: new Date(post.publishedAt).toISOString(), modifiedTime: new Date(post.updatedAt || post.publishedAt).toISOString(), section: post.category, tags: post.tags, images: [{ url: image, width: 1200, height: 630, alt: post.coverAlt || post.title }] },
     twitter: { card: "summary_large_image", title: post.title, description: post.description, images: [image] },
-    robots: post.noIndex ? { index: false, follow: false } : {
-      index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 }
-    }
+    robots: post.noIndex ? { index: false, follow: false } : { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } }
   };
 }
 
@@ -44,7 +36,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   if (!post) notFound();
   const related = getRelatedPosts(post);
   const crumbs = [{ name: "Home", path: "/" }, { name: "Journal", path: "/blog" }, { name: post.title, path: "/blog/" + post.slug }];
-  const poster = post.coverImage || "/og/" + post.slug;
+  const poster = assetUrl(post.coverImage || "/og/" + post.slug + ".svg");
   return <article className="article-shell"><div className="shell">
     <Breadcrumbs items={crumbs.map((item) => ({ name: item.name, href: item.path }))} />
     <header className="article-header"><p className="eyebrow">{post.category}</p><h1>{post.title}</h1><p className="article-dek">{post.description}</p><div className="article-meta"><span>{post.author}</span><span className="dot">{post.publishedAt}</span><span className="dot">{post.readingTime}</span><span className="dot">{post.wordCount.toLocaleString()} words</span></div></header>

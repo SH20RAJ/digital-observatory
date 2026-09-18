@@ -1,21 +1,18 @@
 import type { NextConfig } from "next";
 
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const basePath = isGitHubPages ? "/digital-observatory" : "";
+
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
+  basePath,
+  reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
-  reactStrictMode: true,
-  experimental: { optimizePackageImports: ["react-markdown"] },
-  async headers() {
-    return [{
-      source: "/(.*)",
-      headers: [
-        { key: "X-Content-Type-Options", value: "nosniff" },
-        { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-        { key: "X-DNS-Prefetch-Control", value: "on" },
-        { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" }
-      ]
-    }];
-  }
+  images: { unoptimized: true },
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  experimental: { optimizePackageImports: ["react-markdown"] }
 };
 
 export default nextConfig;
