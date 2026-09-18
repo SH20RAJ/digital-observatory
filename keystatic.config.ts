@@ -6,7 +6,7 @@ export const showAdminUI = process.env.NODE_ENV !== "production" || useGitHub;
 
 export default config({
   storage: useGitHub
-    ? { kind: "github", repo: process.env.KEYSTATIC_GITHUB_REPO || "SH20RAJ/digital-observatory" }
+    ? { kind: "github", repo: { owner: "SH20RAJ", name: "digital-observatory" } }
     : { kind: "local" },
 
   collections: {
@@ -25,7 +25,10 @@ export default config({
         updatedAt: fields.date({ label: "Updated date" }),
         status: fields.select({
           label: "Publishing status",
-          options: [{ label: "Published", value: "published" }, { label: "Draft", value: "draft" }],
+          options: [
+            { label: "Published", value: "published" },
+            { label: "Draft", value: "draft" }
+          ],
           defaultValue: "published"
         }),
         category: fields.select({
