@@ -1,90 +1,113 @@
 # Content System
 
-## Core publishing surfaces
+## Article contract
 
-### Daily
+Every article is a Markdown file under:
 
-**The Daily Observatory**
+~~~text
+content/posts/{slug}.md
+~~~
 
-A concise snapshot of meaningful changes across tracked ecosystems.
-
-### Weekly
-
-**The Weekly Radar**
-
-A curated list of signals worth following.
-
-### Recurring
-
-- Open Source Radar
-- AI Radar
-- Developer Weather
-- Weird Internet
-- Security Watch
-- Startup Radar
-- Internet Census
-
-### Long-form
-
-- Deep Observations
-- Data Stories
-- Experiments
-- Software Archaeology
-- Ecosystem Maps
-
-## Editorial funnel
-
-```
-Raw event
-   ↓
-Interesting metric
-   ↓
-Signal
-   ↓
-Investigation
-   ↓
-Observation
-   ↓
-Article
-   ↓
-Newsletter / RSS / social excerpt
-```
-
-## Automation boundary
-
-Automation may:
-
-- collect
-- normalize
-- calculate
-- detect
-- cluster
-- draft
-- generate charts
-
-Human review should remain responsible for:
-
-- publication
-- causal interpretation
-- sensitive claims
-- source disputes
-- corrections
-- editorial framing
-
-## Content metadata
-
-Every article should eventually support:
+Required frontmatter:
 
 - title
-- slug
-- type
+- description
+- publishedAt
+- status
 - category
-- entities
-- published_at
-- updated_at
-- reading_time
+- author
+- authorRole
 - sources
-- methodology_version
-- data_snapshot_ids
-- author/editor
-- correction history
+
+Recommended:
+
+- excerpt
+- updatedAt
+- tags
+- keywords
+- coverImage
+- coverAlt
+- featured
+- canonicalUrl
+- noIndex
+
+## Field meanings
+
+### title
+
+The reader-facing headline. Write for humans first.
+
+### description
+
+A concise explanation used for metadata and social previews. It should describe what the page actually delivers, not promise an unverified conclusion.
+
+### excerpt
+
+A compact card-level summary.
+
+### publishedAt / updatedAt
+
+Use the date of publication and substantive revision. Never change dates simply to make an unchanged article look fresh.
+
+### status
+
+draft or published.
+
+Drafts are invisible to public routes.
+
+### category
+
+One clear editorial lens.
+
+### tags
+
+Specific concepts that help navigation and topical clustering.
+
+### keywords
+
+Useful query language and entity terminology. Do not turn this into a keyword dump.
+
+### sources
+
+Every important external claim should have inspectable provenance.
+
+## Internal linking
+
+A good article should naturally reference:
+
+- earlier observations
+- methodology
+- category pages
+- related tags
+- primary sources
+
+Internal links are for the reader first. The secondary benefit is a clearer topical graph for crawlers and AI systems.
+
+## Article structure
+
+A useful default:
+
+1. Answer the main question quickly.
+2. Define the subject.
+3. Explain the evidence.
+4. Add context and comparison.
+5. Describe uncertainty and limitations.
+6. Link to primary sources.
+7. Connect to related Observatory articles.
+8. End with the actual implication for the reader.
+
+Do not force a fixed word count. Google's guidance explicitly says there is no preferred word count target. urlGoogle people-first content guidancehttps://developers.google.com/search/docs/fundamentals/creating-helpful-content
+
+## Quality gate
+
+An article is ready only when it is:
+
+- factually supported
+- materially original
+- readable
+- attributable
+- source-linked
+- internally linked
+- technically indexable
+- useful even when read without Google
+- honest about uncertainty
