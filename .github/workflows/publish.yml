@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 22
-          cache: npm
 
       - name: Install
         run: npm install
@@ -39,18 +38,18 @@ jobs:
         run: npm run build
 
       - name: Deploy to Vercel when configured
-        if: \${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
+        if: ${{ secrets.VERCEL_TOKEN != '' && secrets.VERCEL_ORG_ID != '' && secrets.VERCEL_PROJECT_ID != '' }}
         env:
-          VERCEL_TOKEN: \${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: \${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: \${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: npx vercel deploy --prod --yes --token "$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
 
       - name: Archive build
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: digital-observatory-build-\${{ github.run_number }}
+          name: digital-observatory-build-${{ github.run_number }}
           path: |
             .next
             public
