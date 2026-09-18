@@ -1,55 +1,36 @@
-# Contributing
+# Contributing to Digital Observatory
 
-Thanks for helping build Digital Observatory.
+Thanks for helping make the Observatory more useful.
 
-## Good contributions
+## What you can contribute
 
-- new source adapters
-- data validation
-- normalization schemas
-- signal detection
-- visualizations
-- editorial research
-- documentation
-- accessibility
-- tests
-- infrastructure
+Research, article drafts, source adapters, data methodology, design, accessibility, performance, SEO, AI-agent tooling, tests, and documentation are all welcome.
 
-## Before contributing a data source
+## For an article
 
-Check [docs/DATA-SOURCES.md](docs/DATA-SOURCES.md).
+1. Choose a question that is useful, not merely trendy.
+2. Inspect existing articles for overlap.
+3. Prefer primary sources.
+4. Add source provenance in frontmatter.
+5. Write the observation before the interpretation.
+6. State uncertainty.
+7. Add natural internal links.
+8. Run npm run content:check.
+9. Run npm run typecheck and npm run build for code changes.
+10. Open a pull request with a clear explanation.
 
-A source contribution should include its official documentation, access method, rate limits, licensing/usage constraints, fields, cadence, and failure behavior.
+## Research integrity
 
-## Pull requests
+Do not fabricate facts, quotes, metrics, citations, or sources.
 
-Keep PRs focused.
+Do not copy third-party prose.
 
-A good PR should explain:
+Do not bypass robots rules, access controls, CAPTCHAs, paywalls, authentication, or rate limits.
 
-1. what changed
-2. why it is needed
-3. data/source implications
-4. tests performed
-5. limitations
+## Licensing
 
-## Data quality
+The MIT license applies to the codebase. External datasets, APIs, images, text, and trademarks retain their own terms.
 
-Never silently transform source data.
+## Small changes are valuable
 
-If a transformation is necessary:
-
-- document it
-- test it
-- preserve provenance
-- make the behavior deterministic where possible
-
-## Editorial contributions
-
-Articles should follow [docs/EDITORIAL.md](docs/EDITORIAL.md).
-
-Do not invent sources, statistics, quotes, or causal explanations.
-
-## Code of conduct
-
-Please keep collaboration respectful, constructive, and inclusive.
+A corrected source URL, clearer sentence, better alt text, small performance improvement, accessibility fix, or good test is a useful contribution.

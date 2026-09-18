@@ -1,52 +1,24 @@
-name: Quality
+name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
   pull_request:
+    branches: [main]
 
 permissions:
   contents: read
 
 jobs:
-  markdown:
-    name: Validate Markdown
+  check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Check required project files
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -f README.md
-          test -f ARCHITECTURE.md
-          test -f CONTRIBUTING.md
-          test -f SECURITY.md
-          test -f docs/DATA-SOURCES.md
-          test -f docs/METHODOLOGY.md
-          test -f docs/EDITORIAL.md
-
-      - name: Check for accidental secrets
-        shell: bash
-        run: |
-          set -euo pipefail
-          if grep -RInE '(ghp_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,}|sk-[A-Za-z0-9_-]{20,})'             --exclude-dir=.git .; then
-            echo "Potential credential pattern found."
-            exit 1
-          fi
-
-      - name: Check Markdown files are non-empty
-        shell: bash
-        run: |
-          set -euo pipefail
-          while IFS= read -r -d '' file; do
-            test -s "$file" || { echo "Empty Markdown file: $file"; exit 1; }
-          done < <(find . -type f -name '*.md' -not -path './.git/*' -print0)
-
-  actionlint:
-    name: Validate GitHub Actions
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: raven-actions/actionlint@v2
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install
+      - run: npm run content:check
+      - run: npm run typecheck
+      - run: npm run build
