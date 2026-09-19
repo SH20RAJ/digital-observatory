@@ -72,7 +72,7 @@ The most useful approach varies with the subject, person, institution, and const
 
 - [evaluating ai systems with multiple measures](/blog/evaluating-ai-systems-with-multiple-measures)
 - [product analytics funnels and events](/blog/product-analytics-funnels-and-events)
-- [how to read research papers efficiently](/blog/how-to-read-research-papers-efficiently)
+- [how to read research papers efficiently](/blog/reading-research-papers-efficiently)
 
 ## Primary sources
 

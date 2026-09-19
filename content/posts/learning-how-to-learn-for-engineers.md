@@ -71,7 +71,7 @@ The most useful approach varies with the subject, person, institution, and const
 ## Related Observatory reads
 
 - [technical interviews from problem to explanation](/blog/technical-interviews-from-problem-to-explanation)
-- [how to read research papers efficiently](/blog/how-to-read-research-papers-efficiently)
+- [how to read research papers efficiently](/blog/reading-research-papers-efficiently)
 - [dynamic programming with states not magic](/blog/dynamic-programming-with-states-not-magic)
 
 ## Primary sources
