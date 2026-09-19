@@ -1,0 +1,24 @@
+name: "Design & Layout Issue"
+description: "Report typography misalignment, mobile viewport overflow, or design token inconsistency"
+title: "[Design]: "
+labels: ["design"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page URL or Component
+      placeholder: "e.g. /topics, Homepage Hero, or Article Header"
+    validations:
+      required: true
+  - type: textarea
+    id: design_details
+    attributes:
+      label: Description of Design / Layout Issue
+      description: Describe what looks off or violates docs/DESIGN-SYSTEM.md.
+    validations:
+      required: true
+  - type: textarea
+    id: viewport
+    attributes:
+      label: Viewport Width & Device
+      description: Screen resolution or viewport width where overflow/breakage occurs (e.g. 375px iPhone).

@@ -1,0 +1,11 @@
+# Global codebase ownership
+* @SH20RAJ
+
+# Content and editorial reviews
+/content/ @SH20RAJ
+/docs/ @SH20RAJ
+
+# Core pipeline and infrastructure
+/lib/ @SH20RAJ
+/scripts/ @SH20RAJ
+/.github/ @SH20RAJ

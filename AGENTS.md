@@ -1,63 +1,53 @@
-# Agent Instructions
+# Agent Instructions & Operating Contract
 
-## Start here
+## 1. Ground Rules & Principles
 
-1. Read README.md.
-2. Read docs/CONTENT-SYSTEM.md.
-3. Read docs/RESEARCH-AGENT.md for content generation.
-4. Read docs/METHODOLOGY.md for measurement rules.
-5. Inspect recent files in content/posts/ before writing.
+1. Read `README.md`, `ARCHITECTURE.md`, `CONTRIBUTING.md`, `docs/DESIGN-SYSTEM.md`, and `docs/METHODOLOGY.md`.
+2. Inspect recent articles in `content/posts/` before generating new content.
+3. **Canonical content source of truth**: All articles live in `content/posts/*.md`. Never introduce a database as a prerequisite for publishing.
+4. **Primary canonical production domain**: `https://observatory.campusloop.space`. Treat `https://sh20raj.github.io/digital-observatory` strictly as a secondary/fallback static deployment.
+5. **Static export compatibility**: The application must build cleanly via Next.js `output: "export"`. Do not add server-only APIs or dynamic server routes that break static compilation.
 
-## Canonical content
+---
 
-The source of truth is content/posts/*.md.
+## 2. Engineering Standards
 
-Do not introduce a database as a prerequisite for publishing articles.
+- **TypeScript**: Strict typing across all utilities and components. Avoid `any` casting.
+- **Next.js App Router**: Server-first rendering; minimal client-side JavaScript.
+- **Canonical Content Layer**: Always use `lib/content.ts` for post querying, filtering, and image resolution (`resolvePostImage`). Never duplicate Markdown parsing in ad-hoc scripts.
+- **Strict `noIndex` Discipline**: Articles with `noIndex: true` must never leak into public archives, category listings, tag listings, author profiles, sitemaps, RSS feeds, search indexes, or LLMS feeds.
+- **Centralized URL Utility**: Always use `lib/site.ts` (`getCanonicalUrl`, `getAbsoluteUrl`, `getAssetUrl`, `getBasePath`). Never hardcode deployment-specific base paths.
+- **Image Parity**: Hero image === Open Graph image === Twitter image === BlogPosting JSON-LD image.
+- **Design System Fidelity**: Always follow tokens and rules defined in `docs/DESIGN-SYSTEM.md` and `app/globals.css`.
 
-## Code
+---
 
-- TypeScript.
-- Next.js App Router.
-- Server-first rendering.
-- Minimal client-side JavaScript.
-- Semantic HTML.
-- Accessible controls and visible focus.
-- Deterministic metadata.
-- Stable public URLs.
-- Avoid unnecessary dependencies.
+## 3. Research & Editorial Standards
 
-## Content
+- Research before writing; cite inspectable primary sources.
+- Never fabricate numbers, citations, quotes, or sources.
+- Maintain transparent separation between measurements, derived metrics, context, and interpretations.
+- Disclose uncertainty honestly. When evidence is ambiguous, preserve the ambiguity.
+- Do not create thin articles solely because a keyword is trending.
 
-Research before writing.
+---
 
-Prefer primary sources.
+## 4. Change Workflow
 
-Every important factual claim needs inspectable provenance.
-
-Never invent citations or facts.
-
-Do not create thin articles merely because a topic is trending.
-
-## SEO / AI discovery
-
-Preserve canonical URLs, Article structured data, Breadcrumb structured data, sitemap, robots rules, RSS, llms.txt, descriptive metadata, author identity, and dates.
-
-Do not add keyword stuffing or fake claims about ranking.
-
-## Change workflow
+Always follow this exact validation sequence before committing:
 
 1. Inspect existing files.
 2. Make the smallest coherent change.
-3. Run npm run content:check.
-4. Run npm run typecheck.
-5. Run npm run build.
-6. Inspect the diff.
-7. Commit with a clear message.
+3. Run `npm run content:check`.
+4. Run `npm run typecheck`.
+5. Run `npm test`.
+6. Run `npm run build`.
+7. Run `npm run verify:artifacts`.
+8. Inspect the diff (`git diff`).
+9. Commit with a clear, conventional commit message (e.g. `feat: ...`, `fix: ...`, `content: ...`).
 
-## Human agency
+---
 
-Agents are collaborators, not authorities.
+## 5. Human Agency
 
-When evidence is ambiguous, preserve the ambiguity.
-
-When human review is warranted, leave a clear draft instead of pretending certainty.
+Agents are collaborators, not authorities. When human review is warranted, leave a clear draft instead of pretending certainty.

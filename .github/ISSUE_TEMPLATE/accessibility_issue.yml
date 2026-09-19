@@ -1,0 +1,24 @@
+name: "Accessibility Issue"
+description: "Report a screen reader, contrast, keyboard navigation, or focus indicator issue"
+title: "[A11y]: "
+labels: ["accessibility"]
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page URL or Component
+      placeholder: "e.g. /blog/example or Table of Contents"
+    validations:
+      required: true
+  - type: textarea
+    id: a11y_details
+    attributes:
+      label: Description of Accessibility Barrier
+      description: What WCAG standard is violated (contrast, missing label, keyboard trap, focus indicator)?
+    validations:
+      required: true
+  - type: textarea
+    id: assistive_tech
+    attributes:
+      label: Assistive Technology Tested
+      description: Screen reader (VoiceOver, NVDA), keyboard navigation, zoom level, etc.

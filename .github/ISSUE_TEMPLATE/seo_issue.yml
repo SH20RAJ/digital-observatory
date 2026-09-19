@@ -1,0 +1,26 @@
+name: "SEO / Discovery Issue"
+description: "Report metadata errors, canonical URL discrepancies, sitemap errors, or structured data defects"
+title: "[SEO]: "
+labels: ["seo"]
+body:
+  - type: input
+    id: affected_url
+    attributes:
+      label: Affected Route or URL
+      placeholder: "e.g. /blog/example or /sitemap.xml"
+    validations:
+      required: true
+  - type: textarea
+    id: seo_details
+    attributes:
+      label: Description of SEO / Discovery Issue
+      description: Explain the metadata, JSON-LD schema, canonical, or sitemap problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: Expected Specification
+      description: What should the canonical URL, metadata tag, or schema output instead?
+    validations:
+      required: true

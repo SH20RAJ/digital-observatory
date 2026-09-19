@@ -24,22 +24,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
           node-version: 22
-      - name: Install dependencies
-        run: npm install
+
+      - name: Install dependencies (reproducible)
+        run: npm ci
+
       - name: Validate content
         run: npm run content:check
+
       - name: Typecheck
         run: npm run typecheck
-      - name: Build static export
+
+      - name: Run automated test suite
+        run: npm test
+
+      - name: Build static export & generate artifacts
         run: npm run build
+
+      - name: Verify artifact integrity
+        run: npm run verify:artifacts
+
       - name: Add .nojekyll and CNAME
         run: |
           touch out/.nojekyll
           echo "observatory.campusloop.space" > out/CNAME
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

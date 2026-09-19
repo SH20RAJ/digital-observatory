@@ -1,49 +1,109 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SITE, absoluteUrl } from "@/lib/site";
+import { SITE, getCanonicalUrl } from "@/lib/site";
 import { jsonLd, breadcrumbJsonLd, aboutPageJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
-const title = "About";
-const description = "How the Digital Observatory turns public signals into transparent, source-backed observations.";
+const title = "Methodology & About";
+const description =
+  "How the Digital Observatory tracks public signals and turns them into transparent, source-backed observations.";
 const url = "/about";
-const image = absoluteUrl("/og/default.svg");
 
 export const metadata: Metadata = {
   title,
   description,
-  alternates: { canonical: url },
-  openGraph: { type: "website", title: title + " | " + SITE.name, description, url: absoluteUrl(url), images: [{ url: image, width: 1200, height: 630, alt: title }] },
-  twitter: { card: "summary_large_image", title: title + " | " + SITE.name, description, images: [image] }
+  alternates: { canonical: getCanonicalUrl(url) },
+  openGraph: {
+    type: "website",
+    title: `${title} | ${SITE.name}`,
+    description,
+    url: getCanonicalUrl(url),
+    images: [{ url: getCanonicalUrl("/og/default.svg"), width: 1200, height: 630, alt: title }]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${title} | ${SITE.name}`,
+    description,
+    images: [getCanonicalUrl("/og/default.svg")]
+  }
 };
 
 export default function AboutPage() {
-  const crumbs = [{ name: "Home", path: "/" }, { name: "About", path: "/about" }];
+  const crumbs = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" }
+  ];
 
   return (
     <div className="page">
       <div className="shell">
         <Breadcrumbs items={crumbs.map((c) => ({ name: c.name, href: c.path }))} />
+
         <div className="page-heading">
-          <p className="eyebrow">About the observatory</p>
+          <p className="eyebrow">About the Observatory</p>
           <h1>A research surface built for calm curiosity.</h1>
           <p>{SITE.description}</p>
         </div>
+
         <div className="article-layout">
           <div className="article-main prose">
             <h2>What counts as a signal?</h2>
-            <p>A signal is a public, observable event or measurement: a release, repository change, package movement, research publication, vulnerability advisory, discussion spike, product launch, or other documented event.</p>
-            <h2>How stories are made</h2>
-            <p>We normalize sources, preserve provenance, compare measurements over time, and publish interpretations with explicit uncertainty. A chart is evidence. It is not automatically an explanation.</p>
-            <h2>Why Markdown?</h2>
-            <p>Every article is human-readable Markdown. That makes content diffable, reviewable, portable, Git-native, easy to edit in the CMS, and straightforward for people or agents to consume.</p>
-            <h2>Search and AI discovery</h2>
-            <p>The site exposes canonical URLs, descriptive metadata, Article and Breadcrumb structured data, RSS, XML sitemap, robots rules, and machine-readable content indexes. These improve clarity and discovery but never guarantee rankings or AI citations.</p>
-            <h2>Open source</h2>
-            <p>Contributors can add research, source adapters, editorial improvements, UI improvements, tests, accessibility fixes, and documentation.</p>
-            <p><Link href={SITE.github} className="link-arrow">Browse the repository →</Link></p>
+            <p>
+              A signal is a public, observable event or empirical measurement: a software release, package registry
+              spike, benchmark run, vulnerability disclosure (CVE), legislative filing, standard specification, or
+              ecosystem inflection point.
+            </p>
+
+            <h2>Observation model: 4 layers of inquiry</h2>
+            <p>To avoid conflating measurement with conjecture, every observation respects four distinct layers:</p>
+            <ol>
+              <li>
+                <strong>Measurement:</strong> What the source directly reports (e.g., download figures, telemetry counts,
+                Git commits, RFC text).
+              </li>
+              <li>
+                <strong>Derived metric:</strong> Deterministic calculations performed on the raw measurement (e.g.,
+                percentage delta, acceleration, normalized ratios).
+              </li>
+              <li>
+                <strong>Context:</strong> Documented external events occurring in the same temporal window (e.g.,
+                upstream releases, regulatory deadlines, security advisories).
+              </li>
+              <li>
+                <strong>Interpretation:</strong> Cautious explanations of what the evidence may indicate, always
+                accompanied by explicitly disclosed uncertainty.
+              </li>
+            </ol>
+
+            <h2>Why Markdown-first?</h2>
+            <p>
+              The source of truth for every article is portable, version-controlled Markdown in <code>content/posts/</code>.
+              This keeps the research diffable, auditable in Git, accessible to AI research agents, and independent of
+              ephemeral databases or closed CMS vendor locks.
+            </p>
+
+            <h2>Search, Provenance, and AI Discovery</h2>
+            <p>
+              The Observatory publishes canonical URLs, descriptive Open Graph assets, BlogPosting and ProfilePage
+              structured data, XML sitemaps, RSS feeds, and machine-readable agent indexes (<code>llms.txt</code>).
+              These allow humans and autonomous systems to verify provenance and quote claims accurately without
+              speculative SEO tricks.
+            </p>
+
+            <h2>Contributing &amp; Open Source</h2>
+            <p>
+              Digital Observatory is licensed under the MIT License. Contributions — whether adding verified observations,
+              correcting a source URL, proposing new data collectors, or improving accessibility — are welcomed via
+              GitHub pull requests.
+            </p>
+            <p>
+              <a href={SITE.github} target="_blank" rel="noreferrer" className="link-arrow">
+                Browse the Observatory GitHub repository →
+              </a>
+            </p>
           </div>
         </div>
+
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbJsonLd(crumbs))} />
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(aboutPageJsonLd())} />
       </div>

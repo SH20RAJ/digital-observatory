@@ -1,0 +1,47 @@
+name: "Bug Report"
+description: "Report a bug, rendering defect, broken route, or build failure"
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue with Digital Observatory.
+  - type: input
+    id: url
+    attributes:
+      label: Page URL or Route
+      description: Where did the bug occur?
+      placeholder: "e.g. https://observatory.campusloop.space/blog/... or /search"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: A clear and concise description of what happened.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can someone reproduce this behavior?
+      value: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Observe '...'
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should have happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Browser & OS
+      description: Device, browser version, and OS (e.g. Safari 18 on macOS, Chrome 132 on Android).

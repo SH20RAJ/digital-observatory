@@ -25,17 +25,23 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install
-        run: npm install
+      - name: Install dependencies (reproducible)
+        run: npm ci
 
-      - name: Validate content
+      - name: Validate content & frontmatter
         run: npm run content:check
 
       - name: Typecheck
         run: npm run typecheck
 
-      - name: Build
+      - name: Run automated test suite
+        run: npm test
+
+      - name: Build static export & generate artifacts
         run: npm run build
+
+      - name: Verify generated artifact integrity
+        run: npm run verify:artifacts
 
       - name: Deploy to Vercel when configured
         env:

@@ -19,7 +19,20 @@ jobs:
         with:
           node-version: 22
 
-      - run: npm install
-      - run: npm run content:check
-      - run: npm run typecheck
-      - run: npm run build
+      - name: Install dependencies (reproducible)
+        run: npm ci
+
+      - name: Validate content & frontmatter
+        run: npm run content:check
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Run automated test suite
+        run: npm test
+
+      - name: Build static export & generate artifacts
+        run: npm run build
+
+      - name: Verify generated artifact integrity
+        run: npm run verify:artifacts

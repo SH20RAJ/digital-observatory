@@ -1,0 +1,31 @@
+name: "Content Issue"
+description: "Report factual inaccuracies, missing citations, date errors, or typos in an article"
+title: "[Content]: "
+labels: ["content"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Research integrity is the core of the Digital Observatory. Thank you for reporting a content issue.
+  - type: input
+    id: article
+    attributes:
+      label: Article slug or URL
+      description: The article path or URL.
+      placeholder: "e.g. /blog/example-post or content/posts/example-post.md"
+    validations:
+      required: true
+  - type: textarea
+    id: issue_details
+    attributes:
+      label: Description of factual or typographical issue
+      description: What claim, metric, or sentence is inaccurate or needs clarification?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Primary Source Evidence
+      description: Provide official links or datasets supporting the correction.
+    validations:
+      required: true

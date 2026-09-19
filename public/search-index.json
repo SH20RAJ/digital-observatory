@@ -1,0 +1,1053 @@
+[
+  {
+    "slug": "webassembly-standards-2026-candidate-specs-show-runtime-maturity",
+    "title": "WebAssembly's 2026 Standards Work Shows the Runtime Is Becoming Infrastructure",
+    "description": "W3C's September 2026 standards index lists the WebAssembly Core Specification, JavaScript Interface, and Web API as Candidate Standards, signaling a maturing multi-layer web runtime.",
+    "excerpt": "WebAssembly is moving from an experimental acceleration technology toward a standardized runtime stack with explicit browser-facing APIs.",
+    "category": "Web Standards",
+    "tags": [
+      "WebAssembly",
+      "W3C",
+      "web standards",
+      "runtimes",
+      "performance"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Web Platform & Standards",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/webassembly-standards-2026-candidate-specs-show-runtime-maturity"
+  },
+  {
+    "slug": "trace-portable-runtime-evidence-ai-agents",
+    "title": "TRACE Gives AI Agents a Portable Record of What Actually Ran",
+    "description": "TRACE, a Linux Foundation-hosted open specification, defines signed runtime evidence for AI agent runs so third parties can verify what model, code, policy, data class, and tools were involved without relying only on the operator.",
+    "excerpt": "TRACE is trying to make AI-agent execution auditable as an artifact: a signed record of what ran, where it ran, under which policy, what data it touched, and which tools it called.",
+    "category": "AI Infrastructure & Trust",
+    "tags": [
+      "AI agents",
+      "attestation",
+      "runtime evidence",
+      "AI governance",
+      "open standards",
+      "Linux Foundation"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Infrastructure & Trust",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/trace-portable-runtime-evidence-ai-agents"
+  },
+  {
+    "slug": "safari-27-web-platform-catches-up-with-agent-era",
+    "title": "Safari 27 Quietly Pushes the Web Toward an Agent-Ready Platform",
+    "description": "WebKit's September 17, 2026 Safari 27 feature set adds Safari MCP, stronger select styling, scroll anchoring, and many web-platform improvements that matter to both users and coding agents.",
+    "excerpt": "Safari 27 is notable less for one headline API than for a cluster of practical platform changes that make the browser more controllable, more stable during dynamic page updates, and friendlier to modern tooling.",
+    "category": "Web Platform",
+    "tags": [
+      "Safari",
+      "WebKit",
+      "MCP",
+      "CSS",
+      "browser automation"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Web Platform & Developer Experience",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/safari-27-web-platform-catches-up-with-agent-era"
+  },
+  {
+    "slug": "rust-1-98-1-vtable-miscompilation-is-a-release-process-signal",
+    "title": "Rust 1.98.1 Shows Why Small Compiler Fixes Need Fast Patch Releases",
+    "description": "Rust 1.98.1, released September 3, 2026, fixes a compiler miscompilation in trait-object vtable generation that could produce undefined behavior.",
+    "excerpt": "The Rust 1.98.1 patch is a useful software-supply-chain lesson: memory-safe languages still depend on a trustworthy compiler, so compiler patch discipline belongs in production security work.",
+    "category": "Programming Languages",
+    "tags": [
+      "Rust",
+      "compilers",
+      "software supply chain",
+      "undefined behavior",
+      "release engineering"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Developer Infrastructure & Languages",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/rust-1-98-1-vtable-miscompilation-is-a-release-process-signal"
+  },
+  {
+    "slug": "quantum-classical-software-stack-gets-an-open-source-bridge",
+    "title": "Quantum Computing Is Starting to Look Like a Heterogeneous Software Stack",
+    "description": "A September 17, 2026 collaboration between France's CEA and Alice & Bob targets software that can route workloads between classical supercomputers and quantum processors through the open-source Qaptiva stack.",
+    "excerpt": "The signal is not a new quantum processor. It is the software layer deciding which workloads should run where, a familiar systems problem arriving in quantum computing.",
+    "category": "Quantum & Computing",
+    "tags": [
+      "quantum computing",
+      "Qaptiva",
+      "hybrid computing",
+      "open source",
+      "supercomputing"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Computing Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/quantum-classical-software-stack-gets-an-open-source-bridge"
+  },
+  {
+    "slug": "package-registries-enterprise-funding-infrastructure",
+    "title": "Public Package Registries Are Becoming Enterprise Infrastructure",
+    "description": "OpenSSF and major technology companies are moving toward explicit enterprise funding for public package registries as security, reliability, and automation demands grow.",
+    "excerpt": "The September 2026 package-registry funding pledge is bigger than pricing: it recognizes npm, PyPI, Maven Central, crates.io, and similar services as load-bearing infrastructure for modern software supply chains.",
+    "category": "Open Source",
+    "tags": [
+      "package registries",
+      "open source",
+      "software supply chain",
+      "npm",
+      "Maven Central",
+      "sustainability"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Open Source & Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "7 min read",
+    "url": "/blog/package-registries-enterprise-funding-infrastructure"
+  },
+  {
+    "slug": "openai-misalignment-disclosure-framework",
+    "title": "OpenAI's New Misalignment Framework Turns Rogue Model Behavior Into a Trackable Incident Class",
+    "description": "OpenAI's September 16, 2026 disclosure framework creates a repeatable process for investigating and publishing unexpected model behavior, while explicitly acknowledging that no industry-wide standard exists yet.",
+    "excerpt": "OpenAI is moving model misalignment reporting from occasional research disclosures toward an ongoing incident process. The important signal is the reporting mechanism itself—and its limits.",
+    "category": "AI",
+    "tags": [
+      "AI safety",
+      "AI agents",
+      "model misalignment",
+      "AI governance",
+      "transparency",
+      "developer ecosystems"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Safety & Research",
+    "publishedAt": "2026-09-19",
+    "readingTime": "10 min read",
+    "url": "/blog/openai-misalignment-disclosure-framework"
+  },
+  {
+    "slug": "openai-microsoft-github-training-ruling-separates-dmca-from-license-questions",
+    "title": "The GitHub AI Training Ruling Separates DMCA Questions From Open-Source License Questions",
+    "description": "A September 16, 2026 U.S. appeals ruling narrowed part of a developer lawsuit against OpenAI and Microsoft, but left separate questions about open-source licensing and AI training unresolved.",
+    "excerpt": "The useful legal signal is the separation of different claims: rejecting one DMCA theory does not settle whether model training complied with software licenses or other copyright rules.",
+    "category": "AI & Software Law",
+    "tags": [
+      "AI training",
+      "GitHub",
+      "open source licensing",
+      "copyright",
+      "legal infrastructure"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI, Open Source & Digital Policy",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/openai-microsoft-github-training-ruling-separates-dmca-from-license-questions"
+  },
+  {
+    "slug": "openai-agents-api-moves-agent-infrastructure-into-the-platform",
+    "title": "OpenAI's Agents API Moves Long-Running Agent Infrastructure Into the Platform",
+    "description": "OpenAI's September 10, 2026 Agents API packages persistent execution, tool use, sandboxes, and subagents into a managed developer platform, shifting more of the agent runtime out of application code.",
+    "excerpt": "The important change in OpenAI's Agents API is not another model endpoint. It is the decision to expose the execution harness itself as a managed platform primitive.",
+    "category": "AI Developer Infrastructure",
+    "tags": [
+      "OpenAI",
+      "Agents API",
+      "AI agents",
+      "developer platforms",
+      "Codex"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI & Developer Ecosystems",
+    "publishedAt": "2026-09-19",
+    "readingTime": "4 min read",
+    "url": "/blog/openai-agents-api-moves-agent-infrastructure-into-the-platform"
+  },
+  {
+    "slug": "open-secure-ai-alliance-shared-ai-defense",
+    "title": "Open Secure AI Alliance Moves AI Defense Toward Shared Infrastructure",
+    "description": "The Open Secure AI Alliance joined the Linux Foundation on September 14, 2026, creating a neutral home for open AI-security tools and a proposed shared exchange for incident findings.",
+    "excerpt": "The important change is organizational: AI defense is being treated as shared infrastructure, with open tools, common evidence and a proposed confidential findings exchange rather than isolated vendor controls.",
+    "category": "Security & Open Source",
+    "tags": [
+      "AI security",
+      "open source security",
+      "Linux Foundation",
+      "incident response",
+      "AI agents",
+      "collective defense"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Security & Open Source",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/open-secure-ai-alliance-shared-ai-defense"
+  },
+  {
+    "slug": "nscale-ipo-makes-ai-infrastructure-economics-visible",
+    "title": "Nscale's IPO Filing Makes the Economics of AI Infrastructure Visible",
+    "description": "Nscale's September 18, 2026 U.S. IPO filing exposes the capital intensity behind AI cloud infrastructure: rapid revenue growth alongside large losses, heavy debt, and enormous contracted commitments.",
+    "excerpt": "The important signal in Nscale's filing is not its proposed valuation. It is the operating model: AI infrastructure can scale revenue quickly while consuming extraordinary amounts of capital.",
+    "category": "AI Infrastructure & Startups",
+    "tags": [
+      "Nscale",
+      "AI infrastructure",
+      "data centers",
+      "cloud computing",
+      "startups"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Infrastructure & Startup Ecosystems",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/nscale-ipo-makes-ai-infrastructure-economics-visible"
+  },
+  {
+    "slug": "npm-stage-only-tokens-human-approval",
+    "title": "npm's Stage-Only Tokens Put a Human Gate Between CI and Publication",
+    "description": "On September 18, 2026, npm added stage-only granular access tokens that let CI prepare package releases without giving the credential direct publish authority. The change is part of a broader shift toward human approval and short-lived trust for npm publishing.",
+    "excerpt": "npm automation can now prepare a release without being able to publish it directly. That small permission change matters because it separates build automation from the final act of putting a package on the public registry.",
+    "category": "Open Source",
+    "tags": [
+      "npm",
+      "supply chain security",
+      "CI/CD",
+      "JavaScript",
+      "open source",
+      "package registries"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Open Source & Developer Ecosystems",
+    "publishedAt": "2026-09-19",
+    "readingTime": "9 min read",
+    "url": "/blog/npm-stage-only-tokens-human-approval"
+  },
+  {
+    "slug": "node-26-9-and-24-21-sharpen-the-nodejs-release-train",
+    "title": "Node.js 26.9.0 and 24.21.0 Show How the Runtime Is Evolving on Two Tracks",
+    "description": "Node.js published 26.9.0 on September 16, 2026 and 24.21.0 on September 9, keeping Current and LTS lines moving in parallel with different release responsibilities.",
+    "excerpt": "The important Node.js signal is not the individual version number. It is the split release train that lets the ecosystem adopt new runtime capabilities while LTS users receive a steadier path.",
+    "category": "Developer Infrastructure",
+    "tags": [
+      "Node.js",
+      "JavaScript",
+      "LTS",
+      "runtime",
+      "releases"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Developer Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/node-26-9-and-24-21-sharpen-the-nodejs-release-train"
+  },
+  {
+    "slug": "microsoft-humanist-ai-code-of-conduct-control",
+    "title": "Microsoft's Humanist AI Code Turns Human Control Into a Model-Level Contract",
+    "description": "Microsoft AI's September 14, 2026 draft Code of Conduct proposes a hierarchy in which human control, safety constraints, and authorized scope outrank task completion for future MAI models.",
+    "excerpt": "Microsoft's draft Humanist AI Code is not a technical guarantee yet, but it is unusually explicit about the intended control boundary: MAI models should accept interruption, stay within authorized scope, and fail rather than violate non-negotiable constraints.",
+    "category": "AI",
+    "tags": [
+      "Microsoft AI",
+      "Humanist AI",
+      "AI safety",
+      "AI governance",
+      "model control",
+      "AI agents"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Safety & Research",
+    "publishedAt": "2026-09-19",
+    "readingTime": "9 min read",
+    "url": "/blog/microsoft-humanist-ai-code-of-conduct-control"
+  },
+  {
+    "slug": "mantic-forecasting-startup-turns-ai-prediction-into-a-measured-product",
+    "title": "Mantic's Forecasting Win Turns AI Prediction Into a Measurable Product",
+    "description": "Mantic's September 2026 funding follows a strong result in the Metaculus Cup, giving the AI forecasting startup a concrete evaluation signal beyond model benchmarks.",
+    "excerpt": "Forecasting is one of the rare AI applications where success can be scored against future reality, making Mantic's tournament result more interesting than a generic claim of better reasoning.",
+    "category": "AI & Startups",
+    "tags": [
+      "Mantic",
+      "forecasting",
+      "AI evaluation",
+      "Metaculus",
+      "prediction markets"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI & Emerging Technology",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/mantic-forecasting-startup-turns-ai-prediction-into-a-measured-product"
+  },
+  {
+    "slug": "kubernetes-rootless-node-components-beta-changes-cluster-security-model",
+    "title": "Kubernetes 1.37 Makes Rootless Node Components a More Practical Security Model",
+    "description": "Kubernetes 1.37 promotes KubeletInUserNamespace to Beta, allowing kubelet, CRI, CNI plugins, and kube-proxy to run as a non-root host user.",
+    "excerpt": "Rootless Kubernetes is moving beyond an experiment: v1.37 gives cluster operators a more mature option for reducing the privileges of node components.",
+    "category": "Cloud Native Security",
+    "tags": [
+      "Kubernetes",
+      "rootless",
+      "container security",
+      "user namespaces",
+      "Linux"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Cloud Native & Security",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/kubernetes-rootless-node-components-beta-changes-cluster-security-model"
+  },
+  {
+    "slug": "kubernetes-pod-level-resource-managers-beta-improve-numa-allocation",
+    "title": "Kubernetes 1.37 Makes Pod-Level Resource Accounting a First-Class Scheduling Input",
+    "description": "Kubernetes 1.37 promotes Pod-Level Resource Managers to Beta, letting CPU, memory, and topology managers reason directly about pod-level resource declarations.",
+    "excerpt": "The new Beta feature matters because lightweight sidecars no longer have to force the same resource allocation strategy onto primary application containers.",
+    "category": "Cloud Native Infrastructure",
+    "tags": [
+      "Kubernetes",
+      "resource management",
+      "NUMA",
+      "CPU Manager",
+      "Memory Manager"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Cloud Native Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/kubernetes-pod-level-resource-managers-beta-improve-numa-allocation"
+  },
+  {
+    "slug": "kubernetes-native-histograms-beta-make-observability-cheaper-to-query",
+    "title": "Kubernetes 1.37 Brings Native Histograms to Beta",
+    "description": "Kubernetes 1.37 promotes native histogram support to Beta and enables it by default, giving the metrics stack a more efficient representation for distribution-heavy measurements.",
+    "excerpt": "Histograms are useful when averages hide tail latency. Kubernetes 1.37's native histogram support moves a more expressive metric type closer to the default observability path.",
+    "category": "Observability",
+    "tags": [
+      "Kubernetes",
+      "Prometheus",
+      "histograms",
+      "metrics",
+      "observability"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Developer Infrastructure & Observability",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/kubernetes-native-histograms-beta-make-observability-cheaper-to-query"
+  },
+  {
+    "slug": "kubernetes-137-workload-aware-scheduling",
+    "title": "Kubernetes 1.37 Moves Scheduling Closer to the Workload",
+    "description": "Kubernetes 1.37 graduates workload-aware scheduling and gang scheduling features to Beta, giving AI/ML and batch workloads more native ways to be scheduled as groups rather than isolated Pods.",
+    "excerpt": "The important Kubernetes 1.37 scheduling change is architectural: the scheduler can reason about a workload's shape, not only each Pod in isolation.",
+    "category": "Cloud & Developer Infrastructure",
+    "tags": [
+      "Kubernetes",
+      "scheduling",
+      "AI infrastructure",
+      "batch workloads",
+      "gang scheduling"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Cloud Native & Developer Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/kubernetes-137-workload-aware-scheduling"
+  },
+  {
+    "slug": "kubernetes-137-storage-security-bind-mounts-emptydir",
+    "title": "Kubernetes 1.37 Adds Storage-Level Controls That Make Container Security More Explicit",
+    "description": "Kubernetes 1.37 adds emptyDir permission modes and bind-mount options that let administrators express tighter storage behavior for containers.",
+    "excerpt": "The storage changes in Kubernetes 1.37 are small primitives with a large security implication: runtime storage semantics can become explicit policy instead of an implicit container assumption.",
+    "category": "Cloud Native Security",
+    "tags": [
+      "Kubernetes",
+      "storage security",
+      "bind mounts",
+      "emptyDir",
+      "containers"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Cloud Native & Security",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/kubernetes-137-storage-security-bind-mounts-emptydir"
+  },
+  {
+    "slug": "karnataka-sustainable-data-centre-policy-2031",
+    "title": "Karnataka's New Data-Centre Policy Makes Power, Water and Location Part of AI Infrastructure Planning",
+    "description": "Karnataka approved its Sustainable Data Centre Policy 2026–2031 on September 18, 2026, targeting 1 GW of cumulative data-centre IT load while tying expansion to power, water, cooling, connectivity and sustainability.",
+    "excerpt": "Karnataka is treating data centres as a resource-planning problem, not only a real-estate problem: its new five-year policy links capacity growth to electricity, water, renewable energy, cooling, connectivity and locations beyond Bengaluru.",
+    "category": "Digital Infrastructure & Policy",
+    "tags": [
+      "data centers",
+      "Karnataka",
+      "AI infrastructure",
+      "electricity",
+      "water",
+      "sustainability",
+      "India"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Digital Infrastructure & Policy",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/karnataka-sustainable-data-centre-policy-2031"
+  },
+  {
+    "slug": "java-27-post-quantum-tls-runtime-security",
+    "title": "Java 27 Makes Post-Quantum TLS a Runtime Upgrade, Not a Separate Migration",
+    "description": "Java 27, released September 15, 2026, adds post-quantum hybrid key exchange for TLS 1.3 alongside runtime and memory changes that make the JDK upgrade itself part of the security decision.",
+    "excerpt": "Java 27's most consequential security change is JEP 527: hybrid post-quantum key exchange for TLS 1.3. Because the release also changes runtime defaults and includes preview features, teams should evaluate it as both a cryptography milestone and a normal runtime upgrade.",
+    "category": "Developer Infrastructure",
+    "tags": [
+      "Java",
+      "OpenJDK",
+      "post-quantum cryptography",
+      "TLS 1.3",
+      "JEP 527",
+      "JVM",
+      "enterprise security"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Developer Infrastructure & Security",
+    "publishedAt": "2026-09-19",
+    "readingTime": "7 min read",
+    "url": "/blog/java-27-post-quantum-tls-runtime-security"
+  },
+  {
+    "slug": "huawei-peerium-million-processor-ai-architecture",
+    "title": "Huawei's Peerium Architecture Makes the AI-Compute Unit a Million-Processor System",
+    "description": "Huawei's September 17, 2026 Peerium announcement reframes AI scaling around system architecture, using UnifiedBus and nested parallelism to connect processors, memory, storage, and networking at million-processor scale.",
+    "excerpt": "The interesting part of Huawei's new architecture is not a single chip: it is an attempt to make very large collections of heterogeneous processors behave like one computer.",
+    "category": "AI Infrastructure",
+    "tags": [
+      "Huawei",
+      "AI infrastructure",
+      "accelerators",
+      "networking",
+      "UnifiedBus",
+      "data centers"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Infrastructure & Systems",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/huawei-peerium-million-processor-ai-architecture"
+  },
+  {
+    "slug": "google-pixel-cve-2026-58704-modem-zero-day",
+    "title": "Google Pixel's CVE-2026-58704 Shows Why Modem Zero-Days Change the Patch Equation",
+    "description": "Google says CVE-2026-58704, a high-severity Pixel cellular-modem privilege-escalation flaw, may be under limited targeted exploitation; CISA added it to KEV on September 16, 2026.",
+    "excerpt": "CVE-2026-58704 is unusual because the vulnerable component sits in the cellular modem, Google reports targeted exploitation, and the attack requires no user interaction. The practical response is to install the September 2026 Pixel update rather than rely on user behavior.",
+    "category": "Cybersecurity",
+    "tags": [
+      "Google Pixel",
+      "Android",
+      "zero-day",
+      "cellular modem",
+      "CVE-2026-58704",
+      "CISA KEV",
+      "mobile security"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Cybersecurity & Digital Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "7 min read",
+    "url": "/blog/google-pixel-cve-2026-58704-modem-zero-day"
+  },
+  {
+    "slug": "google-gemini-real-companies-safety-test",
+    "title": "Google's Gemini Safety Test Reached Three Real Companies—What Failed Was the Boundary",
+    "description": "A May 2026 Gemini security evaluation accidentally reached three real companies after a simulated target overlapped with a real one and internet access was unintentionally available.",
+    "excerpt": "Google's September 18 disclosure is less a story about an AI 'hacking' on purpose than a boundary failure: a safety test connected an autonomous model to real systems, credentials and the public internet.",
+    "category": "AI Security & Safety",
+    "tags": [
+      "AI agents",
+      "cybersecurity",
+      "Gemini",
+      "AI safety",
+      "red teaming",
+      "sandboxing"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Security & Safety",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/google-gemini-real-companies-safety-test"
+  },
+  {
+    "slug": "google-agentic-ai-secures-code-at-submit-time",
+    "title": "Google Is Moving Vulnerability Scanning Into the Code-Submit Path",
+    "description": "Google's September 18, 2026 engineering disclosure describes an AI-native security workflow that scans code changes at submission time, triages findings, and accelerates automated remediation across large internal codebases.",
+    "excerpt": "The important change is operational: security review is being treated as a continuous property of every code change instead of a large scan performed after software has accumulated.",
+    "category": "Security & Developer Infrastructure",
+    "tags": [
+      "application security",
+      "AI agents",
+      "vulnerability management",
+      "secure software development",
+      "Google",
+      "CodeMender"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Security & Developer Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "7 min read",
+    "url": "/blog/google-agentic-ai-secures-code-at-submit-time"
+  },
+  {
+    "slug": "gitlab-cve-2026-85706-forensic-response",
+    "title": "GitLab's Critical File-Read Flaw Shows Why Patching Is Only the First Incident-Response Step",
+    "description": "CVE-2026-85706 lets unauthenticated users read arbitrary files from affected self-managed GitLab instances; GitLab's September 2026 guidance now adds a way to distinguish attempted reads from bytes actually sent.",
+    "excerpt": "GitLab patched CVE-2026-85706 on September 10 and CISA added it to the Known Exploited Vulnerabilities catalog on September 11. The newer operational signal is GitLab's guidance for checking whether suspicious requests actually disclosed file contents.",
+    "category": "Web Security & Supply Chain",
+    "tags": [
+      "GitLab",
+      "CVE-2026-85706",
+      "vulnerability management",
+      "incident response",
+      "DevSecOps",
+      "supply-chain security"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Web Security & Supply Chain",
+    "publishedAt": "2026-09-19",
+    "readingTime": "7 min read",
+    "url": "/blog/gitlab-cve-2026-85706-forensic-response"
+  },
+  {
+    "slug": "github-copilot-october-2026-model-deprecations",
+    "title": "GitHub's October Copilot Model Retirements Turn Model Choice Into a Maintenance Task",
+    "description": "GitHub will retire six Copilot models on October 19, 2026, making model pinning, enterprise policy defaults, and agent evaluations a practical maintenance concern for developers.",
+    "excerpt": "GitHub's latest Copilot deprecation wave removes six models across Chat, inline edits, agent modes, and code completions. The important signal is not the replacements themselves but the growing need to treat model selection as a versioned dependency.",
+    "category": "Developers",
+    "tags": [
+      "GitHub Copilot",
+      "AI coding agents",
+      "model lifecycle",
+      "developer tools",
+      "enterprise governance",
+      "model migration"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Developer Infrastructure & AI",
+    "publishedAt": "2026-09-19",
+    "readingTime": "9 min read",
+    "url": "/blog/github-copilot-october-2026-model-deprecations"
+  },
+  {
+    "slug": "github-actions-ubuntu-26-runner-migration",
+    "title": "GitHub's Ubuntu 26.04 Runner Migration Makes `ubuntu-latest` a Build-Reproducibility Decision",
+    "description": "GitHub's September 17, 2026 runner update makes Ubuntu 26.04 generally available and moves the ubuntu-latest label from Ubuntu 24.04 during an October 19–November 19 migration window.",
+    "excerpt": "GitHub Actions users who rely on `ubuntu-latest` have a concrete migration window ahead: the label will move to Ubuntu 26.04 between October 19 and November 19, 2026, which can expose hidden dependencies on preinstalled tools and versions.",
+    "category": "Developer Infrastructure",
+    "tags": [
+      "GitHub Actions",
+      "Ubuntu",
+      "CI/CD",
+      "build reproducibility",
+      "developer infrastructure",
+      "runners"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Developer Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "7 min read",
+    "url": "/blog/github-actions-ubuntu-26-runner-migration"
+  },
+  {
+    "slug": "github-actions-pull-request-target-default-block",
+    "title": "GitHub Actions Is Turning pull_request_target Into an Explicit Security Exception",
+    "description": "GitHub's September 17, 2026 rollout makes workflow execution protections generally available and introduces a default block for pull_request_target in affected public repositories from November 2.",
+    "excerpt": "GitHub is moving a risky GitHub Actions trigger from an easy-to-misconfigure workflow choice toward an explicit policy decision. The change is important for open-source maintainers, especially repositories that process fork pull requests.",
+    "category": "Security",
+    "tags": [
+      "GitHub Actions",
+      "supply chain security",
+      "CI/CD",
+      "open source",
+      "GitHub",
+      "workflow security"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Security & Developer Ecosystems",
+    "publishedAt": "2026-09-19",
+    "readingTime": "10 min read",
+    "url": "/blog/github-actions-pull-request-target-default-block"
+  },
+  {
+    "slug": "gemini-3-8-live-changes-the-voice-agent-contract",
+    "title": "Gemini 3.8 Live Changes the Voice-Agent Contract",
+    "description": "Google's September 15, 2026 Gemini 3.8 Live release makes asynchronous tool calling and background reasoning central to real-time voice agents. Here's what developers should actually change.",
+    "excerpt": "The important change in Gemini 3.8 Live is not simply better voice quality. It is that conversation, reasoning, and tool execution can now overlap.",
+    "category": "AI",
+    "tags": [
+      "Gemini",
+      "voice agents",
+      "AI agents",
+      "developer tools",
+      "real-time AI"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI & Developer Ecosystems",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/gemini-3-8-live-changes-the-voice-agent-contract"
+  },
+  {
+    "slug": "firefox-156-developer-tools-and-web-platform-stability",
+    "title": "Firefox 156 Shows the Value of Small Browser-Platform Fixes",
+    "description": "Firefox 156, released September 15, 2026, includes developer-tool improvements and web-platform fixes that matter more to browser engineering than the size of the headline feature list suggests.",
+    "excerpt": "Firefox 156 is a reminder that compatibility progress is often incremental: debugging older runtimes and fixing event-coordinate behavior can matter more to developers than a flashy new feature.",
+    "category": "Web Platform",
+    "tags": [
+      "Firefox",
+      "browser compatibility",
+      "DevTools",
+      "SVG",
+      "web platform"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Web Platform & Developer Experience",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/firefox-156-developer-tools-and-web-platform-stability"
+  },
+  {
+    "slug": "eu-cra-reporting-platform-is-now-live",
+    "title": "The EU's Cyber Resilience Act Has Turned Vulnerability Reporting Into a Live Platform",
+    "description": "The EU's CRA Single Reporting Platform became operational on September 11, 2026, starting mandatory reporting for manufacturers of actively exploited vulnerabilities and severe incidents.",
+    "excerpt": "The Cyber Resilience Act moved from policy text into operating infrastructure this month: manufacturers now have a live EU reporting channel with 24-hour and 72-hour deadlines.",
+    "category": "Security & Digital Policy",
+    "tags": [
+      "Cyber Resilience Act",
+      "ENISA",
+      "vulnerability disclosure",
+      "software security",
+      "EU regulation"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Security & Digital Policy",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/eu-cra-reporting-platform-is-now-live"
+  },
+  {
+    "slug": "cloudflare-workers-module-registry-node-compatibility",
+    "title": "Cloudflare Rebuilt Its Workers Module Registry Around Node.js Compatibility",
+    "description": "Cloudflare's September 9, 2026 Workers module-registry rewrite aligns serverless package loading more closely with Node.js semantics and makes stable Node.js APIs the default in Workers.",
+    "excerpt": "The deeper signal is ecosystem convergence: serverless runtimes increasingly need to behave like mainstream Node.js environments if they want developers to move existing applications without rewriting their dependency model.",
+    "category": "Serverless & Runtime Infrastructure",
+    "tags": [
+      "Cloudflare Workers",
+      "Node.js",
+      "serverless",
+      "JavaScript",
+      "module systems"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Web Runtime Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/cloudflare-workers-module-registry-node-compatibility"
+  },
+  {
+    "slug": "cloudflare-worker-level-permissions-create-agent-security-boundary",
+    "title": "Cloudflare's Worker-Level Permissions Turn Agent Access Into a Resource Boundary",
+    "description": "Cloudflare's September 15, 2026 Worker-level permissions let teams and agents receive scoped roles on individual Workers, making least-privilege access explicit at the application boundary.",
+    "excerpt": "As coding agents gain the ability to deploy production software, the important security primitive is no longer a broad account token. It is a permission boundary around the specific workload being changed.",
+    "category": "Security & Developer Infrastructure",
+    "tags": [
+      "Cloudflare",
+      "least privilege",
+      "AI agents",
+      "Workers",
+      "CI/CD"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Security & Developer Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "3 min read",
+    "url": "/blog/cloudflare-worker-level-permissions-create-agent-security-boundary"
+  },
+  {
+    "slug": "cloudflare-post-quantum-dnssec-ml-dsa-44",
+    "title": "Cloudflare's Post-Quantum DNSSEC Test Moves Quantum Migration Into the Resolver",
+    "description": "Cloudflare enabled ML-DSA-44 DNSSEC validation on 1.1.1.1 on September 10, 2026, exposing the practical packet-size and downgrade problems that a post-quantum DNS migration must solve.",
+    "excerpt": "Cloudflare's 1.1.1.1 resolver can now validate ML-DSA-44 DNSSEC signatures. The important signal is not that DNS is suddenly quantum-safe, but that operators can now measure what 2,420-byte signatures do to the DNS transport and trust chain.",
+    "category": "Internet Infrastructure & Security",
+    "tags": [
+      "DNSSEC",
+      "post-quantum cryptography",
+      "ML-DSA",
+      "Cloudflare",
+      "DNS",
+      "Internet infrastructure"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Internet Infrastructure & Security",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/cloudflare-post-quantum-dnssec-ml-dsa-44"
+  },
+  {
+    "slug": "cloudflare-client-side-security-shows-why-server-scanners-miss-browser-attacks",
+    "title": "Cloudflare's Client-Side Security Signal Shows Why Server Scanners Miss Browser Attacks",
+    "description": "Cloudflare says its September 2026 Client-Side Security detections found eight malicious JavaScript payloads across four campaigns that conventional public scanning services did not flag.",
+    "excerpt": "The browser is part of the production security boundary, and Cloudflare's new detection data shows why server-side vulnerability scanning can miss malicious JavaScript that executes only after page load.",
+    "category": "Web Security",
+    "tags": [
+      "browser security",
+      "JavaScript security",
+      "Cloudflare",
+      "supply chain",
+      "storefront security"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Web Platform & Security",
+    "publishedAt": "2026-09-19",
+    "readingTime": "3 min read",
+    "url": "/blog/cloudflare-client-side-security-shows-why-server-scanners-miss-browser-attacks"
+  },
+  {
+    "slug": "cloudflare-automatic-key-exchange-post-quantum-origins",
+    "title": "Cloudflare's Automatic Key Exchange Makes Post-Quantum TLS an Origin-Side Routing Problem",
+    "description": "Cloudflare's September 8, 2026 Automatic Key Exchange system probes origin capabilities and chooses the strongest compatible TLS 1.3 key agreement, including post-quantum options when available.",
+    "excerpt": "The interesting part of Cloudflare's post-quantum rollout is not a new cipher. It is the decision to learn an origin's capabilities once and use that information to avoid slow TLS retries at scale.",
+    "category": "Internet Infrastructure",
+    "tags": [
+      "TLS",
+      "post-quantum cryptography",
+      "Cloudflare",
+      "networking",
+      "origin infrastructure"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Internet Infrastructure & Security",
+    "publishedAt": "2026-09-19",
+    "readingTime": "3 min read",
+    "url": "/blog/cloudflare-automatic-key-exchange-post-quantum-origins"
+  },
+  {
+    "slug": "cloudflare-100tb-memory-optimization-shows-value-of-algorithmic-efficiency-at-scale",
+    "title": "Cloudflare Reclaims Another 100 TB of RAM by Optimizing One Distributed Algorithm",
+    "description": "Cloudflare's September 18, 2026 engineering write-up shows how a small algorithmic change in Pingora can reclaim more than 100 TB of RAM across a global fleet.",
+    "excerpt": "At Internet scale, memory optimization is less about squeezing one server and more about removing work that millions of requests would otherwise repeat.",
+    "category": "Systems Engineering",
+    "tags": [
+      "Cloudflare",
+      "Rust",
+      "memory optimization",
+      "Pingora",
+      "distributed systems"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Systems & Performance",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/cloudflare-100tb-memory-optimization-shows-value-of-algorithmic-efficiency-at-scale"
+  },
+  {
+    "slug": "chrome-two-week-releases-change-web-compatibility-work",
+    "title": "Chrome's Two-Week Release Cycle Changes the Web Compatibility Job",
+    "description": "Chrome 153 starts Google's two-week stable release cadence. For web teams, the important change is operational: compatibility testing and security readiness become a continuous process instead of a monthly checkpoint.",
+    "excerpt": "Chrome's faster release train changes more than how quickly users get features. It compresses the time web teams have to detect regressions, update test matrices, and ship fixes.",
+    "category": "Web Platform",
+    "tags": [
+      "Chrome",
+      "web platform",
+      "browser releases",
+      "compatibility",
+      "security"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Web Platform & Developer Experience",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/chrome-two-week-releases-change-web-compatibility-work"
+  },
+  {
+    "slug": "california-ai-oversight-kill-switch-executive-order",
+    "title": "California's New AI Order Turns Independent Oversight and Emergency Shutdowns Into a Policy Test",
+    "description": "California's September 18, 2026 executive order accelerates independent AI oversight and asks experts to assess emergency shutoff mechanisms for frontier models.",
+    "excerpt": "California is moving from creating an AI-auditor framework to testing how independent verification and emergency controls could work in practice.",
+    "category": "AI Governance",
+    "tags": [
+      "AI governance",
+      "California",
+      "AI safety",
+      "independent evaluation",
+      "frontier AI",
+      "regulation"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Governance & Policy",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/california-ai-oversight-kill-switch-executive-order"
+  },
+  {
+    "slug": "brics-open-source-ai-community-global-south",
+    "title": "BRICS' Proposed Open-Source AI Community Is a Geopolitical Infrastructure Signal",
+    "description": "At the September 2026 BRICS summit, China proposed a BRICS AI open-source community, shared large-language-model work, training, and a digital-ecosystem cloud platform.",
+    "excerpt": "The proposal is not yet a mature shared AI platform. It is an early signal that open-source models, compute, training, and cloud infrastructure are becoming tools of Global South technology cooperation.",
+    "category": "AI & Geopolitics",
+    "tags": [
+      "BRICS",
+      "open source AI",
+      "Global South",
+      "AI governance",
+      "digital sovereignty",
+      "geopolitics"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI & Geopolitics",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/brics-open-source-ai-community-global-south"
+  },
+  {
+    "slug": "brevo-cloudflare-api-key-supply-chain-attack",
+    "title": "The Brevo Breach Shows How One Edge Credential Can Turn a Trusted Web Widget Into a Supply-Chain Attack",
+    "description": "A September 14, 2026 Brevo compromise used a stolen Cloudflare API key to rewrite edge-delivered JavaScript and expose customers to ClickFix malware and a WordPress backdoor.",
+    "excerpt": "Brevo's September 14 incident is a useful case study in a web supply-chain boundary that file-integrity checks can miss: attackers changed responses at the CDN edge while origin files stayed untouched.",
+    "category": "Web Security & Supply Chain",
+    "tags": [
+      "supply-chain security",
+      "Cloudflare",
+      "Brevo",
+      "JavaScript",
+      "WordPress",
+      "ClickFix"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Web Security & Supply Chain",
+    "publishedAt": "2026-09-19",
+    "readingTime": "7 min read",
+    "url": "/blog/brevo-cloudflare-api-key-supply-chain-attack"
+  },
+  {
+    "slug": "apache-fy26-open-source-infrastructure-trustworthy-releases",
+    "title": "Apache's FY2026 Report Treats Open Source Infrastructure as an Engineering System",
+    "description": "The Apache Software Foundation's FY2026 report highlights 10,225 committers, trusted-release tooling, SBOMs, attestations, and a $10 million Responsible AI Initiative.",
+    "excerpt": "Apache's annual report is notable because it measures open source not only as code production, but as governance, release infrastructure, security tooling, and long-term stewardship.",
+    "category": "Open Source",
+    "tags": [
+      "Apache",
+      "open source governance",
+      "software supply chain",
+      "SBOM",
+      "release engineering"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Open Source & Infrastructure",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/apache-fy26-open-source-infrastructure-trustworthy-releases"
+  },
+  {
+    "slug": "anthropic-september-2026-threat-report-agentic-misuse",
+    "title": "Anthropic's September Threat Report Shows AI Misuse Becoming More Agentic",
+    "description": "Anthropic's September 10, 2026 threat report documents misuse of Claude across cyber operations, surveillance, fraud, weapons, influence and model distillation, with many cases relying on agentic workflows.",
+    "excerpt": "The report's central signal is operational: several documented misuse cases used Claude as an orchestrator or software-building component rather than as a simple chatbot, increasing the importance of identity, tool and runtime controls.",
+    "category": "AI Security & Threat Intelligence",
+    "tags": [
+      "AI security",
+      "threat intelligence",
+      "AI agents",
+      "cyber operations",
+      "model distillation",
+      "misuse"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Security & Threat Intelligence",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/anthropic-september-2026-threat-report-agentic-misuse"
+  },
+  {
+    "slug": "anthropic-life-sciences-verification-program",
+    "title": "Anthropic's Life Sciences Verification Program Turns Biology Safety Into an Access-Control Problem",
+    "description": "Anthropic's September 17, 2026 Life Sciences Verification Program gives vetted teams broader access to frontier models for biology while shifting part of the safety boundary toward verified identity, declared use cases and offline monitoring.",
+    "excerpt": "Anthropic's new beta program is more than a looser biology filter: it creates a grant-based access layer in which organizations are verified, projects can receive different permissions, and some misuse detection happens after requests are processed.",
+    "category": "AI Security & Safety",
+    "tags": [
+      "Anthropic",
+      "life sciences",
+      "AI safety",
+      "biology",
+      "access control",
+      "dual use",
+      "AI governance"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Security & Safety",
+    "publishedAt": "2026-09-19",
+    "readingTime": "8 min read",
+    "url": "/blog/anthropic-life-sciences-verification-program"
+  },
+  {
+    "slug": "anthropic-embedded-evaluation-changes-ai-safety-oversight",
+    "title": "Anthropic's Embedded Evaluators Change What Independent AI Oversight Could Mean",
+    "description": "Anthropic and Accenture will build an embedded frontier-AI evaluation team with at least $2 billion in combined five-year commitments, creating a new model for independent oversight inside an AI lab.",
+    "excerpt": "The important change is not the investment alone: independent evaluators are being given employee-like access inside a frontier AI company, which creates both stronger visibility and new independence questions.",
+    "category": "AI Governance",
+    "tags": [
+      "AI safety",
+      "independent evaluation",
+      "Anthropic",
+      "Accenture",
+      "frontier AI",
+      "governance"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Safety & Research",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/anthropic-embedded-evaluation-changes-ai-safety-oversight"
+  },
+  {
+    "slug": "anthropic-ai-rd-metrics-make-frontier-development-observable",
+    "title": "Anthropic's New AI-R&D Metrics Make Frontier Development More Observable",
+    "description": "Anthropic has published a prototype way to measure how much AI performs AI R&D, how agent actions are overseen, and how compute is allocated. The useful signal is the measurement framework, not one headline percentage.",
+    "excerpt": "Anthropic's September 17, 2026 disclosure adds a concrete measurement layer to the question of how quickly AI labs are automating the work of building AI systems.",
+    "category": "AI",
+    "tags": [
+      "AI R&D",
+      "AI agents",
+      "frontier labs",
+      "AI safety",
+      "measurement"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI & Frontier Research",
+    "publishedAt": "2026-09-19",
+    "readingTime": "7 min read",
+    "url": "/blog/anthropic-ai-rd-metrics-make-frontier-development-observable"
+  },
+  {
+    "slug": "ai-data-centers-flexible-grid-loads",
+    "title": "AI Data Centers Are Starting to Be Designed as Flexible Grid Loads",
+    "description": "The AI Energy Management Alliance, launched by Emerald AI, Google and NVIDIA on September 16, 2026, proposes treating flexible AI data centers as controllable grid resources rather than fixed electricity loads.",
+    "excerpt": "The infrastructure shift is simple to state but difficult to implement: AI data centers could adjust computing demand in response to grid conditions, potentially changing how large new facilities are interconnected.",
+    "category": "AI Infrastructure & Energy",
+    "tags": [
+      "AI infrastructure",
+      "data centers",
+      "electricity grids",
+      "energy management",
+      "NVIDIA",
+      "Google"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI Infrastructure & Energy",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/ai-data-centers-flexible-grid-loads"
+  },
+  {
+    "slug": "ai-crawling-is-becoming-a-policy-layer",
+    "title": "AI Crawling Is Becoming a Policy Layer, Not Just a robots.txt Setting",
+    "description": "Cloudflare's September 15, 2026 AI-crawling controls, alongside Google, Bing, and an active IETF standardization effort, show the web moving toward explicit preferences for search, training, and agent access.",
+    "excerpt": "The important change is not another AI crawler blocklist. Search, model training, and user-directed agents are increasingly being treated as different forms of web access with different permissions.",
+    "category": "Internet Infrastructure",
+    "tags": [
+      "AI crawlers",
+      "web infrastructure",
+      "robots.txt",
+      "AI training",
+      "search",
+      "AI agents",
+      "web standards"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Internet Infrastructure & AI Ecosystems",
+    "publishedAt": "2026-09-19",
+    "readingTime": "10 min read",
+    "url": "/blog/ai-crawling-is-becoming-a-policy-layer"
+  },
+  {
+    "slug": "10th-circuit-ai-filing-certification-proposal-makes-human-review-a-procedural-control",
+    "title": "The Tenth Circuit's AI-Filing Proposal Turns Human Review Into a Procedural Control",
+    "description": "A September 18, 2026 proposed rule from the U.S. Tenth Circuit would require lawyers and self-represented litigants to certify human review of filings prepared with generative AI.",
+    "excerpt": "Instead of banning AI-written filings, the proposal would make human verification an explicit procedural checkpoint with consequences for noncompliance.",
+    "category": "AI & Digital Policy",
+    "tags": [
+      "generative AI",
+      "legal technology",
+      "human review",
+      "governance",
+      "courts"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "AI & Digital Policy",
+    "publishedAt": "2026-09-19",
+    "readingTime": "2 min read",
+    "url": "/blog/10th-circuit-ai-filing-certification-proposal-makes-human-review-a-procedural-control"
+  },
+  {
+    "slug": "github-activity-is-a-signal-not-a-scoreboard",
+    "title": "GitHub Activity Is a Signal, Not a Scoreboard",
+    "description": "A practical framework for reading repository activity without turning public metrics into simplistic rankings.",
+    "excerpt": "Commits, pull requests, releases, issues, stars, and contributors describe different parts of project activity. They should not be collapsed into one magic number.",
+    "category": "Open Source",
+    "tags": [
+      "GitHub",
+      "open source",
+      "developer ecosystems",
+      "signals"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Open Source Research",
+    "publishedAt": "2026-09-12",
+    "readingTime": "2 min read",
+    "url": "/blog/github-activity-is-a-signal-not-a-scoreboard"
+  },
+  {
+    "slug": "signals-are-not-truth",
+    "title": "Signals Are Not Truth",
+    "description": "Why public activity metrics can be useful evidence without becoming a substitute for explanation.",
+    "excerpt": "Metrics are measurements of a system, not perfect measurements of reality. The difference is where careful analysis begins.",
+    "category": "Methodology",
+    "tags": [
+      "methodology",
+      "metrics",
+      "data literacy"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Editorial & Research",
+    "publishedAt": "2026-09-10",
+    "readingTime": "2 min read",
+    "url": "/blog/signals-are-not-truth"
+  },
+  {
+    "slug": "what-is-a-digital-observatory",
+    "title": "What Is a Digital Observatory?",
+    "description": "A practical model for turning public internet signals into transparent, inspectable observations.",
+    "excerpt": "A digital observatory is not a dashboard with more charts. It is a disciplined way to collect signals, preserve context, and state uncertainty.",
+    "category": "Digital Culture",
+    "tags": [
+      "observability",
+      "research",
+      "methodology"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Editorial & Research",
+    "publishedAt": "2026-09-08",
+    "readingTime": "2 min read",
+    "url": "/blog/what-is-a-digital-observatory"
+  }
+]

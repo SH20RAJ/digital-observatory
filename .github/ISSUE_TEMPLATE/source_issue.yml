@@ -1,0 +1,26 @@
+name: "Source / Data Issue"
+description: "Report a dead source link, invalid data transformation, or suggest a new data source"
+title: "[Source]: "
+labels: ["data-sources"]
+body:
+  - type: input
+    id: source_name
+    attributes:
+      label: Source or Dataset Name
+      placeholder: "e.g. PyPI download statistics, GitHub API, arXiv feed"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Issue or Proposal Details
+      description: Explain what is broken with an existing source or describe the proposed adapter.
+    validations:
+      required: true
+  - type: textarea
+    id: provenance
+    attributes:
+      label: Official Documentation / API Specification
+      description: Provide official links documenting permitted access, rate limits, and schema.
+    validations:
+      required: true
