@@ -1,12 +1,1 @@
-{
-  "name":"Digital Observatory",
-  "short_name":"Observatory",
-  "description":"An open-source digital observatory for source-backed research across the digital world.",
-  "start_url":"./",
-  "scope":"./",
-  "display":"standalone",
-  "background_color":"#fafaf8",
-  "theme_color":"#111316",
-  "lang":"en",
-  "icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
-}
+{"name":"Digital Observatory","short_name":"Observatory","description":"An open-source digital observatory for source-backed research across the digital world.","start_url":"./","scope":"./","display":"standalone","background_color":"#fafaf8","theme_color":"#111316","lang":"en","icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
