@@ -9,4 +9,3 @@ export { SiteHeader } from "./site-header";
 export { SourceList } from "./source-list";
 export { TableOfContents } from "./table-of-contents";
 export { ThemeToggle } from "./theme-toggle";
-export { VisitorCounter } from "./visitor-counter";

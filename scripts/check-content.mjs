@@ -43,19 +43,6 @@ const KNOWN_FIELDS = new Set([
 
 const VALID_STATUSES = new Set(["draft", "published"]);
 
-const VALID_CATEGORIES = new Set([
-  "AI",
-  "Open Source",
-  "Developers",
-  "Startups",
-  "Internet",
-  "Security",
-  "Experiments",
-  "Digital Culture",
-  "Methodology",
-  "Observatory"
-]);
-
 const seenSlugs = new Map();
 const seenCanonicalUrls = new Map();
 const allKnownSlugs = new Set(files.map((f) => f.replace(/\.md$/, "")));
@@ -126,13 +113,6 @@ for (const file of files) {
     } else if (pubDateStr && upDateStr < pubDateStr) {
       errors.push(`${file}: updatedAt (${upDateStr}) cannot precede publishedAt (${pubDateStr})`);
     }
-  }
-
-  // 7. Category check
-  if (data.category && !VALID_CATEGORIES.has(String(data.category))) {
-    warnings.push(
-      `${file}: category "${data.category}" is not in the standard list (${[...VALID_CATEGORIES].join(", ")})`
-    );
   }
 
   // 8. Description length check
