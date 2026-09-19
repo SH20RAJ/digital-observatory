@@ -248,3 +248,157 @@ export function aboutPageJsonLd() {
     mainEntity: { "@id": homeUrl + "#organization" }
   };
 }
+
+
+export function siteRobots(index = true): NonNullable<Metadata["robots"]> {
+  return {
+    index,
+    follow: true,
+    googleBot: {
+      index,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
+  };
+}
+
+export function buildPageMetadata({
+  title,
+  description,
+  path,
+  keywords = [],
+  image = getCanonicalUrl("/og/default.svg"),
+  imageAlt = title,
+  type = "website",
+  noIndex = false,
+  publishedTime,
+  modifiedTime,
+  section,
+  tags,
+  authors,
+  feed = false
+}: {
+  title: string;
+  description: string;
+  path: string;
+  keywords?: string[];
+  image?: string;
+  imageAlt?: string;
+  type?: "website" | "article" | "profile";
+  noIndex?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
+  section?: string;
+  tags?: string[];
+  authors?: Array<{ name: string; url?: string }>;
+  feed?: boolean;
+}): Metadata {
+  const canonical = getCanonicalUrl(path);
+  return {
+    title,
+    description,
+    keywords: keywords.length ? keywords : undefined,
+    authors: authors?.length ? authors : undefined,
+    creator: SITE.name,
+    publisher: SITE.name,
+    category: section,
+    classification:
+      "Technology, computer science, artificial intelligence, cybersecurity, software engineering, open source, education",
+    alternates: {
+      canonical,
+      ...(feed ? { types: { "application/rss+xml": getCanonicalUrl("/feed.xml") } } : {})
+    },
+    openGraph: {
+      type,
+      title: title + " | " + SITE.name,
+      description,
+      url: canonical,
+      siteName: SITE.name,
+      locale: SITE.locale,
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: imageAlt
+        }
+      ],
+      ...(publishedTime ? { publishedTime } : {}),
+      ...(modifiedTime ? { modifiedTime } : {}),
+      ...(section ? { section } : {}),
+      ...(tags?.length ? { tags } : {})
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title + " | " + SITE.name,
+      description,
+      images: [{ url: image, alt: imageAlt }]
+    },
+    robots: siteRobots(!noIndex)
+  };
+}
+
+export function webPageJsonLd({
+  name,
+  description,
+  url,
+  type = "WebPage",
+  image = getCanonicalUrl("/og/default.svg"),
+  about,
+  dateModified
+}: {
+  name: string;
+  description: string;
+  url: string;
+  type?: "WebPage" | "CollectionPage" | "AboutPage" | "SearchResultsPage";
+  image?: string;
+  about?: string[];
+  dateModified?: string;
+}) {
+  const pageUrl = getCanonicalUrl(url);
+  return {
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": pageUrl + "#webpage",
+    url: pageUrl,
+    name,
+    description,
+    inLanguage: "en-US",
+    isPartOf: { "@id": getCanonicalUrl("/") + "#website" },
+    publisher: { "@id": getCanonicalUrl("/") + "#organization" },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: image,
+      width: 1200,
+      height: 630
+    },
+    ...(about?.length ? { about: about.map((item) => ({ "@type": "Thing", name: item })) } : {}),
+    ...(dateModified ? { dateModified } : {})
+  };
+}
+
+export function itemListJsonLd({
+  name,
+  url,
+  items
+}: {
+  name: string;
+  url: string;
+  items: Array<{ name: string; url: string; position?: number }>;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name,
+    url: getCanonicalUrl(url),
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: item.position || index + 1,
+      name: item.name,
+      url: getCanonicalUrl(item.url)
+    }))
+  };
+}
