@@ -2,10 +2,11 @@
   "name":"Digital Observatory",
   "short_name":"Observatory",
   "description":"An open-source digital observatory for source-backed research across the digital world.",
-  "start_url":"/digital-observatory/",
-  "scope":"/digital-observatory/",
+  "start_url":"./",
+  "scope":"./",
   "display":"standalone",
-  "background_color":"#f7f6f2",
-  "theme_color":"#0a0a09",
-  "lang":"en"
+  "background_color":"#fafaf8",
+  "theme_color":"#111316",
+  "lang":"en",
+  "icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
 }

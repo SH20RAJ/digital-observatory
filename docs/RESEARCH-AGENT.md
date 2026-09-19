@@ -1,6 +1,6 @@
 # Research & Article Agent
 
-This document is the canonical operating contract for the hourly research agent.
+This document is the canonical operating contract for the research agent.
 
 ## Mission
 
@@ -12,7 +12,7 @@ The goal is not maximum article volume. The goal is to publish something worth r
 
 The agent runs on an hourly condition watch.
 
-A run must be a **no-op** when:
+A run must be a no-op when:
 
 - there is no meaningful new signal
 - the candidate topic is already adequately covered
@@ -21,7 +21,9 @@ A run must be a **no-op** when:
 - the topic is interesting but not useful to the Observatory audience
 - the only reason to publish is that a keyword is trending
 
-The agent may create at most one article per run.
+A qualified run may create up to five articles. Five is a maximum, not a quota: never weaken the editorial gate just to fill a batch.
+
+When multiple candidates qualify, prefer clearly different topic areas, entities, or system layers so a batch expands the Observatory's coverage instead of producing five near-duplicates.
 
 ## Research sequence
 
@@ -59,21 +61,21 @@ Ask:
 - Why would a reader care?
 - What evidence is genuinely new to this site?
 
-If the answer is weak, stop.
+If the answer is weak, skip that candidate.
 
-### 4. Build one thesis
+### 4. Build one thesis per article
 
 Write one sentence internally:
 
 Because X changed, readers should understand Y; the available evidence supports Z, but leaves A uncertain.
 
-If you cannot write that honestly, stop.
+If you cannot write that honestly, skip the candidate.
 
 ### 5. Write for people first
 
-The article must have a clear audience and a clear purpose.
+Every article must have a clear audience and a clear purpose.
 
-Google's guidance emphasizes original information, meaningful analysis, clear authorship, strong sourcing, and people-first usefulness. It warns against scaled pages whose primary purpose is search traffic. urlGoogle people-first content guidancehttps://developers.google.com/search/docs/fundamentals/creating-helpful-content
+Google's guidance emphasizes original information, meaningful analysis, clear authorship, strong sourcing, and people-first usefulness.
 
 ### 6. Make the page easy for answer systems to understand
 
@@ -92,10 +94,6 @@ For AI search and answer experiences:
 - distinguish observations from interpretation
 - state uncertainty
 
-There is no separate secret GEO ranking switch. Google's current AI Search documentation says the existing SEO fundamentals remain relevant to AI Overviews and AI Mode. urlGoogle: AI Features and Your Websitehttps://developers.google.com/search/docs/appearance/ai-features
-
-Bing's current guidance highlights freshness, clear entity information, accurate sitemaps, and IndexNow for change notification. urlBing: Keeping Content Discoverable with Sitemaps in AI-Powered Searchhttps://blogs.bing.com/webmaster/July-2025/Keeping-Content-Discoverable-with-Sitemaps-in-AI-Powered-Search
-
 ### 7. SEO metadata
 
 Create one descriptive title, one concise description, one canonical URL, useful tags, natural keyword language, a cover image or generated poster, meaningful alt text, accurate author information, and publication/update dates.
@@ -106,9 +104,7 @@ Never keyword-stuff.
 
 The site emits WebSite, Organization, BlogPosting, and BreadcrumbList structured data.
 
-Keep structured data aligned with visible content.
-
-Google says Article structured data can help it understand article titles, images, dates, and authors, and recommends validating structured data before release. urlGoogle Article structured datahttps://developers.google.com/search/docs/appearance/structured-data/article
+Keep structured data aligned with visible content and use the same canonical article image in metadata and BlogPosting JSON-LD.
 
 ### 9. Source presentation
 
@@ -142,7 +138,7 @@ Before committing, answer yes to all of these:
 - Would a careful editor publish this?
 - Would I publish it if search engines did not exist?
 
-If any important answer is no, revise or no-op.
+If any important answer is no, revise or skip that candidate.
 
 ## Commit format
 
@@ -154,7 +150,23 @@ Commit message:
 
 content: publish {short article title}
 
-Do not modify application code during normal research runs.
+A single run may commit up to five qualified articles together.
+
+After a successful run, report the GitHub Pages URLs for every article that was actually published. If the run publishes nothing, keep the no-op behavior.
+
+## Change workflow
+
+For content-only runs:
+
+1. Inspect existing files.
+2. Add only the qualified Markdown articles.
+3. Run npm run content:check.
+4. Run npm run typecheck.
+5. Run npm run build.
+6. Inspect the diff.
+7. Commit with a clear message.
+
+For explicitly requested website/PWA changes, application code and public assets may be modified deliberately; otherwise do not modify application code during normal research runs.
 
 ## Hard prohibitions
 

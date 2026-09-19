@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { SITE, absoluteUrl } from "@/lib/site";
 import { jsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SiteHeader } from "@/components/site-header";
@@ -10,31 +10,27 @@ const verification = {
   ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {})
 };
 
+export const viewport: Viewport = { themeColor: "#111316", colorScheme: "light dark" };
+
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE.url),
-  title: { default: SITE.name, template: "%s | " + SITE.name },
-  description: SITE.description,
-  applicationName: SITE.name,
-  generator: "Next.js",
-  keywords: ["digital observatory","AI","open source","developer ecosystems","internet research","security"],
-  alternates: { canonical: "/" },
-  verification: Object.keys(verification).length ? verification : undefined,
-  openGraph: {
-    type: "website",
-    siteName: SITE.name,
-    title: SITE.name,
-    description: SITE.description,
-    url: "/",
-    locale: SITE.locale,
-    images: [{ url: absoluteUrl("/og/default.svg"), width: 1200, height: 630, alt: SITE.name }]
-  },
-  twitter: { card: "summary_large_image", title: SITE.name, description: SITE.description, images: [absoluteUrl("/og/default.svg")] },
-  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 } }
+  metadataBase:new URL(SITE.url),
+  title:{default:SITE.name,template:"%s | "+SITE.name},
+  description:SITE.description,
+  applicationName:SITE.name,
+  generator:"Next.js",
+  manifest:"/manifest.webmanifest",
+  icons:{icon:absoluteUrl("/icon.svg"),apple:absoluteUrl("/icon.svg")},
+  keywords:["digital observatory","AI","open source","developer infrastructure","internet research","security"],
+  alternates:{canonical:"/"},
+  verification:Object.keys(verification).length?verification:undefined,
+  openGraph:{type:"website",siteName:SITE.name,title:SITE.name,description:SITE.description,url:"/",locale:SITE.locale,images:[{url:absoluteUrl("/og/default.svg"),width:1200,height:630,alt:SITE.name}]},
+  twitter:{card:"summary_large_image",title:SITE.name,description:SITE.description,images:[absoluteUrl("/og/default.svg")]},
+  robots:{index:true,follow:true,googleBot:{index:true,follow:true,"max-image-preview":"large","max-snippet":-1,"max-video-preview":-1}}
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" suppressHydrationWarning><body><SiteHeader /><main>{children}</main><SiteFooter />
-    <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(websiteJsonLd())} />
-    <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(organizationJsonLd())} />
+export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){
+  return <html lang="en" suppressHydrationWarning><body><SiteHeader/><main>{children}</main><SiteFooter/>
+    <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(websiteJsonLd())}/>
+    <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(organizationJsonLd())}/>
   </body></html>;
 }
