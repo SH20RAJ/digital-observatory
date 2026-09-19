@@ -61,31 +61,36 @@ function wrapText(text, maxChars, maxLines = 3) {
 
 function computeTitleLayout(title) {
   const len = title.length;
-  let fontSize = 48;
-  let lineHeight = 58;
-  let maxChars = 26;
-  let maxLines = 3;
+  let fontSize = 42;
+  let lineHeight = 48;
+  let maxChars = 34;
+  let maxLines = 4;
 
-  if (len <= 40) {
+  if (len <= 42) {
     fontSize = 50;
-    lineHeight = 62;
-    maxChars = 24;
+    lineHeight = 56;
+    maxChars = 28;
     maxLines = 3;
   } else if (len <= 65) {
-    fontSize = 42;
+    fontSize = 46;
     lineHeight = 52;
-    maxChars = 29;
+    maxChars = 31;
     maxLines = 3;
-  } else if (len <= 85) {
-    fontSize = 36;
+  } else if (len <= 92) {
+    fontSize = 40;
     lineHeight = 46;
-    maxChars = 35;
-    maxLines = 3;
-  } else {
-    fontSize = 32;
+    maxChars = 34;
+    maxLines = 4;
+  } else if (len <= 120) {
+    fontSize = 36;
     lineHeight = 42;
-    maxChars = 40;
-    maxLines = 3;
+    maxChars = 38;
+    maxLines = 4;
+  } else {
+    fontSize = 33;
+    lineHeight = 39;
+    maxChars = 41;
+    maxLines = 4;
   }
 
   const lines = wrapText(title, maxChars, maxLines);
@@ -101,114 +106,123 @@ const hash = (value) => {
 };
 
 const palettes = [
-  { bg: "#080c14", bg2: "#0f172a", accent: "#38bdf8", accent2: "#818cf8", glow: "#0284c7" },
-  { bg: "#06120d", bg2: "#0c2419", accent: "#34d399", accent2: "#6ee7b7", glow: "#059669" },
-  { bg: "#0d0914", bg2: "#1c122c", accent: "#c084fc", accent2: "#f472b6", glow: "#9333ea" },
-  { bg: "#140c06", bg2: "#27170a", accent: "#fb923c", accent2: "#fde047", glow: "#ea580c" },
-  { bg: "#061014", bg2: "#0b2029", accent: "#22d3ee", accent2: "#a5f3fc", glow: "#0891b2" },
-  { bg: "#0a0c16", bg2: "#141a2e", accent: "#60a5fa", accent2: "#93c5fd", glow: "#2563eb" }
+  { bg: "#090b0e", panel: "#11141a", accent: "#3b82f6", accent2: "#60a5fa", grid: "#202632" },
+  { bg: "#0a0f0c", panel: "#111813", accent: "#34d399", accent2: "#6ee7b7", grid: "#202b25" },
+  { bg: "#0f0d08", panel: "#17140e", accent: "#f59e0b", accent2: "#fbbf24", grid: "#2c2518" },
+  { bg: "#0a0c12", panel: "#121721", accent: "#22d3ee", accent2: "#67e8f9", grid: "#1f2933" },
+  { bg: "#0c0d10", panel: "#15171c", accent: "#a3e635", accent2: "#bef264", grid: "#252a31" }
 ];
 
 function generatePosterSvg({ title, description, category, publishedAt, readingTime, palette }) {
   const titleLayout = computeTitleLayout(title);
-  const maxDescLines = titleLayout.lines.length >= 3 ? 2 : 3;
-  const descLines = wrapText(description, 54, maxDescLines);
-
-  const titleStartY = titleLayout.lines.length >= 3 ? 180 : titleLayout.lines.length === 2 ? 210 : 240;
+  const descLines = wrapText(description, 58, 2);
+  const titleStartY = titleLayout.lines.length >= 4 ? 176 : titleLayout.lines.length === 3 ? 188 : 206;
   const titleSvg = titleLayout.lines
     .map(
       (line, index) =>
-        `<text x="80" y="${titleStartY + index * titleLayout.lineHeight}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="${titleLayout.fontSize}" font-weight="800" letter-spacing="-0.03em" fill="#f8fafc">${esc(line)}</text>`
+        `<text x="76" y="${titleStartY + index * titleLayout.lineHeight}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="${titleLayout.fontSize}" font-weight="760" letter-spacing="-0.035em" fill="#f8fafc">${esc(line)}</text>`
     )
     .join("\n");
 
-  const descStartY = titleStartY + titleLayout.lines.length * titleLayout.lineHeight + 30;
+  const descStartY = titleStartY + titleLayout.lines.length * titleLayout.lineHeight + 26;
   const descSvg = descLines
     .map(
       (line, index) =>
-        `<text x="80" y="${descStartY + index * 27}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="18" font-weight="400" fill="#94a3b8">${esc(line)}</text>`
+        `<text x="76" y="${descStartY + index * 25}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="17" font-weight="420" fill="#94a3b8">${esc(line)}</text>`
     )
     .join("\n");
 
   const catText = (category || "Observation").toUpperCase();
-  const pillWidth = Math.min(440, Math.max(260, 185 + catText.length * 8.5));
+  const pillWidth = Math.min(390, Math.max(210, 122 + catText.length * 7.2));
+  const signal = hash(title);
+  const bars = [0, 1, 2, 3, 4, 5].map((i) => 44 + ((signal >> (i * 3)) & 31));
+  const linePoints = [
+    [784, 388],
+    [826, 360 - (signal % 22)],
+    [872, 374 - ((signal >> 4) % 52)],
+    [918, 322 - ((signal >> 9) % 68)],
+    [964, 350 - ((signal >> 14) % 42)],
+    [1010, 290 - ((signal >> 19) % 70)],
+    [1056, 304 - ((signal >> 24) % 54)]
+  ];
+  const pathD = linePoints.map(([x, y], i) => `${i === 0 ? "M" : "L"} ${x} ${y}`).join(" ");
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-<defs>
-  <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="${palette.bg}"/>
-    <stop offset="100%" stop-color="${palette.bg2}"/>
-  </linearGradient>
-  <radialGradient id="glowGrad" cx="80%" cy="45%" r="55%">
-    <stop offset="0%" stop-color="${palette.glow}" stop-opacity="0.32"/>
-    <stop offset="50%" stop-color="${palette.glow}" stop-opacity="0.08"/>
-    <stop offset="100%" stop-color="${palette.bg}" stop-opacity="0"/>
-  </radialGradient>
-</defs>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="${esc(title)}">
+<rect width="1200" height="630" fill="${palette.bg}"/>
+<rect x="1.5" y="1.5" width="1197" height="627" rx="20" fill="none" stroke="#202632" stroke-width="1.5"/>
 
-<!-- Background & Glow -->
-<rect width="1200" height="630" fill="url(#bgGrad)"/>
-<rect width="1200" height="630" fill="url(#glowGrad)"/>
-
-<!-- Outer Bezel -->
-<rect x="1.5" y="1.5" width="1197" height="627" rx="20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
-
-<!-- Right Telemetry Graphic -->
-<g opacity="0.95">
-  <line x1="770" y1="285" x2="1170" y2="285" stroke="#ffffff" stroke-width="1" opacity="0.06"/>
-  <line x1="970" y1="85" x2="970" y2="485" stroke="#ffffff" stroke-width="1" opacity="0.06"/>
-  <line x1="828" y1="143" x2="1112" y2="427" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 6" opacity="0.04"/>
-  <line x1="828" y1="427" x2="1112" y2="143" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 6" opacity="0.04"/>
-
-  <circle cx="970" cy="285" r="185" fill="none" stroke="${palette.accent}" stroke-width="1.2" stroke-dasharray="6 8" opacity="0.18"/>
-  <circle cx="970" cy="285" r="130" fill="none" stroke="${palette.accent2}" stroke-width="1.5" opacity="0.28"/>
-  <circle cx="970" cy="285" r="75" fill="none" stroke="${palette.accent}" stroke-width="1.8" stroke-dasharray="4 4" opacity="0.38"/>
-
-  <circle cx="1100" cy="285" r="5.5" fill="${palette.accent2}" opacity="0.85"/>
-  <circle cx="840" cy="285" r="5" fill="${palette.accent}" opacity="0.7"/>
-  <circle cx="970" cy="155" r="5" fill="${palette.accent}" opacity="0.75"/>
-  <circle cx="970" cy="415" r="5.5" fill="${palette.accent2}" opacity="0.8"/>
-
-  <path d="M 830 205 A 165 165 0 0 1 1085 180" fill="none" stroke="${palette.accent}" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
-  <path d="M 855 365 A 165 165 0 0 0 1085 390" fill="none" stroke="${palette.accent2}" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+<!-- Subtle editorial grid -->
+<g opacity="0.45" stroke="${palette.grid}" stroke-width="1">
+  <line x1="720" y1="116" x2="1160" y2="116"/>
+  <line x1="720" y1="202" x2="1160" y2="202"/>
+  <line x1="720" y1="288" x2="1160" y2="288"/>
+  <line x1="720" y1="374" x2="1160" y2="374"/>
+  <line x1="720" y1="460" x2="1160" y2="460"/>
+  <line x1="760" y1="92" x2="760" y2="482"/>
+  <line x1="820" y1="92" x2="820" y2="482"/>
+  <line x1="880" y1="92" x2="880" y2="482"/>
+  <line x1="940" y1="92" x2="940" y2="482"/>
+  <line x1="1000" y1="92" x2="1000" y2="482"/>
+  <line x1="1060" y1="92" x2="1060" y2="482"/>
+  <line x1="1120" y1="92" x2="1120" y2="482"/>
 </g>
 
-<!-- Top Brand Bar -->
-<g transform="translate(80, 75)">
-  <rect width="36" height="36" rx="8" fill="#1e293b" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-  <circle cx="18" cy="18" r="9" fill="none" stroke="${palette.accent}" stroke-width="2"/>
-  <circle cx="18" cy="18" r="3.5" fill="${palette.accent}"/>
-  <text x="48" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="16" font-weight="700" letter-spacing="0.08em" fill="#f1f5f9">DIGITAL OBSERVATORY</text>
-  <text x="260" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="13" font-weight="500" letter-spacing="0.05em" fill="#64748b">/ OPEN RESEARCH</text>
+<!-- Right-hand signal panel -->
+<rect x="744" y="92" width="398" height="390" rx="16" fill="${palette.panel}" stroke="${palette.grid}" stroke-width="1.2"/>
+<text x="770" y="122" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11" font-weight="700" letter-spacing="0.14em" fill="${palette.accent}">OBSERVATION / SIGNAL MAP</text>
+<text x="770" y="145" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" fill="#64748b">deterministic visual fallback</text>
+
+<!-- Signal chart -->
+<g>
+  <path d="${pathD}" fill="none" stroke="${palette.accent}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  ${linePoints.map(([x,y], i) => `<circle cx="${x}" cy="${y}" r="${i === linePoints.length - 1 ? 5 : 3.5}" fill="${i === linePoints.length - 1 ? palette.accent2 : palette.accent}"/>`).join("\n  ")}
 </g>
 
-<!-- Category Pill -->
-<g transform="translate(80, 130)">
-  <rect width="${pillWidth}" height="28" rx="6" fill="#1e293b" stroke="${palette.accent}" stroke-width="1" stroke-opacity="0.3"/>
-  <circle cx="14" cy="14" r="3.5" fill="${palette.accent}"/>
-  <text x="26" y="18.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="11" font-weight="700" letter-spacing="0.1em" fill="${palette.accent}">${esc(catText)} OBSERVATION</text>
+<!-- Small telemetry bars -->
+<g transform="translate(778, 404)">
+  ${bars.map((value, i) => {
+    const x = i * 52;
+    const h = value;
+    return `<rect x="${x}" y="${68-h}" width="26" height="${h}" rx="4" fill="${palette.accent}" opacity="${0.28 + i * 0.09}"/>`;
+  }).join("\n  ")}
 </g>
 
-<!-- Title & Description -->
+<text x="770" y="472" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600" letter-spacing="0.08em" fill="#64748b">SOURCE-BACKED / STATIC EXPORT</text>
+
+<!-- Brand -->
+<g transform="translate(76, 62)">
+  <rect width="34" height="34" rx="8" fill="${palette.panel}" stroke="${palette.grid}" stroke-width="1"/>
+  <circle cx="17" cy="17" r="8" fill="none" stroke="${palette.accent}" stroke-width="2"/>
+  <circle cx="17" cy="17" r="3" fill="${palette.accent2}"/>
+  <text x="46" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="15" font-weight="760" letter-spacing="0.075em" fill="#f1f5f9">DIGITAL OBSERVATORY</text>
+  <text x="258" y="22" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="11.5" font-weight="600" letter-spacing="0.04em" fill="#64748b">/ OPEN RESEARCH</text>
+</g>
+
+<!-- Category -->
+<g transform="translate(76, 116)">
+  <rect width="${pillWidth}" height="28" rx="7" fill="${palette.panel}" stroke="${palette.accent}" stroke-opacity="0.45" stroke-width="1"/>
+  <circle cx="13" cy="14" r="3" fill="${palette.accent}"/>
+  <text x="25" y="18" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="0.09em" fill="${palette.accent}">${esc(catText)}</text>
+</g>
+
+<!-- Headline and deck -->
 ${titleSvg}
 ${descSvg}
 
-<!-- Footer Telemetry Strip -->
-<g transform="translate(80, 560)">
-  <line x1="0" y1="-20" x2="1040" y2="-20" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-  
-  <text x="0" y="5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="12" font-weight="600" letter-spacing="0.08em" fill="#64748b">DATE</text>
-  <text x="50" y="5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="13" font-weight="500" fill="#cbd5e1">${esc(publishedAt || "Current")}</text>
+<!-- Footer -->
+<g transform="translate(76, 548)">
+  <line x1="0" y1="-18" x2="1066" y2="-18" stroke="${palette.grid}" stroke-width="1"/>
+  <text x="0" y="8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="0.09em" fill="#64748b">DATE</text>
+  <text x="46" y="8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#cbd5e1">${esc(publishedAt || "Current")}</text>
 
-  <text x="210" y="5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="12" font-weight="600" letter-spacing="0.08em" fill="#64748b">READ</text>
-  <text x="260" y="5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="13" font-weight="500" fill="#cbd5e1">${esc(readingTime || "3 min read")}</text>
+  <text x="200" y="8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="0.09em" fill="#64748b">READ</text>
+  <text x="245" y="8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="#cbd5e1">${esc(readingTime || "3 min read")}</text>
 
-  <text x="420" y="5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="12" font-weight="600" letter-spacing="0.08em" fill="#64748b">PROVENANCE</text>
-  <text x="525" y="5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="13" font-weight="500" fill="${palette.accent}">Source-backed / Git-verified</text>
+  <text x="380" y="8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="700" letter-spacing="0.09em" fill="#64748b">PROVENANCE</text>
+  <text x="482" y="8" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" font-weight="600" fill="${palette.accent}">source-backed</text>
 
-  <text x="1040" y="5" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="12" font-weight="500" fill="#475569">observatory.campusloop.space</text>
+  <text x="1066" y="8" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" font-weight="600" fill="#475569">observatory.campusloop.space</text>
 </g>
-
 </svg>`;
 }
 
