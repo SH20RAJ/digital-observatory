@@ -3,47 +3,48 @@ import path from "node:path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 
-export interface Source {
-  label: string;
-  url: string;
-  note?: string;
-}
+import type { Post, PostFilterOptions, Source } from "./types.ts";
+import { sanitizeMarkdown, makeExcerpt, makeHeadings } from "./markdown.ts";
+import {
+  categorySlug,
+  tagSlug,
+  authorSlug,
+  extractCategories,
+  extractCategoryCounts,
+  extractTags,
+  extractTagCounts,
+  extractAuthors,
+  extractAuthorCounts
+} from "./taxonomy.ts";
 
-export interface Heading {
-  id: string;
-  text: string;
-  depth: number;
-}
+// Re-export core types for seamless backward compatibility
+export type {
+  Source,
+  Heading,
+  Post,
+  PostFilterOptions,
+  SearchResult,
+  BreadcrumbItem,
+  TaxonomyCount,
+  PaginationOptions
+} from "./types.ts";
 
-export interface Post {
-  slug: string;
-  title: string;
-  description: string;
-  excerpt: string;
-  publishedAt: string;
-  updatedAt: string;
-  status: "draft" | "published";
-  category: string;
-  tags: string[];
-  author: string;
-  authorRole: string;
-  featured: boolean;
-  coverImage?: string;
-  coverAlt?: string;
-  keywords: string[];
-  canonicalUrl?: string;
-  noIndex: boolean;
-  sources: Source[];
-  readingTime: string;
-  wordCount: number;
-  content: string;
-  headings: Heading[];
-}
+// Re-export markdown utilities
+export { sanitizeMarkdown, stripMarkdown, makeExcerpt, makeHeadings } from "./markdown.ts";
 
-export interface PostFilterOptions {
-  includeDrafts?: boolean;
-  includeNoIndex?: boolean;
-}
+// Re-export taxonomy utilities
+export {
+  slugify,
+  categorySlug,
+  tagSlug,
+  authorSlug,
+  extractCategories,
+  extractCategoryCounts,
+  extractTags,
+  extractTagCounts,
+  extractAuthors,
+  extractAuthorCounts
+} from "./taxonomy.ts";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "posts");
 let cachedPosts: Post[] | null = null;
@@ -60,65 +61,6 @@ function normalizeArray(value: unknown): string[] {
   if (Array.isArray(value)) return value.map(String).map((x) => x.trim()).filter(Boolean);
   if (typeof value === "string") return value.split(",").map((x) => x.trim()).filter(Boolean);
   return [];
-}
-
-export function slugify(value: string): string {
-  return value
-    .toLowerCase()
-    .trim()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
-export function categorySlug(category: string): string {
-  return slugify(category);
-}
-
-export function tagSlug(tag: string): string {
-  return slugify(tag);
-}
-
-export function authorSlug(author: string): string {
-  return encodeURIComponent(author);
-}
-
-function stripMarkdown(value: string): string {
-  return value
-    .replace(/`{3}[\s\S]*?`{3}/g, " ")
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/[#>*_~|-]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function makeExcerpt(content: string): string {
-  const paragraphs = content.split(/\n\s*\n/).map(stripMarkdown).filter(Boolean);
-  return paragraphs.find((x) => x.length > 80) || paragraphs[0] || "";
-}
-
-function makeHeadings(content: string): Heading[] {
-  return content
-    .split("\n")
-    .map((line) => {
-      const match = line.match(/^(#{2,3})\s+(.+)$/);
-      if (!match) return null;
-      const text = match[2].replace(/[*_]/g, "").trim();
-      return { id: slugify(text), text, depth: match[1].length };
-    })
-    .filter((x): x is Heading => Boolean(x));
-}
-
-/**
- * Strips or converts raw unicode research markers (\uE200-\uE20F) into clean Markdown.
- */
-export function sanitizeMarkdown(value: string): string {
-  if (!value) return "";
-  return value
-    .replace(/[\uE200-\uE20F]url[\uE200-\uE20F]([^\uE200-\uE20F]*?)[\uE200-\uE20F]([^\uE200-\uE20F]*?)[\uE200-\uE20F]/g, "[$1]($2)")
-    .replace(/[\uE200-\uE20F]cite[\uE200-\uE20F][^\uE200-\uE20F]*?[\uE200-\uE20F]/g, "")
-    .replace(/[\uE200-\uE20F]/g, "");
 }
 
 /**
@@ -140,7 +82,7 @@ function parsePost(fileName: string): Post {
   const content = sanitizeMarkdown(parsed.content.trim());
   const stats = readingTime(content);
 
-  const sources = Array.isArray(data.sources)
+  const sources: Source[] = Array.isArray(data.sources)
     ? data.sources
         .map((rawSource) => {
           const source = rawSource as Record<string, unknown>;
@@ -286,59 +228,42 @@ export function getRelatedPosts(post: Post, limit = 3): Post[] {
  * Returns sorted unique categories across indexable posts.
  */
 export function getCategories(): string[] {
-  return [...new Set(getAllIndexablePosts().map((post) => post.category))].sort();
+  return extractCategories(getAllIndexablePosts());
 }
 
 /**
  * Returns category observation counts across indexable posts.
  */
 export function getCategoryCounts(): Map<string, number> {
-  const map = new Map<string, number>();
-  for (const post of getAllIndexablePosts()) {
-    const slug = categorySlug(post.category);
-    map.set(slug, (map.get(slug) || 0) + 1);
-  }
-  return map;
+  return extractCategoryCounts(getAllIndexablePosts());
 }
 
 /**
  * Returns sorted unique tags across indexable posts.
  */
 export function getTags(): string[] {
-  return [...new Set(getAllIndexablePosts().flatMap((post) => post.tags))].sort();
+  return extractTags(getAllIndexablePosts());
 }
 
 /**
  * Returns tag observation counts across indexable posts.
  */
 export function getTagCounts(): Map<string, number> {
-  const map = new Map<string, number>();
-  for (const post of getAllIndexablePosts()) {
-    for (const tag of post.tags) {
-      const slug = tagSlug(tag);
-      map.set(slug, (map.get(slug) || 0) + 1);
-    }
-  }
-  return map;
+  return extractTagCounts(getAllIndexablePosts());
 }
 
 /**
  * Returns sorted unique authors across indexable posts.
  */
 export function getAuthors(): string[] {
-  return [...new Set(getAllIndexablePosts().map((post) => post.author))].sort();
+  return extractAuthors(getAllIndexablePosts());
 }
 
 /**
  * Returns author observation counts across indexable posts.
  */
 export function getAuthorCounts(): Map<string, number> {
-  const map = new Map<string, number>();
-  for (const post of getAllIndexablePosts()) {
-    const slug = authorSlug(post.author);
-    map.set(slug, (map.get(slug) || 0) + 1);
-  }
-  return map;
+  return extractAuthorCounts(getAllIndexablePosts());
 }
 
 /**

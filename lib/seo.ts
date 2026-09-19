@@ -1,6 +1,6 @@
-import type { Post } from "./content";
-import { resolvePostImage } from "./content";
-import { SITE, getCanonicalUrl } from "./site";
+import type { Post, BreadcrumbItem } from "./types.ts";
+import { resolvePostImage } from "./content.ts";
+import { SITE, getCanonicalUrl } from "./site.ts";
 
 export function jsonLd(data: Record<string, unknown>) {
   return { __html: JSON.stringify(data).replace(/</g, "\u003c") };
@@ -14,7 +14,7 @@ export function websiteJsonLd() {
     name: SITE.name,
     url: homeUrl,
     description: SITE.description,
-    inLanguage: "en",
+    inLanguage: "en-US",
     publisher: { "@id": homeUrl + "#organization" },
     potentialAction: {
       "@type": "SearchAction",
@@ -33,6 +33,7 @@ export function organizationJsonLd() {
     name: SITE.name,
     url: homeUrl,
     description: SITE.description,
+    inLanguage: "en-US",
     logo: {
       "@type": "ImageObject",
       url: getCanonicalUrl("/icon.svg"),
@@ -61,15 +62,30 @@ export function articleJsonLd(post: Post) {
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    inLanguage: "en-US",
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": postUrl
     },
     headline: post.title,
     description: post.description,
-    image: [image],
+    image: [
+      image,
+      {
+        "@type": "ImageObject",
+        url: image,
+        width: 1200,
+        height: 630,
+        caption: post.coverAlt || post.title
+      }
+    ],
+    dateCreated: new Date(post.publishedAt).toISOString(),
     datePublished: new Date(post.publishedAt).toISOString(),
     dateModified: new Date(post.updatedAt || post.publishedAt).toISOString(),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [".post-hero h1", ".post-hero-dek", ".post-body > p:first-of-type"]
+    },
     author: {
       "@type": "Person",
       name: post.author,
@@ -82,7 +98,9 @@ export function articleJsonLd(post: Post) {
       name: SITE.name,
       logo: {
         "@type": "ImageObject",
-        url: getCanonicalUrl("/icon.svg")
+        url: getCanonicalUrl("/icon.svg"),
+        width: 512,
+        height: 512
       }
     },
     articleSection: post.category,
@@ -93,7 +111,7 @@ export function articleJsonLd(post: Post) {
   };
 }
 
-export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+export function breadcrumbJsonLd(items: BreadcrumbItem[]) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -122,6 +140,7 @@ export function collectionJsonLd({
     "@type": "CollectionPage",
     name,
     description,
+    inLanguage: "en-US",
     url: getCanonicalUrl(url),
     mainEntity: {
       "@type": "ItemList",
@@ -150,6 +169,7 @@ export function profilePageJsonLd({
   return {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
+    inLanguage: "en-US",
     mainEntity: {
       "@type": "Person",
       name,
@@ -168,6 +188,7 @@ export function aboutPageJsonLd() {
     "@type": "AboutPage",
     name: "About " + SITE.name,
     description: SITE.description,
+    inLanguage: "en-US",
     url: getCanonicalUrl("/about"),
     mainEntity: { "@id": homeUrl + "#organization" }
   };

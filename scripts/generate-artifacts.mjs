@@ -319,36 +319,60 @@ fs.writeFileSync(path.join(publicDir, "search-index.json"), JSON.stringify(searc
 // Strictly indexable posts, up to 30 items
 const feedItems = indexablePosts
   .slice(0, 30)
-  .map(
-    (post) =>
+  .map((post) => {
+    const postUrl = CANONICAL_BASE + "/blog/" + post.slug;
+    const posterUrl = CANONICAL_BASE + "/og/" + post.slug + ".svg";
+    return (
       "<item><title>" +
       xmlEscape(post.title) +
       "</title><link>" +
-      CANONICAL_BASE +
-      "/blog/" +
-      post.slug +
+      postUrl +
       "</link><guid isPermaLink=\"true\">" +
-      CANONICAL_BASE +
-      "/blog/" +
-      post.slug +
+      postUrl +
       "</guid><description>" +
       xmlEscape(post.description) +
       "</description><pubDate>" +
       new Date(post.publishedAt).toUTCString() +
       "</pubDate>" +
       (post.category ? "<category>" + xmlEscape(post.category) + "</category>" : "") +
-      (post.author ? "<author>" + xmlEscape(post.author) + "</author>" : "") +
+      (post.author
+        ? "<dc:creator>" +
+          xmlEscape(post.author) +
+          "</dc:creator><author>" +
+          xmlEscape(post.author) +
+          "</author>"
+        : "") +
+      '<enclosure url="' +
+      posterUrl +
+      '" length="12000" type="image/svg+xml" />' +
+      '<media:content url="' +
+      posterUrl +
+      '" medium="image" type="image/svg+xml">' +
+      "<media:title>" +
+      xmlEscape(post.title) +
+      "</media:title>" +
+      "</media:content>" +
       "</item>"
-  )
+    );
+  })
   .join("");
 
 fs.writeFileSync(
   path.join(publicDir, "feed.xml"),
-  '<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Digital Observatory</title><link>' +
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:dc="http://purl.org/dc/elements/1.1/">\n' +
+    "<channel>\n" +
+    "<title>Digital Observatory</title>\n" +
+    "<link>" +
     xmlEscape(CANONICAL_BASE) +
-    "</link><description>Source-backed digital research.</description>" +
+    "</link>\n" +
+    "<description>Source-backed digital research.</description>\n" +
+    '<atom:link href="' +
+    xmlEscape(CANONICAL_BASE) +
+    '/feed.xml" rel="self" type="application/rss+xml" />\n' +
+    "<language>en-us</language>\n" +
     feedItems +
-    "</channel></rss>"
+    "\n</channel>\n</rss>\n"
 );
 
 // 5. Generate AI & Agent Indexes (public/llms.txt & public/llms-full.txt)
@@ -421,6 +445,7 @@ const sitemapUrls = new Map([
   ["/about", latestPostDate]
 ]);
 
+const postImageMap = new Map();
 const categoryCounts = new Map();
 const categoryLatest = new Map();
 const tagCounts = new Map();
@@ -431,6 +456,10 @@ const authorLatest = new Map();
 for (const post of indexablePosts) {
   const date = post.updatedAt || post.publishedAt;
   sitemapUrls.set("/blog/" + post.slug, date);
+  postImageMap.set("/blog/" + post.slug, {
+    imageUrl: CANONICAL_BASE + "/og/" + post.slug + ".svg",
+    title: post.title
+  });
 
   const category = slugifySimple(post.category);
   categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
@@ -488,18 +517,29 @@ for (const [slug, count] of tagCounts) {
 }
 
 const sitemap =
-  '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' +
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' +
   [...sitemapUrls]
-    .map(
-      ([urlPath, lastmod]) =>
+    .map(([urlPath, lastmod]) => {
+      const img = postImageMap.get(urlPath);
+      const imgXml = img
+        ? "<image:image><image:loc>" +
+          xmlEscape(img.imageUrl) +
+          "</image:loc><image:title>" +
+          xmlEscape(img.title) +
+          "</image:title></image:image>"
+        : "";
+      return (
         "<url><loc>" +
         xmlEscape(CANONICAL_BASE + urlPath) +
         "</loc>" +
         (lastmod ? "<lastmod>" + String(lastmod).slice(0, 10) + "</lastmod>" : "") +
+        imgXml +
         "</url>"
-    )
-    .join("") +
-  "</urlset>";
+      );
+    })
+    .join("\n") +
+  "\n</urlset>\n";
 
 fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemap);
 
