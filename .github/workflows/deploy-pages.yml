@@ -39,6 +39,9 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Generate artifacts
+        run: npm run generate:artifacts
+
       - name: Run automated test suite
         run: npm test
 

@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execSync } from "node:child_process";
 import {
   parseAllPosts,
   getAllPublishedPosts,
@@ -27,6 +28,20 @@ function assert(condition, message) {
     failed++;
     console.error(`  ✖ FAIL: ${message}`);
   }
+}
+
+// Auto-generate artifacts if missing (e.g. in fresh CI/CD runner checkout)
+const requiredArtifactPaths = [
+  path.join(process.cwd(), "public", "robots.txt"),
+  path.join(process.cwd(), "public", "sitemap.xml"),
+  path.join(process.cwd(), "public", "feed.xml"),
+  path.join(process.cwd(), "public", "api", "posts.json"),
+  path.join(process.cwd(), "public", "llms.txt")
+];
+
+if (requiredArtifactPaths.some((p) => !fs.existsSync(p))) {
+  console.log("Artifacts missing in public/; running generator before running test suite...");
+  execSync("node scripts/generate-artifacts.mjs", { stdio: "inherit" });
 }
 
 console.log("\n=== 1. Content & Frontmatter Invariant Tests ===");

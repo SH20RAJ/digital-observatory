@@ -549,6 +549,26 @@
     "url": "/blog/github-copilot-october-2026-model-deprecations"
   },
   {
+    "slug": "github-copilot-feature-engagement-metrics",
+    "title": "GitHub's New Copilot Engagement Metric Measures Repeat Use, Not Productivity",
+    "description": "GitHub's September 17, 2026 Copilot metrics update adds feature-level engagement to enterprise and organization reports, using a rolling 28-day window and a two-day repeat-use threshold.",
+    "excerpt": "The new metric answers a narrower question than productivity: which Copilot features developers repeatedly use. That makes it more useful than a seat count, but it still cannot establish that AI made developers faster or better.",
+    "category": "Developer Systems",
+    "tags": [
+      "GitHub Copilot",
+      "developer metrics",
+      "AI adoption",
+      "engineering analytics",
+      "GitHub API",
+      "developer productivity"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Developer Systems Research",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/github-copilot-feature-engagement-metrics"
+  },
+  {
     "slug": "github-actions-ubuntu-26-runner-migration",
     "title": "GitHub's Ubuntu 26.04 Runner Migration Makes `ubuntu-latest` a Build-Reproducibility Decision",
     "description": "GitHub's September 17, 2026 runner update makes Ubuntu 26.04 generally available and moves the ubuntu-latest label from Ubuntu 24.04 during an October 19–November 19 migration window.",
@@ -644,6 +664,26 @@
     "publishedAt": "2026-09-19",
     "readingTime": "6 min read",
     "url": "/blog/eu-cra-reporting-platform-is-now-live"
+  },
+  {
+    "slug": "crowdsec-tanstack-supply-chain-long-tail",
+    "title": "CrowdSec's TanStack Disclosure Shows Why Supply-Chain Response Must Survive the First Compromise",
+    "description": "CrowdSec's September 18, 2026 disclosure links a May TanStack npm compromise to the later copying of about 170 private GitHub repositories, exposing the long tail of stolen developer credentials.",
+    "excerpt": "The new fact is not that TanStack was compromised in May; it is that a credential stolen then was later used to copy CrowdSec's private repositories, showing why offboarding and token revocation remain part of supply-chain incident response.",
+    "category": "Supply Chain & Security",
+    "tags": [
+      "npm",
+      "TanStack",
+      "GitHub",
+      "supply chain security",
+      "incident response",
+      "credential theft"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Supply Chain & Security Research",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/crowdsec-tanstack-supply-chain-long-tail"
   },
   {
     "slug": "cloudflare-workers-module-registry-node-compatibility",
@@ -759,6 +799,26 @@
     "publishedAt": "2026-09-19",
     "readingTime": "2 min read",
     "url": "/blog/cloudflare-100tb-memory-optimization-shows-value-of-algorithmic-efficiency-at-scale"
+  },
+  {
+    "slug": "cisco-ise-cve-2026-76460-identity-plane",
+    "title": "Cisco ISE's September Zero-Day Shows Why the Identity Plane Is a High-Value Security Boundary",
+    "description": "CVE-2026-76460 gives unauthenticated remote attackers an authentication bypass against Cisco Identity Services Engine; Cisco disclosed active exploitation on September 16, 2026.",
+    "excerpt": "The key risk is not just a CVSS 10.0 score: Cisco ISE sits in the network identity and access-control path, so compromise can affect the system that decides which users and devices are allowed onto protected networks.",
+    "category": "Cybersecurity",
+    "tags": [
+      "Cisco ISE",
+      "CVE-2026-76460",
+      "zero-day",
+      "identity security",
+      "network access control",
+      "CISA KEV"
+    ],
+    "author": "Digital Observatory",
+    "authorRole": "Cybersecurity Research",
+    "publishedAt": "2026-09-19",
+    "readingTime": "6 min read",
+    "url": "/blog/cisco-ise-cve-2026-76460-identity-plane"
   },
   {
     "slug": "chrome-two-week-releases-change-web-compatibility-work",
