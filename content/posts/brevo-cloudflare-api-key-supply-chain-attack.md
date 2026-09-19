@@ -28,9 +28,9 @@ keywords:
 canonicalUrl: "https://digital-observatory.dev/blog/brevo-cloudflare-api-key-supply-chain-attack"
 noIndex: false
 sources:
-  - label: "Brevo — Security incident post-mortem, September 17, 2026"
-    url: "https://www.brevo.com/news/security-incident-september-2026/"
-    note: "Primary company post-mortem as reported and quoted by independent security reporting; describes the compromised Cloudflare API key, edge Worker, affected scripts, exposure window, and remediation."
+  - label: "Brevo Status — Security Incident: ClickFix"
+    url: "https://status.brevo.com/history"
+    note: "Primary Brevo status history confirming the September 14, 2026 ClickFix incident was resolved and that a post-mortem was published."
   - label: "Sansec — Brevo supply chain attack hits 100k+ sites"
     url: "https://sansec.io/research/brevo-supply-chain-attack"
     note: "Independent September 16, 2026 forensic analysis documenting injected JavaScript, affected embedded assets, DNS evidence, timing, indicators, and evidence limits."
@@ -48,9 +48,9 @@ The result was a two-sided attack: visitors could receive ClickFix social-engine
 
 ## What happened on September 14
 
-Brevo disclosed a post-mortem on September 17 after attackers used a compromised Cloudflare API key to deploy a malicious Worker in its account.
+Brevo disclosed a post-mortem after attackers used a compromised Cloudflare API key to deploy a malicious Worker in its account. Brevo's status history records the September 14 incident as "Security Incident - ClickFix" and says the issue was resolved and a post-mortem published.
 
-According to Brevo's account, the key had full permissions and had been hardcoded in application source code. That level of access allowed the attacker to create Workers, routes and DNS records across Brevo's Cloudflare-managed zones.
+According to Brevo's account as reported by independent security researchers and reporting, the key had full permissions and had been hardcoded in application source code. That level of access allowed the attacker to create Workers, routes and DNS records across Brevo's Cloudflare-managed zones.
 
 The Worker rewrote HTTP responses at the edge rather than modifying Brevo's origin files.
 
@@ -202,7 +202,7 @@ That makes the security boundary larger than the application codebase.
 
 ## Sources and further reading
 
-- [Brevo — security incident post-mortem](https://www.brevo.com/news/security-incident-september-2026/)
+- [Brevo Status — Security Incident: ClickFix](https://status.brevo.com/history)
 - [Sansec — Brevo supply chain attack](https://sansec.io/research/brevo-supply-chain-attack)
 - [BleepingComputer — Brevo supply-chain attack injected ClickFix scripts](https://www.bleepingcomputer.com/news/security/brevo-supply-chain-attack-injected-clickfix-scripts-on-customer-sites/)
 - [SecurityWeek — Brevo supply chain attack injects malware into 100,000 websites](https://www.securityweek.com/brevo-supply-chain-attack-injects-malware-into-100000-websites/)
