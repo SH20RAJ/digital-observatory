@@ -18,21 +18,69 @@ const esc = (value) =>
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&apos;");
 
-const wrap = (text, max = 42) => {
+function wrapText(text, maxChars, maxLines = 3) {
+  const words = String(text).trim().split(/\s+/);
   const lines = [];
-  let line = "";
-  for (const word of String(text).split(/\s+/)) {
-    const next = (line + " " + word).trim();
-    if (next.length > max && line) {
-      lines.push(line);
-      line = word;
+  let current = "";
+  for (const w of words) {
+    const next = current ? current + " " + w : w;
+    if (next.length <= maxChars) {
+      current = next;
     } else {
-      line = next;
+      if (current) lines.push(current);
+      current = w;
     }
   }
-  if (line) lines.push(line);
-  return lines.slice(0, 4);
-};
+  if (current) lines.push(current);
+  if (lines.length > maxLines) {
+    const res = lines.slice(0, maxLines);
+    let last = res[maxLines - 1];
+    if (last.length > maxChars - 3) {
+      const spaceIdx = last.lastIndexOf(" ", maxChars - 3);
+      if (spaceIdx > 12) {
+        last = last.slice(0, spaceIdx);
+      } else {
+        last = last.slice(0, maxChars - 3);
+      }
+    }
+    res[maxLines - 1] = last.trimEnd() + "…";
+    return res;
+  }
+  return lines;
+}
+
+function computeTitleLayout(title) {
+  const len = title.length;
+  let fontSize = 48;
+  let lineHeight = 58;
+  let maxChars = 26;
+  let maxLines = 3;
+
+  if (len <= 40) {
+    fontSize = 50;
+    lineHeight = 62;
+    maxChars = 24;
+    maxLines = 3;
+  } else if (len <= 65) {
+    fontSize = 42;
+    lineHeight = 52;
+    maxChars = 29;
+    maxLines = 3;
+  } else if (len <= 85) {
+    fontSize = 36;
+    lineHeight = 46;
+    maxChars = 35;
+    maxLines = 3;
+  } else {
+    fontSize = 32;
+    lineHeight = 42;
+    maxChars = 40;
+    maxLines = 3;
+  }
+
+  const lines = wrapText(title, maxChars, maxLines);
+  return { fontSize, lineHeight, lines };
+}
 
 const hash = (value) => {
   let result = 0;
@@ -43,13 +91,106 @@ const hash = (value) => {
 };
 
 const palettes = [
-  { bg: "#101317", bg2: "#20364a", accent: "#8fb5ff", accent2: "#f6d58b" },
-  { bg: "#101711", bg2: "#244a2e", accent: "#9fe3a8", accent2: "#f1db91" },
-  { bg: "#161019", bg2: "#402448", accent: "#e8a7ff", accent2: "#ffd59a" },
-  { bg: "#18110f", bg2: "#4a2b20", accent: "#ffb798", accent2: "#ffe2a0" },
-  { bg: "#0f1718", bg2: "#1e4547", accent: "#8ee2d5", accent2: "#f6d77e" },
-  { bg: "#101225", bg2: "#2d3c78", accent: "#a7baff", accent2: "#ffd879" }
+  { bg: "#080c14", bg2: "#0f172a", accent: "#38bdf8", accent2: "#818cf8", glow: "#0284c7" },
+  { bg: "#06120d", bg2: "#0c2419", accent: "#34d399", accent2: "#6ee7b7", glow: "#059669" },
+  { bg: "#0d0914", bg2: "#1c122c", accent: "#c084fc", accent2: "#f472b6", glow: "#9333ea" },
+  { bg: "#140c06", bg2: "#27170a", accent: "#fb923c", accent2: "#fde047", glow: "#ea580c" },
+  { bg: "#061014", bg2: "#0b2029", accent: "#22d3ee", accent2: "#a5f3fc", glow: "#0891b2" },
+  { bg: "#0a0c16", bg2: "#141a2e", accent: "#60a5fa", accent2: "#93c5fd", glow: "#2563eb" }
 ];
+
+function generatePosterSvg({ title, description, category, publishedAt, readingTime, palette }) {
+  const titleLayout = computeTitleLayout(title);
+  const maxDescLines = titleLayout.lines.length >= 3 ? 2 : 3;
+  const descLines = wrapText(description, 54, maxDescLines);
+
+  const titleStartY = titleLayout.lines.length >= 3 ? 180 : titleLayout.lines.length === 2 ? 210 : 240;
+  const titleSvg = titleLayout.lines
+    .map(
+      (line, index) =>
+        `<text x="80" y="${titleStartY + index * titleLayout.lineHeight}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="${titleLayout.fontSize}" font-weight="800" letter-spacing="-0.03em" fill="#f8fafc">${esc(line)}</text>`
+    )
+    .join("\n");
+
+  const descStartY = titleStartY + titleLayout.lines.length * titleLayout.lineHeight + 30;
+  const descSvg = descLines
+    .map(
+      (line, index) =>
+        `<text x="80" y="${descStartY + index * 27}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif" font-size="18" font-weight="400" fill="#94a3b8">${esc(line)}</text>`
+    )
+    .join("\n");
+
+  const catText = (category || "Observation").toUpperCase();
+  const pillWidth = Math.min(440, Math.max(260, 185 + catText.length * 8.5));
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+  <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="${palette.bg}"/>
+    <stop offset="100%" stop-color="${palette.bg2}"/>
+  </linearGradient>
+  <radialGradient id="glowGrad" cx="80%" cy="45%" r="55%">
+    <stop offset="0%" stop-color="${palette.glow}" stop-opacity="0.32"/>
+    <stop offset="50%" stop-color="${palette.glow}" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="${palette.bg}" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+
+<!-- Background & Glow -->
+<rect width="1200" height="630" fill="url(#bgGrad)"/>
+<rect width="1200" height="630" fill="url(#glowGrad)"/>
+
+<!-- Outer Bezel -->
+<rect x="1.5" y="1.5" width="1197" height="627" rx="20" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+
+<!-- Right Telemetry Graphic -->
+<g opacity="0.95">
+  <line x1="770" y1="285" x2="1170" y2="285" stroke="#ffffff" stroke-width="1" opacity="0.06"/>
+  <line x1="970" y1="85" x2="970" y2="485" stroke="#ffffff" stroke-width="1" opacity="0.06"/>
+  <line x1="828" y1="143" x2="1112" y2="427" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 6" opacity="0.04"/>
+  <line x1="828" y1="427" x2="1112" y2="143" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 6" opacity="0.04"/>
+
+  <circle cx="970" cy="285" r="185" fill="none" stroke="${palette.accent}" stroke-width="1.2" stroke-dasharray="6 8" opacity="0.18"/>
+  <circle cx="970" cy="285" r="130" fill="none" stroke="${palette.accent2}" stroke-width="1.5" opacity="0.28"/>
+  <circle cx="970" cy="285" r="75" fill="none" stroke="${palette.accent}" stroke-width="1.8" stroke-dasharray="4 4" opacity="0.38"/>
+
+  <circle cx="1100" cy="285" r="5.5" fill="${palette.accent2}" opacity="0.85"/>
+  <circle cx="840" cy="285" r="5" fill="${palette.accent}" opacity="0.7"/>
+  <circle cx="970" cy="155" r="5" fill="${palette.accent}" opacity="0.75"/>
+  <circle cx="970" cy="415" r="5.5" fill="${palette.accent2}" opacity="0.8"/>
+  <circle cx="1062" cy="193" r="6" fill="${palette.accent}" opacity="0.85"/>
+  <circle cx="878" cy="377" r="4.5" fill="${palette.accent2}" opacity="0.7"/>
+  <circle cx="878" cy="193" r="4.5" fill="${palette.accent}" opacity="0.65"/>
+  <circle cx="1062" cy="377" r="6" fill="${palette.accent2}" opacity="0.85"/>
+
+  <circle cx="970" cy="285" r="30" fill="${palette.accent}" opacity="0.22"/>
+  <circle cx="970" cy="285" r="16" fill="${palette.accent}" opacity="0.88"/>
+  <circle cx="970" cy="285" r="7" fill="#ffffff" opacity="0.95"/>
+</g>
+
+<!-- Category Pill Header -->
+<g>
+  <rect x="80" y="64" width="${pillWidth}" height="32" rx="16" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)"/>
+  <circle cx="98" cy="80" r="4" fill="${palette.accent}"/>
+  <text x="112" y="81" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" letter-spacing="1.5" fill="#f1f5f9">DIGITAL OBSERVATORY</text>
+  <text x="264" y="81" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="600" fill="#64748b"> / </text>
+  <text x="280" y="81" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="750" letter-spacing="1" fill="${palette.accent}">${esc(catText)}</text>
+</g>
+
+<!-- Title -->
+${titleSvg}
+
+<!-- Description -->
+${descSvg}
+
+<!-- Footer Metadata -->
+<g>
+  <circle cx="85" cy="564" r="4" fill="${palette.accent}" opacity="0.9"/>
+  <text x="98" y="568" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="550" fill="#64748b">${esc(publishedAt || "")}${readingTime ? "  •  " + esc(readingTime) : ""}  •  Source-backed observation</text>
+  <text x="1120" y="568" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, ui-monospace, monospace" font-size="13" font-weight="600" fill="#475569" letter-spacing="0.5">observatory.campusloop.space</text>
+</g>
+</svg>`;
+}
 
 const files = fs.existsSync(postsDir)
   ? fs.readdirSync(postsDir).filter((file) => file.endsWith(".md"))
@@ -78,42 +219,28 @@ for (const file of files) {
   });
 
   const palette = palettes[hash(slug) % palettes.length];
-  const titleLines = wrap(data.title);
-  const titleSvg = titleLines
-    .map(
-      (line, index) =>
-        '<text x="80" y="' +
-        (222 + index * 64) +
-        '" font-family="Arial,sans-serif" font-size="54" font-weight="800" fill="#ffffff">' +
-        esc(line) +
-        "</text>"
-    )
-    .join("");
-
-  const nodes = Array.from({ length: 9 }, (_, index) => {
-    const x = 820 + (index % 3) * 120;
-    const y = 120 + Math.floor(index / 3) * 150;
-    const radius = index === 4 ? 26 : 8;
-    const opacity = index === 4 ? "0.98" : "0.6";
-    return '<circle cx="' + x + '" cy="' + y + '" r="' + radius + '" fill="' + palette.accent + '" opacity="' + opacity + '"/>';
-  }).join("");
-
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${palette.bg}"/><stop offset="1" stop-color="${palette.bg2}"/></linearGradient></defs>
-<rect width="1200" height="630" fill="url(#g)"/>
-<path d="M720 120L1080 120M720 270L1080 270M720 420L1080 420M840 80L840 540M960 80L960 540" stroke="#ffffff" stroke-width="1" opacity=".08"/>
-<circle cx="960" cy="270" r="162" fill="none" stroke="${palette.accent2}" stroke-width="1.5" opacity=".22"/>
-<circle cx="960" cy="270" r="86" fill="none" stroke="${palette.accent}" stroke-width="2" opacity=".35"/>
-${nodes}
-<text x="80" y="72" font-family="Arial,sans-serif" font-size="18" font-weight="800" letter-spacing="4" fill="${palette.accent}">DIGITAL OBSERVATORY</text>
-<text x="80" y="108" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#c5ced8">${esc(data.category || "Observation")}</text>
-${titleSvg}
-<text x="80" y="526" font-family="Arial,sans-serif" font-size="20" fill="#c9d0d8">${esc(String(data.description || "").slice(0, 118))}</text>
-<text x="80" y="574" font-family="Arial,sans-serif" font-size="15" fill="#94a0ad">${esc(data.publishedAt || "")} · Source-backed observation</text>
-</svg>`;
+  const svg = generatePosterSvg({
+    title: String(data.title || slug),
+    description: String(data.description || data.excerpt || ""),
+    category: String(data.category || "Observation"),
+    publishedAt: String(data.publishedAt || ""),
+    readingTime: String(data.readingTime || ""),
+    palette
+  });
 
   fs.writeFileSync(path.join(ogDir, slug + ".svg"), svg);
 }
+
+// Generate default OG poster
+const defaultSvg = generatePosterSvg({
+  title: "Signals Worth Understanding.",
+  description: "An open-source digital observatory tracking public signals across AI, open source, developers, startups, internet infrastructure, security, and digital culture.",
+  category: "Open Research Journal",
+  publishedAt: "Live observatory",
+  readingTime: "50+ observations",
+  palette: palettes[0]
+});
+fs.writeFileSync(path.join(ogDir, "default.svg"), defaultSvg);
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://observatory.campusloop.space").replace(/\/$/, "");
