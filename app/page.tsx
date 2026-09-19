@@ -4,219 +4,255 @@ import { SITE } from "@/lib/site";
 import { PostCard } from "@/components/post-card";
 import { SearchForm } from "@/components/search-form";
 
+const learningPaths = [
+  {
+    category: "Computer Science",
+    title: "Think in systems",
+    description: "Algorithms, data structures, operating systems, and the mental models behind them.",
+    href: "/category/computer-science",
+    starter: "/blog/how-to-think-about-algorithms-and-big-o"
+  },
+  {
+    category: "Web & Software",
+    title: "Build for the web",
+    description: "Browsers, HTTP, CSS, JavaScript, APIs, accessibility, and performance.",
+    href: "/category/web-and-software",
+    starter: "/blog/how-a-browser-loads-a-web-page"
+  },
+  {
+    category: "Backend & Data",
+    title: "Work with data",
+    description: "SQL, PostgreSQL, transactions, indexes, APIs, and backend design.",
+    href: "/category/backend-and-data",
+    starter: "/blog/postgresql-indexes-and-why-queries-get-slow"
+  },
+  {
+    category: "AI & Data",
+    title: "Understand AI",
+    description: "Machine learning, evaluation, embeddings, Transformers, and data workflows.",
+    href: "/category/ai-and-data",
+    starter: "/blog/evaluating-ai-systems-with-multiple-measures"
+  },
+  {
+    category: "Security",
+    title: "Build safely",
+    description: "Threat modeling, authentication, application security, secrets, and supply chains.",
+    href: "/category/security",
+    starter: "/blog/threat-modeling-for-student-projects"
+  },
+  {
+    category: "Cloud & Open Source",
+    title: "Ship and collaborate",
+    description: "Git, open source, containers, CI/CD, Kubernetes, and observability.",
+    href: "/category/cloud-and-open-source",
+    starter: "/blog/open-source-contribution-with-pull-requests"
+  },
+  {
+    category: "Careers & College",
+    title: "Turn learning into leverage",
+    description: "Projects, interviews, research, communication, finance, startups, and career skills.",
+    href: "/category/careers-and-college",
+    starter: "/blog/portfolio-projects-that-signal-engineering-skill"
+  }
+];
+
 export default function HomePage() {
   const posts = getAllIndexablePosts();
   const spotlight = posts.find((post) => post.featured) || posts[0];
-  const latest = spotlight ? posts.filter((post) => post.slug !== spotlight.slug).slice(0, 6) : posts.slice(0, 6);
+  const latest = posts.filter((post) => post.slug !== spotlight?.slug).slice(0, 6);
   const categories = getCategories();
   const categoryCounts = getCategoryCounts();
 
+  const resolveCount = (name: string) => categoryCounts.get(categorySlug(name)) || 0;
+
   return (
     <div className="home">
-      {/* 1. Hero */}
-      <section className="home-hero">
+      <section className="landing-hero">
+        <div className="shell landing-hero-grid">
+          <div className="landing-hero-copy">
+            <div className="home-hero-line landing-hero-line">
+              <p className="eyebrow">Digital Observatory / Student Field Guide</p>
+              <span className="status-chip">
+                <span className="status-dot" aria-hidden="true" />
+                Source-backed &amp; inspectable
+              </span>
+            </div>
+
+            <h1>A clearer map of the systems you are learning.</h1>
+
+            <p className="home-lead">
+              Long-form explainers and current observations across computer science, web development, AI, security,
+              data, infrastructure, careers, and the digital systems college students actually encounter.
+            </p>
+
+            <div className="hero-actions">
+              <Link className="button primary" href="/category/computer-science">
+                Start learning
+              </Link>
+              <Link className="button" href="/blog">
+                Browse the journal
+              </Link>
+            </div>
+
+            <div className="landing-search">
+              <SearchForm />
+            </div>
+          </div>
+
+          <aside className="landing-hero-panel" aria-label="Observatory snapshot">
+            <div className="landing-panel-kicker">THE LIBRARY</div>
+            <div className="landing-panel-number">{posts.length}</div>
+            <p>published observations and long-form field guides</p>
+            <div className="landing-panel-rule" />
+            <div className="landing-panel-grid">
+              <div>
+                <strong>{learningPaths.length}</strong>
+                <span>learning paths</span>
+              </div>
+              <div>
+                <strong>{categories.length}</strong>
+                <span>active fields</span>
+              </div>
+              <div>
+                <strong>Primary</strong>
+                <span>source-first</span>
+              </div>
+              <div>
+                <strong>Open</strong>
+                <span>Markdown corpus</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className="section landing-section" aria-labelledby="paths-heading">
         <div className="shell">
-          <div className="home-hero-line">
-            <p className="eyebrow">Digital Observatory / Open Research Journal</p>
-            <span className="status-chip">
-              <span className="status-dot" aria-hidden="true" />
-              Source-backed &amp; inspectable
-            </span>
+          <div className="section-heading landing-heading">
+            <div>
+              <p className="eyebrow">Choose your starting point</p>
+              <h2 id="paths-heading">Seven fields. One map.</h2>
+            </div>
+            <Link href="/topics" className="link-arrow">Explore all topics →</Link>
           </div>
-          <h1>Observe the digital world without losing the plot.</h1>
-          <p className="home-lead">
-            A calm, rigorous research publication tracking meaningful changes across artificial intelligence, open
-            source, developer systems, internet infrastructure, cybersecurity, and digital policy — with evidence,
-            context, and uncertainty kept strictly visible.
-          </p>
-          <div className="hero-actions">
-            <Link className="button primary" href="/blog">
-              Read the Journal
-            </Link>
-            <Link className="button" href="/topics">
-              Explore Topics
-            </Link>
-            <Link className="button" href="/about">
-              Our Methodology
-            </Link>
-          </div>
-          <div className="signal-strip" aria-label="Observatory principles">
-            <div className="signal-strip-item">
-              <strong>01</strong>
-              <span>Observe</span>
-            </div>
-            <div className="signal-strip-item">
-              <strong>02</strong>
-              <span>Verify</span>
-            </div>
-            <div className="signal-strip-item">
-              <strong>03</strong>
-              <span>Context</span>
-            </div>
-            <div className="signal-strip-item">
-              <strong>04</strong>
-              <span>Uncertainty</span>
-            </div>
+
+          <div className="landing-path-grid">
+            {learningPaths.map((path, index) => (
+              <article className="landing-path-card" key={path.category}>
+                <div className="landing-path-top">
+                  <span className="landing-path-index">0{index + 1}</span>
+                  <span className="landing-path-count">
+                    {resolveCount(path.category)} {resolveCount(path.category) === 1 ? "read" : "reads"}
+                  </span>
+                </div>
+                <h3>{path.title}</h3>
+                <p>{path.description}</p>
+                <div className="landing-path-actions">
+                  <Link href={path.starter}>Start here</Link>
+                  <Link href={path.href}>View field ↗</Link>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 2. Spotlight Observation */}
       {spotlight ? (
-        <section className="section" aria-labelledby="spotlight-heading">
+        <section className="section landing-section landing-spotlight" aria-labelledby="spotlight-heading">
           <div className="shell">
-            <div className="section-heading">
+            <div className="section-heading landing-heading">
               <div>
-                <p className="eyebrow">Spotlight</p>
-                <h2 id="spotlight-heading">One observation worth your time.</h2>
+                <p className="eyebrow">Featured observation</p>
+                <h2 id="spotlight-heading">One signal worth slowing down for.</h2>
               </div>
-              <Link href="/blog" className="link-arrow">
-                View journal →
-              </Link>
+              <Link href="/blog" className="link-arrow">Open the journal →</Link>
             </div>
-            <div className="featured-grid">
+
+            <div className="landing-spotlight-grid">
               <PostCard post={spotlight} featured />
-              <aside className="editor-note">
-                <p className="eyebrow">Editorial Principle</p>
-                <h3>Evidence before narrative.</h3>
-                <p>
-                  Every important claim is tied to an inspectable primary source. Measurement remains strictly
-                  distinct from interpretation.
-                </p>
-                <div className="editor-note-links">
-                  <Link href="/blog/signals-are-not-truth">Signals are not truth →</Link>
-                  <Link href="/about">Read the methodology →</Link>
+              <div className="landing-spotlight-copy">
+                <div>
+                  <p className="landing-panel-kicker">HOW TO READ</p>
+                  <h3>Answer first. Evidence second. Uncertainty stays visible.</h3>
+                  <p>
+                    Every article separates what a source reports from what the Observatory calculates or interprets.
+                    That makes long reads useful for study without hiding the limits of the evidence.
+                  </p>
                 </div>
-              </aside>
+                <div className="landing-spotlight-links">
+                  <Link href="/blog/signals-are-not-truth">Why signals need context →</Link>
+                  <Link href="/about">Read the methodology →</Link>
+                  <Link href={SITE.github} target="_blank" rel="noreferrer">Inspect the source →</Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>
       ) : null}
 
-      {/* 3. Research Domains / Categories */}
-      <section className="section" aria-labelledby="domains-heading">
+      <section className="section landing-section" aria-labelledby="latest-heading">
         <div className="shell">
-          <div className="section-heading">
+          <div className="section-heading landing-heading">
             <div>
-              <p className="eyebrow">What We Track</p>
-              <h2 id="domains-heading">Research Domains</h2>
+              <p className="eyebrow">Fresh from the observatory</p>
+              <h2 id="latest-heading">Recent signals and deep reads.</h2>
             </div>
-            <Link href="/topics" className="link-arrow">
-              All topics &amp; tags →
-            </Link>
+            <Link href="/blog" className="link-arrow">View all {posts.length} →</Link>
           </div>
-          <div className="category-grid">
-            {categories.slice(0, 8).map((category) => {
-              const slug = categorySlug(category);
-              const count = categoryCounts.get(slug) || 0;
-              return (
-                <Link key={category} className="category-tile" href={"/category/" + slug}>
-                  <div className="category-tile-content">
-                    <span className="category-tile-title">{category}</span>
-                    <span className="category-tile-count">
-                      {count} observation{count === 1 ? "" : "s"}
-                    </span>
-                  </div>
-                  <span className="category-tile-arrow" aria-hidden="true">
-                    ↗
-                  </span>
-                </Link>
-              );
-            })}
+
+          <div className="post-grid">
+            {latest.map((post) => (
+              <PostCard key={post.slug} post={post} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Latest Signals */}
-      <section className="section" aria-labelledby="signals-heading">
+      <section className="section landing-section" aria-labelledby="student-start-heading">
         <div className="shell">
-          <div className="section-heading">
+          <div className="section-heading landing-heading">
             <div>
-              <p className="eyebrow">Latest Signals</p>
-              <h2 id="signals-heading">Recent verified observations.</h2>
+              <p className="eyebrow">A better study loop</p>
+              <h2 id="student-start-heading">Use the Observatory like a technical library.</h2>
             </div>
-            <Link href="/blog" className="link-arrow">
-              View all {posts.length} articles →
-            </Link>
           </div>
-          {latest.length ? (
-            <div className="post-grid">
-              {latest.map((post) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
-          ) : (
-            <div className="empty">No published articles found.</div>
-          )}
-        </div>
-      </section>
 
-      {/* 5. Methodology & Evidence Statement */}
-      <section className="section" aria-labelledby="method-heading">
-        <div className="shell">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Measurement Philosophy</p>
-              <h2 id="method-heading">How the Observatory works.</h2>
-            </div>
-          </div>
-          <div className="method-grid">
-            <div className="method-card">
-              <span className="method-num" aria-hidden="true">01</span>
-              <h3>Primary Source Grounding</h3>
-              <p>
-                Every report links to official registries, RFC standards, Git commits, peer-reviewed papers, or verified
-                disclosures. We avoid citing aggregators when primary artifacts exist.
-              </p>
-            </div>
-            <div className="method-card">
-              <span className="method-num" aria-hidden="true">02</span>
-              <h3>Separation of Layers</h3>
-              <p>
-                Observations distinguish directly reported measurements from derived calculations, temporal context,
-                and cautious interpretations. A chart is evidence, not an explanation.
-              </p>
-            </div>
-            <div className="method-card">
-              <span className="method-num" aria-hidden="true">03</span>
-              <h3>Disclosed Uncertainty</h3>
-              <p>
-                When data is incomplete, correlational, or unverified by independent parties, the limitation is made
-                visible rather than hidden behind false certainty.
-              </p>
-            </div>
+          <div className="landing-study-grid">
+            <article className="landing-study-step">
+              <span>01</span>
+              <h3>Learn the mental model</h3>
+              <p>Read the core idea, then draw the boundary between the layers involved.</p>
+            </article>
+            <article className="landing-study-step">
+              <span>02</span>
+              <h3>Build the smallest experiment</h3>
+              <p>Turn the explanation into a benchmark, demo, test, diagram, or tiny project.</p>
+            </article>
+            <article className="landing-study-step">
+              <span>03</span>
+              <h3>Keep the evidence</h3>
+              <p>Record the result, assumptions, sources, and limitations so somebody else can reproduce it.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      {/* 6. Open Source CTA */}
-      <section className="section home-oss-cta" aria-labelledby="oss-heading">
+      <section className="section landing-section landing-oss" aria-labelledby="oss-heading">
         <div className="shell">
-          <div className="oss-box">
+          <div className="landing-oss-box">
             <div>
-              <p className="eyebrow">Open Source Research</p>
-              <h2 id="oss-heading">Built in the open. Maintained by researchers.</h2>
+              <p className="eyebrow">Open research</p>
+              <h2 id="oss-heading">Read it, fork it, improve it.</h2>
               <p>
-                Digital Observatory is Markdown-first and version-controlled. Anyone can submit verified signals,
-                propose source collectors, or enhance reporting via Git pull requests.
+                The Observatory is Markdown-first and version controlled. Articles, sources, design, and the publishing
+                pipeline are inspectable in the open.
               </p>
             </div>
             <div className="oss-actions">
-              <a href={SITE.github} target="_blank" rel="noreferrer" className="button primary">
-                Contribute on GitHub ↗
-              </a>
-              <Link href="/about" className="button">
-                Read Contributor Guide
-              </Link>
+              <a href={SITE.github} target="_blank" rel="noreferrer" className="button primary">GitHub ↗</a>
+              <Link href="/about" className="button">Methodology</Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 7. Search Bar */}
-      <section className="section">
-        <div className="shell">
-          <SearchForm />
         </div>
       </section>
     </div>
