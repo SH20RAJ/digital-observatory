@@ -6,7 +6,11 @@ import {SiteFooter} from "@/components/site-footer";
 import {PwaRegister} from "@/components/pwa-register";
 import "./globals.css";
 
-const verification={...(process.env.GOOGLE_SITE_VERIFICATION?{google:process.env.GOOGLE_SITE_VERIFICATION}:{}),...(process.env.BING_SITE_VERIFICATION?{other:{"msvalidate.01":process.env.BING_SITE_VERIFICATION}}:{})};
+const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || "_rPi-600gMFYjNa9qzMTuIQg1_aey417EeAdaiIqgFg";
+const verification = {
+  google: googleVerification,
+  ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {})
+};
 export const viewport:Viewport={themeColor:"#111316",colorScheme:"light dark"};
 export const metadata:Metadata={
   metadataBase:new URL(SITE.url),title:{default:SITE.name,template:"%s | "+SITE.name},description:SITE.description,
