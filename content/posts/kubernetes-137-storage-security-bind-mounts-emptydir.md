@@ -22,7 +22,7 @@ keywords:
   - emptyDir permissions
   - bind mount options Kubernetes
   - Kubernetes storage hardening
-canonicalUrl: "https://digital-observatory.dev/blog/kubernetes-137-storage-security-bind-mounts-emptydir"
+canonicalUrl: "https://observatory.campusloop.space/blog/kubernetes-137-storage-security-bind-mounts-emptydir"
 noIndex: false
 sources:
   - label: "Kubernetes Blog — Hardening Container Storage"

@@ -22,7 +22,7 @@ keywords:
   - Kubernetes 1.37 CPU Manager
   - NUMA Kubernetes
   - pod-level resources
-canonicalUrl: "https://digital-observatory.dev/blog/kubernetes-pod-level-resource-managers-beta-improve-numa-allocation"
+canonicalUrl: "https://observatory.campusloop.space/blog/kubernetes-pod-level-resource-managers-beta-improve-numa-allocation"
 noIndex: false
 sources:
   - label: "Kubernetes — Pod-Level Resource Managers Beta"

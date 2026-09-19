@@ -22,7 +22,7 @@ keywords:
   - KubeletInUserNamespace
   - Kubernetes 1.37 rootless
   - rootless Kubernetes security
-canonicalUrl: "https://digital-observatory.dev/blog/kubernetes-rootless-node-components-beta-changes-cluster-security-model"
+canonicalUrl: "https://observatory.campusloop.space/blog/kubernetes-rootless-node-components-beta-changes-cluster-security-model"
 noIndex: false
 sources:
   - label: "Kubernetes — KubeletInUserNamespace Beta"

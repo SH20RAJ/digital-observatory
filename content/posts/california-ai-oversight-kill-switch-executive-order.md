@@ -24,7 +24,7 @@ keywords:
   - independent AI auditors
   - frontier AI oversight
   - SB 813 AB 1405
-canonicalUrl: "https://digital-observatory.dev/blog/california-ai-oversight-kill-switch-executive-order"
+canonicalUrl: "https://observatory.campusloop.space/blog/california-ai-oversight-kill-switch-executive-order"
 noIndex: false
 sources:
   - label: "Governor of California — Executive order on independent AI oversight and emergency shutoff mechanisms"

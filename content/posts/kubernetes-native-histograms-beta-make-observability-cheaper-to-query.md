@@ -22,7 +22,7 @@ keywords:
   - Kubernetes 1.37 observability
   - Prometheus native histograms
   - latency histograms Kubernetes
-canonicalUrl: "https://digital-observatory.dev/blog/kubernetes-native-histograms-beta-make-observability-cheaper-to-query"
+canonicalUrl: "https://observatory.campusloop.space/blog/kubernetes-native-histograms-beta-make-observability-cheaper-to-query"
 noIndex: false
 sources:
   - label: "Kubernetes — Native Histograms Beta"

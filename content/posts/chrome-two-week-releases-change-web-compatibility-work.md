@@ -23,7 +23,7 @@ keywords:
   - browser compatibility testing
   - web platform release cadence
   - Chrome 154
-canonicalUrl: "https://digital-observatory.dev/blog/chrome-two-week-releases-change-web-compatibility-work"
+canonicalUrl: "https://observatory.campusloop.space/blog/chrome-two-week-releases-change-web-compatibility-work"
 noIndex: false
 sources:
   - label: "Chrome for Developers — The two-week release cycle is here"

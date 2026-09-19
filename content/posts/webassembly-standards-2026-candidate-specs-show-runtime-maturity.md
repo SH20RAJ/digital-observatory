@@ -22,7 +22,7 @@ keywords:
   - W3C WebAssembly Candidate Standard
   - WebAssembly Web API
   - Wasm JavaScript Interface
-canonicalUrl: "https://digital-observatory.dev/blog/webassembly-standards-2026-candidate-specs-show-runtime-maturity"
+canonicalUrl: "https://observatory.campusloop.space/blog/webassembly-standards-2026-candidate-specs-show-runtime-maturity"
 noIndex: false
 sources:
   - label: "W3C — Standards and drafts"

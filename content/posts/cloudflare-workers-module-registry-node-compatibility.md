@@ -22,7 +22,7 @@ keywords:
   - Workers module registry
   - serverless Node.js
   - workerd module registry
-canonicalUrl: "https://digital-observatory.dev/blog/cloudflare-workers-module-registry-node-compatibility"
+canonicalUrl: "https://observatory.campusloop.space/blog/cloudflare-workers-module-registry-node-compatibility"
 noIndex: false
 sources:
   - label: "Cloudflare — How we rebuilt Workers' module registry for Node.js compatibility"

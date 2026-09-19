@@ -23,7 +23,7 @@ keywords:
   - ENISA CRA SRP
   - vulnerability reporting EU
   - 24 hour 72 hour CRA deadline
-canonicalUrl: "https://digital-observatory.dev/blog/eu-cra-reporting-platform-is-now-live"
+canonicalUrl: "https://observatory.campusloop.space/blog/eu-cra-reporting-platform-is-now-live"
 noIndex: false
 sources:
   - label: "European Commission — Cyber Resilience Act reporting obligations"

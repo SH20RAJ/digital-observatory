@@ -24,7 +24,7 @@ keywords:
   - independent AI evaluation
   - frontier model red teaming
   - AI safety oversight
-canonicalUrl: "https://digital-observatory.dev/blog/anthropic-embedded-evaluation-changes-ai-safety-oversight"
+canonicalUrl: "https://observatory.campusloop.space/blog/anthropic-embedded-evaluation-changes-ai-safety-oversight"
 noIndex: false
 sources:
   - label: "Anthropic — Partnering with Accenture on embedded evaluation"

@@ -22,7 +22,7 @@ keywords:
   - Rust compiler miscompilation
   - rustc vtable bug
   - Rust release security
-canonicalUrl: "https://digital-observatory.dev/blog/rust-1-98-1-vtable-miscompilation-is-a-release-process-signal"
+canonicalUrl: "https://observatory.campusloop.space/blog/rust-1-98-1-vtable-miscompilation-is-a-release-process-signal"
 noIndex: false
 sources:
   - label: "Rust Blog — Announcing Rust 1.98.1"

@@ -24,7 +24,7 @@ keywords:
   - agentic AI cyber operations
   - AI model distillation attacks
   - AI security incidents
-canonicalUrl: "https://digital-observatory.dev/blog/anthropic-september-2026-threat-report-agentic-misuse"
+canonicalUrl: "https://observatory.campusloop.space/blog/anthropic-september-2026-threat-report-agentic-misuse"
 noIndex: false
 sources:
   - label: "Anthropic — Detecting and countering misuse of AI: September 2026"

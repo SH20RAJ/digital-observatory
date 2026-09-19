@@ -24,7 +24,7 @@ keywords:
   - SAFE Shared AI Findings Exchange
   - Linux Foundation AI security
   - collective defense AI
-canonicalUrl: "https://digital-observatory.dev/blog/open-secure-ai-alliance-shared-ai-defense"
+canonicalUrl: "https://observatory.campusloop.space/blog/open-secure-ai-alliance-shared-ai-defense"
 noIndex: false
 sources:
   - label: "Linux Foundation — Open Secure AI Alliance joins the Linux Foundation"

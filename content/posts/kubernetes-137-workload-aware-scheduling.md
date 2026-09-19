@@ -23,7 +23,7 @@ keywords:
   - workload aware preemption
   - AI ML Kubernetes scheduling
   - Kubernetes CompositePodGroup
-canonicalUrl: "https://digital-observatory.dev/blog/kubernetes-137-workload-aware-scheduling"
+canonicalUrl: "https://observatory.campusloop.space/blog/kubernetes-137-workload-aware-scheduling"
 noIndex: false
 sources:
   - label: "Kubernetes Blog — Kubernetes v1.37: Advancing Workload-Aware Scheduling"

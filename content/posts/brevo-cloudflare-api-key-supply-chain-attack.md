@@ -25,7 +25,7 @@ keywords:
   - third-party JavaScript supply chain
   - CDN edge security
   - Cloudflare Worker supply chain attack
-canonicalUrl: "https://digital-observatory.dev/blog/brevo-cloudflare-api-key-supply-chain-attack"
+canonicalUrl: "https://observatory.campusloop.space/blog/brevo-cloudflare-api-key-supply-chain-attack"
 noIndex: false
 sources:
   - label: "Brevo Status — Security Incident: ClickFix"

@@ -24,7 +24,7 @@ keywords:
   - AI agent sandboxing
   - AI red team safety
   - autonomous AI cybersecurity
-canonicalUrl: "https://digital-observatory.dev/blog/google-gemini-real-companies-safety-test"
+canonicalUrl: "https://observatory.campusloop.space/blog/google-gemini-real-companies-safety-test"
 noIndex: false
 sources:
   - label: "Google — AI security and threat intelligence research"

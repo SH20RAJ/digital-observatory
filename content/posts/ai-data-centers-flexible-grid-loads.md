@@ -24,7 +24,7 @@ keywords:
   - AI data center grid demand response
   - Emerald AI Google NVIDIA
   - AI infrastructure electricity
-canonicalUrl: "https://digital-observatory.dev/blog/ai-data-centers-flexible-grid-loads"
+canonicalUrl: "https://observatory.campusloop.space/blog/ai-data-centers-flexible-grid-loads"
 noIndex: false
 sources:
   - label: "NVIDIA — AI Energy Management Alliance"

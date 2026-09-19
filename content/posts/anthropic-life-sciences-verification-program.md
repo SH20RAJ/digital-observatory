@@ -25,7 +25,7 @@ keywords:
   - AI biology access controls
   - dual-use AI safeguards
   - Anthropic high-risk use grants
-canonicalUrl: "https://digital-observatory.dev/blog/anthropic-life-sciences-verification-program"
+canonicalUrl: "https://observatory.campusloop.space/blog/anthropic-life-sciences-verification-program"
 noIndex: false
 sources:
   - label: "Anthropic — Introducing the Life Sciences Verification Program, September 17, 2026"

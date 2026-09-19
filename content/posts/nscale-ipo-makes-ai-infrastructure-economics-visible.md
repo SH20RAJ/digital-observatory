@@ -22,7 +22,7 @@ keywords:
   - AI infrastructure economics
   - AI data center capital intensity
   - Nscale revenue loss
-canonicalUrl: "https://digital-observatory.dev/blog/nscale-ipo-makes-ai-infrastructure-economics-visible"
+canonicalUrl: "https://observatory.campusloop.space/blog/nscale-ipo-makes-ai-infrastructure-economics-visible"
 noIndex: false
 sources:
   - label: "Nscale — U.S. IPO filing"

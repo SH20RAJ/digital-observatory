@@ -10,7 +10,7 @@ Digital Observatory is a Markdown-first, open-source research journal for tracki
 
 **Repository:** https://github.com/SH20RAJ/digital-observatory  
 **GitHub Pages:** https://sh20raj.github.io/digital-observatory/  
-**Primary domain:** https://digital-observatory.dev
+**Primary domain:** https://observatory.campusloop.space
 
 ## GitHub Pages
 

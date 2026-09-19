@@ -25,7 +25,7 @@ keywords:
   - npm CI/CD security
   - npm trusted publishing
   - software supply chain security
-canonicalUrl: "https://digital-observatory.dev/blog/npm-stage-only-tokens-human-approval"
+canonicalUrl: "https://observatory.campusloop.space/blog/npm-stage-only-tokens-human-approval"
 noIndex: false
 sources:
   - label: "GitHub Changelog — Stage-only npm tokens for safer automation"

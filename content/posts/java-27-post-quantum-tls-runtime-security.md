@@ -25,7 +25,7 @@ keywords:
   - Java 27 release September 2026
   - OpenJDK 27 PQC
   - post quantum Java TLS
-canonicalUrl: "https://digital-observatory.dev/blog/java-27-post-quantum-tls-runtime-security"
+canonicalUrl: "https://observatory.campusloop.space/blog/java-27-post-quantum-tls-runtime-security"
 noIndex: false
 sources:
   - label: "Oracle — Oracle Releases Java 27 and Strengthens Post-Quantum Cryptography Support"

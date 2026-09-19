@@ -22,7 +22,7 @@ keywords:
   - Firefox developer tools
   - Firefox 156 web platform
   - browser compatibility September 2026
-canonicalUrl: "https://digital-observatory.dev/blog/firefox-156-developer-tools-and-web-platform-stability"
+canonicalUrl: "https://observatory.campusloop.space/blog/firefox-156-developer-tools-and-web-platform-stability"
 noIndex: false
 sources:
   - label: "Mozilla — Firefox 156 release notes"

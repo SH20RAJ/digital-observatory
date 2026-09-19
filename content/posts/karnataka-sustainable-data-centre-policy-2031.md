@@ -25,7 +25,7 @@ keywords:
   - India AI data centre infrastructure
   - Mangaluru data centres
   - sustainable data centres Karnataka
-canonicalUrl: "https://digital-observatory.dev/blog/karnataka-sustainable-data-centre-policy-2031"
+canonicalUrl: "https://observatory.campusloop.space/blog/karnataka-sustainable-data-centre-policy-2031"
 noIndex: false
 sources:
   - label: "Karnataka Sustainable Data Centre Policy 2026–2031 — state announcement reported by the IT/BT department"

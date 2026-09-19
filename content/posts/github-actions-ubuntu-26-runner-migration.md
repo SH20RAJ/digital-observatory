@@ -24,7 +24,7 @@ keywords:
   - GitHub Actions runner image
   - ubuntu-latest October 2026
   - CI build reproducibility
-canonicalUrl: "https://digital-observatory.dev/blog/github-actions-ubuntu-26-runner-migration"
+canonicalUrl: "https://observatory.campusloop.space/blog/github-actions-ubuntu-26-runner-migration"
 noIndex: false
 sources:
   - label: "GitHub Changelog — Ubuntu 26 generally available and latest migration, September 17, 2026"

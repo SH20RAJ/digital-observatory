@@ -24,7 +24,7 @@ keywords:
   - UnifiedBus AI infrastructure
   - AI SuperCluster architecture
   - Ascend AI compute
-canonicalUrl: "https://digital-observatory.dev/blog/huawei-peerium-million-processor-ai-architecture"
+canonicalUrl: "https://observatory.campusloop.space/blog/huawei-peerium-million-processor-ai-architecture"
 noIndex: false
 sources:
   - label: "Huawei — Peerium Computing Architecture"

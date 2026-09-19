@@ -25,7 +25,7 @@ keywords:
   - GitHub Actions security
   - GitHub Actions public repositories
   - CI/CD supply chain security
-canonicalUrl: "https://digital-observatory.dev/blog/github-actions-pull-request-target-default-block"
+canonicalUrl: "https://observatory.campusloop.space/blog/github-actions-pull-request-target-default-block"
 noIndex: false
 sources:
   - label: "GitHub Changelog — Workflow execution protections in GitHub Actions generally available"

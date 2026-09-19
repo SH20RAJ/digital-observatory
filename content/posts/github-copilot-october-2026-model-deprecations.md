@@ -25,7 +25,7 @@ keywords:
   - Gemini 3.7 Flash Copilot deprecation
   - Copilot enterprise model policies
   - Copilot model pinning
-canonicalUrl: "https://digital-observatory.dev/blog/github-copilot-october-2026-model-deprecations"
+canonicalUrl: "https://observatory.campusloop.space/blog/github-copilot-october-2026-model-deprecations"
 noIndex: false
 sources:
   - label: "GitHub Changelog — Upcoming deprecation of selected GitHub Copilot models in mid-October"

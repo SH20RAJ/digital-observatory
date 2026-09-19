@@ -22,7 +22,7 @@ keywords:
   - Tenth Circuit AI rule
   - human review generative AI legal filings
   - AI legal citation verification
-canonicalUrl: "https://digital-observatory.dev/blog/10th-circuit-ai-filing-certification-proposal-makes-human-review-a-procedural-control"
+canonicalUrl: "https://observatory.campusloop.space/blog/10th-circuit-ai-filing-certification-proposal-makes-human-review-a-procedural-control"
 noIndex: false
 sources:
   - label: "Reuters — US appeals court rule would require lawyers to certify AI-prepared filings"

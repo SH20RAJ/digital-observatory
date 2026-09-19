@@ -22,7 +22,7 @@ keywords:
   - CEA Alice and Bob
   - hybrid quantum classical computing
   - quantum software interoperability
-canonicalUrl: "https://digital-observatory.dev/blog/quantum-classical-software-stack-gets-an-open-source-bridge"
+canonicalUrl: "https://observatory.campusloop.space/blog/quantum-classical-software-stack-gets-an-open-source-bridge"
 noIndex: false
 sources:
   - label: "Reuters — CEA and Alice & Bob partnership"

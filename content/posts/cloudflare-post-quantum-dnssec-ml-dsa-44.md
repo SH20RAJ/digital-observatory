@@ -24,7 +24,7 @@ keywords:
   - post-quantum DNSSEC
   - DNSSEC algorithm 18
   - quantum-safe DNS
-canonicalUrl: "https://digital-observatory.dev/blog/cloudflare-post-quantum-dnssec-ml-dsa-44"
+canonicalUrl: "https://observatory.campusloop.space/blog/cloudflare-post-quantum-dnssec-ml-dsa-44"
 noIndex: false
 sources:
   - label: "Cloudflare — 1.1.1.1 now supports post-quantum DNSSEC"

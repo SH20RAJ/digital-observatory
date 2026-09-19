@@ -22,7 +22,7 @@ keywords:
   - AI training open source licenses
   - DMCA AI code lawsuit
   - Copilot training lawsuit
-canonicalUrl: "https://digital-observatory.dev/blog/openai-microsoft-github-training-ruling-separates-dmca-from-license-questions"
+canonicalUrl: "https://observatory.campusloop.space/blog/openai-microsoft-github-training-ruling-separates-dmca-from-license-questions"
 noIndex: false
 sources:
   - label: "Reuters — OpenAI, Microsoft fend off part of software developer lawsuit"

@@ -22,7 +22,7 @@ keywords:
   - post-quantum TLS
   - origin handshake optimization
   - TLS 1.3 post quantum
-canonicalUrl: "https://digital-observatory.dev/blog/cloudflare-automatic-key-exchange-post-quantum-origins"
+canonicalUrl: "https://observatory.campusloop.space/blog/cloudflare-automatic-key-exchange-post-quantum-origins"
 noIndex: false
 sources:
   - label: "Cloudflare — Automatic Key Exchange"

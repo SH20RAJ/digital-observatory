@@ -22,7 +22,7 @@ keywords:
   - agent least privilege
   - CI token security
   - Cloudflare Workers access roles
-canonicalUrl: "https://digital-observatory.dev/blog/cloudflare-worker-level-permissions-create-agent-security-boundary"
+canonicalUrl: "https://observatory.campusloop.space/blog/cloudflare-worker-level-permissions-create-agent-security-boundary"
 noIndex: false
 sources:
   - label: "Cloudflare — Grant teammates and agents access to specific Workers"

@@ -24,7 +24,7 @@ keywords:
   - OpenSSF sustainable package registries
   - npm PyPI Maven Central sustainability
   - software supply chain infrastructure
-canonicalUrl: "https://digital-observatory.dev/blog/package-registries-enterprise-funding-infrastructure"
+canonicalUrl: "https://observatory.campusloop.space/blog/package-registries-enterprise-funding-infrastructure"
 noIndex: false
 sources:
   - label: "OpenSSF — Enterprise Commitment to Sustainable Package Registries"

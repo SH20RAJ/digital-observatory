@@ -22,7 +22,7 @@ keywords:
   - Metaculus Cup 2026
   - AI prediction accuracy
   - forecasting AI startup
-canonicalUrl: "https://digital-observatory.dev/blog/mantic-forecasting-startup-turns-ai-prediction-into-a-measured-product"
+canonicalUrl: "https://observatory.campusloop.space/blog/mantic-forecasting-startup-turns-ai-prediction-into-a-measured-product"
 noIndex: false
 sources:
   - label: "Reuters — Mantic raises $25 million for forecasting"

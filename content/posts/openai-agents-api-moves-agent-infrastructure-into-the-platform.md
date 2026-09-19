@@ -23,7 +23,7 @@ keywords:
   - agent sandbox API
   - Codex harness
   - AI agent infrastructure
-canonicalUrl: "https://digital-observatory.dev/blog/openai-agents-api-moves-agent-infrastructure-into-the-platform"
+canonicalUrl: "https://observatory.campusloop.space/blog/openai-agents-api-moves-agent-infrastructure-into-the-platform"
 noIndex: false
 sources:
   - label: "OpenAI — Introducing the Agents API"

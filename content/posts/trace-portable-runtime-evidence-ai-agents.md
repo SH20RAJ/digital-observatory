@@ -24,7 +24,7 @@ keywords:
   - Trust Runtime Attestation Compliance Evidence
   - AI governance evidence
   - hardware attestation
-canonicalUrl: "https://digital-observatory.dev/blog/trace-portable-runtime-evidence-ai-agents"
+canonicalUrl: "https://observatory.campusloop.space/blog/trace-portable-runtime-evidence-ai-agents"
 noIndex: false
 sources:
   - label: "TRACE specification — Trust Runtime Attestation and Compliance Evidence"

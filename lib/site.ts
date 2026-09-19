@@ -4,7 +4,7 @@ export const SITE = {
   name: "Digital Observatory",
   shortName: "DO",
   description: "An open-source digital observatory for tracking public signals across AI, open source, developers, startups, internet infrastructure, security, and digital culture.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://digital-observatory.dev",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://observatory.campusloop.space",
   github: "https://github.com/SH20RAJ/digital-observatory",
   discussions: "https://github.com/SH20RAJ/digital-observatory/discussions",
   locale: "en_US",

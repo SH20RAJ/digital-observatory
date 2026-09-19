@@ -22,7 +22,7 @@ keywords:
   - Safari MCP
   - WebKit scroll anchoring
   - Safari web platform September 2026
-canonicalUrl: "https://digital-observatory.dev/blog/safari-27-web-platform-catches-up-with-agent-era"
+canonicalUrl: "https://observatory.campusloop.space/blog/safari-27-web-platform-catches-up-with-agent-era"
 noIndex: false
 sources:
   - label: "WebKit — Features for Safari 27.0"

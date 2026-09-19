@@ -24,7 +24,7 @@ keywords:
   - pre-submit security scanning
   - CodeMender
   - AI vulnerability remediation
-canonicalUrl: "https://digital-observatory.dev/blog/google-agentic-ai-secures-code-at-submit-time"
+canonicalUrl: "https://observatory.campusloop.space/blog/google-agentic-ai-secures-code-at-submit-time"
 noIndex: false
 sources:
   - label: "Google Cloud — How Google uses agentic AI to secure hundreds of millions of lines of code"

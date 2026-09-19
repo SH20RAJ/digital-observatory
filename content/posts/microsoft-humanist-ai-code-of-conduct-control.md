@@ -25,7 +25,7 @@ keywords:
   - AI model shutdown and interruption
   - Humanist AI
   - AI governance framework
-canonicalUrl: "https://digital-observatory.dev/blog/microsoft-humanist-ai-code-of-conduct-control"
+canonicalUrl: "https://observatory.campusloop.space/blog/microsoft-humanist-ai-code-of-conduct-control"
 noIndex: false
 sources:
   - label: "Microsoft AI — Humanist AI in practice: public consultation"

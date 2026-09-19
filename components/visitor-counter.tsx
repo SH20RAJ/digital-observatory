@@ -9,7 +9,8 @@ export function VisitorCounter() {
   const pathname = usePathname() || "/";
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const pagePath = pathname.startsWith(basePath) ? pathname : basePath + pathname;
-  const pageUrl = "https://sh20raj.github.io" + (pagePath || "/");
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://observatory.campusloop.space";
+  const pageUrl = siteUrl.replace(/\/$/, "") + (pagePath.startsWith("/") ? pagePath : "/" + pagePath);
   const encodedPath = encodeURIComponent(pageUrl);
   const badgeUrl = BADGE_ORIGIN + "?path=" + encodedPath + "&countColor=%23263759&style=flat";
   const statusUrl = STATUS_ORIGIN + "?path=" + encodedPath;

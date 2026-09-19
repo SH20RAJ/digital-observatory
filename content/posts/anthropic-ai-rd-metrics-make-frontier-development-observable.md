@@ -23,7 +23,7 @@ keywords:
   - frontier AI development pace
   - AI agent oversight metrics
   - AI development measurement
-canonicalUrl: "https://digital-observatory.dev/blog/anthropic-ai-rd-metrics-make-frontier-development-observable"
+canonicalUrl: "https://observatory.campusloop.space/blog/anthropic-ai-rd-metrics-make-frontier-development-observable"
 noIndex: false
 sources:
   - label: "Anthropic Institute — Measurements for understanding the pace of AI development inside frontier labs"

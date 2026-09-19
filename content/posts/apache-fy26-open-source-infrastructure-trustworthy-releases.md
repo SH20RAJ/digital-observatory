@@ -22,7 +22,7 @@ keywords:
   - Apache Trusted Releases
   - open source infrastructure
   - SBOM open source
-canonicalUrl: "https://digital-observatory.dev/blog/apache-fy26-open-source-infrastructure-trustworthy-releases"
+canonicalUrl: "https://observatory.campusloop.space/blog/apache-fy26-open-source-infrastructure-trustworthy-releases"
 noIndex: false
 sources:
   - label: "Apache Software Foundation — FY2026 report"

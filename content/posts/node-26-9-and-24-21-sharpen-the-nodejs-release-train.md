@@ -22,7 +22,7 @@ keywords:
   - Node.js 24.21.0
   - Node.js LTS September 2026
   - Node.js Current release
-canonicalUrl: "https://digital-observatory.dev/blog/node-26-9-and-24-21-sharpen-the-nodejs-release-train"
+canonicalUrl: "https://observatory.campusloop.space/blog/node-26-9-and-24-21-sharpen-the-nodejs-release-train"
 noIndex: false
 sources:
   - label: "Node.js — Release blog"

@@ -27,7 +27,7 @@ keywords:
   - AI search crawling
   - IETF AI Preferences
   - AI agent web access
-canonicalUrl: "https://digital-observatory.dev/blog/ai-crawling-is-becoming-a-policy-layer"
+canonicalUrl: "https://observatory.campusloop.space/blog/ai-crawling-is-becoming-a-policy-layer"
 noIndex: false
 sources:
   - label: "Cloudflare — Have it both ways: stay discoverable in search while disallowing AI training"

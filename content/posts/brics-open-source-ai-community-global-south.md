@@ -24,7 +24,7 @@ keywords:
   - Global South AI infrastructure
   - BRICS AI cloud platform
   - open source AI geopolitics
-canonicalUrl: "https://digital-observatory.dev/blog/brics-open-source-ai-community-global-south"
+canonicalUrl: "https://observatory.campusloop.space/blog/brics-open-source-ai-community-global-south"
 noIndex: false
 sources:
   - label: "Chinese Ministry of Foreign Affairs — Xi Jinping's BRICS statement"

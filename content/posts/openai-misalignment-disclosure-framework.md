@@ -25,7 +25,7 @@ keywords:
   - model behavior incidents
   - AI agent safety
   - frontier AI governance
-canonicalUrl: "https://digital-observatory.dev/blog/openai-misalignment-disclosure-framework"
+canonicalUrl: "https://observatory.campusloop.space/blog/openai-misalignment-disclosure-framework"
 noIndex: false
 sources:
   - label: "OpenAI — Our framework for reporting model misalignment"

@@ -22,7 +22,7 @@ keywords:
   - Pingora memory optimization
   - Rust memory optimization
   - distributed hash ring
-canonicalUrl: "https://digital-observatory.dev/blog/cloudflare-100tb-memory-optimization-shows-value-of-algorithmic-efficiency-at-scale"
+canonicalUrl: "https://observatory.campusloop.space/blog/cloudflare-100tb-memory-optimization-shows-value-of-algorithmic-efficiency-at-scale"
 noIndex: false
 sources:
   - label: "Cloudflare — Saving another 100TB of RAM with math and Rust"

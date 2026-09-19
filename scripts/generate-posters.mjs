@@ -116,7 +116,7 @@ ${titleSvg}
 }
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://digital-observatory.dev").replace(/\/$/, "");
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://observatory.campusloop.space").replace(/\/$/, "");
 const publicBase = siteUrl + basePath;
 const articleUrl = (slug) => publicBase + "/blog/" + slug;
 

@@ -22,7 +22,7 @@ keywords:
   - malicious JavaScript detection
   - browser supply chain attacks
   - Magecart style attacks
-canonicalUrl: "https://digital-observatory.dev/blog/cloudflare-client-side-security-shows-why-server-scanners-miss-browser-attacks"
+canonicalUrl: "https://observatory.campusloop.space/blog/cloudflare-client-side-security-shows-why-server-scanners-miss-browser-attacks"
 noIndex: false
 sources:
   - label: "Cloudflare — When scanners miss the attack"

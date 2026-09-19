@@ -19,8 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_PAGES: "true"
-      NEXT_PUBLIC_BASE_PATH: "/digital-observatory"
-      NEXT_PUBLIC_SITE_URL: "https://sh20raj.github.io/digital-observatory"
+      NEXT_PUBLIC_BASE_PATH: ""
+      NEXT_PUBLIC_SITE_URL: "https://observatory.campusloop.space"
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -36,8 +36,10 @@ jobs:
         run: npm run typecheck
       - name: Build static export
         run: npm run build
-      - name: Add .nojekyll
-        run: touch out/.nojekyll
+      - name: Add .nojekyll and CNAME
+        run: |
+          touch out/.nojekyll
+          echo "observatory.campusloop.space" > out/CNAME
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
