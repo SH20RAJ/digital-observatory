@@ -5,10 +5,13 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
-const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || "_rPi-600gMFYjNa9qzMTuIQg1_aey417EeAdaiIqgFg";
+const googleVerification =
+  process.env.GOOGLE_SITE_VERIFICATION || "_rPi-600gMFYjNa9qzMTuIQg1_aey417EeAdaiIqgFg";
 const verification = {
   google: googleVerification,
-  ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {})
+  ...(process.env.BING_SITE_VERIFICATION
+    ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } }
+    : {})
 };
 
 export const viewport: Viewport = {
@@ -19,12 +22,18 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.canonicalDomain),
   title: {
-    default: SITE.name,
+    default: "Digital Observatory — Computer Science, AI, Security & Student Technology",
     template: "%s | " + SITE.name
   },
-  description: SITE.description,
+  description:
+    "Open-source research, long-form technical guides, and current observations across computer science, AI, web development, data, cybersecurity, open source, cloud systems, finance, and digital culture.",
   applicationName: SITE.name,
   generator: "Next.js",
+  creator: SITE.name,
+  publisher: SITE.name,
+  category: "Technology",
+  classification:
+    "Computer Science, Artificial Intelligence, Software Engineering, Cybersecurity, Open Source, Digital Research, Student Education",
   manifest: getAssetUrl("/manifest.webmanifest"),
   icons: {
     icon: getAssetUrl("/icon.svg"),
@@ -35,13 +44,21 @@ export const metadata: Metadata = {
     types: { "application/rss+xml": getCanonicalUrl("/feed.xml") }
   },
   keywords: [
-    "digital observatory",
-    "open research",
-    "AI",
+    "Digital Observatory",
+    "computer science",
+    "artificial intelligence",
+    "AI research",
+    "web development",
+    "software engineering",
+    "cybersecurity",
+    "data engineering",
     "open source",
-    "developer infrastructure",
-    "internet research",
-    "security"
+    "cloud computing",
+    "networking",
+    "database systems",
+    "student technology",
+    "technical guides",
+    "research journal"
   ],
   verification: Object.keys(verification).length ? verification : undefined,
   formatDetection: { telephone: false },
@@ -49,8 +66,9 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: SITE.name,
-    title: SITE.name,
-    description: SITE.description,
+    title: "Digital Observatory — Computer Science, AI, Security & Student Technology",
+    description:
+      "Open-source research and long-form technical guides across computer science, AI, web development, data, cybersecurity, open source, cloud systems, finance, and digital culture.",
     url: getCanonicalUrl("/"),
     locale: SITE.locale,
     images: [
@@ -58,15 +76,21 @@ export const metadata: Metadata = {
         url: getCanonicalUrl("/og/default.svg"),
         width: 1200,
         height: 630,
-        alt: SITE.name
+        alt: "Digital Observatory — open-source technology research"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: SITE.name,
-    description: SITE.description,
-    images: [getCanonicalUrl("/og/default.svg")]
+    title: "Digital Observatory — Computer Science, AI, Security & Student Technology",
+    description:
+      "Open-source research and long-form technical guides across computer science, AI, web development, data, cybersecurity, open source, and digital systems.",
+    images: [
+      {
+        url: getCanonicalUrl("/og/default.svg"),
+        alt: "Digital Observatory — open-source technology research"
+      }
+    ]
   },
   robots: {
     index: true,

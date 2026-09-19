@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllIndexablePosts, getTags, tagSlug } from "@/lib/content";
 import { SITE, getCanonicalUrl } from "@/lib/site";
-import { jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
+import { buildPageMetadata, jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
 import { PostCard } from "@/components/post-card";
 import { Pagination } from "@/components/pagination";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -22,24 +22,15 @@ export async function generateMetadata({
   const description = `Digital Observatory research articles tagged #${tag}.`;
   const url = "/tag/" + tag;
 
-  return {
-    title,
-    description,
-    alternates: { canonical: getCanonicalUrl(url) },
-    openGraph: {
-      type: "website",
-      title: `${title} | ${SITE.name}`,
-      description,
-      url: getCanonicalUrl(url),
-      images: [{ url: getCanonicalUrl("/og/default.svg"), width: 1200, height: 630, alt: title }]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | ${SITE.name}`,
-      description,
-      images: [getCanonicalUrl("/og/default.svg")]
-    }
-  };
+  const matchingPosts = getAllIndexablePosts().filter((post) => post.tags.some((item) => tagSlug(item) === tag));
+  const relatedCategories = [...new Set(matchingPosts.map((post) => post.category))].slice(0, 8);
+  return buildPageMetadata({
+    title: tag + ": Articles & Research",
+    description:
+      `Browse ${matchingPosts.length} Digital Observatory articles using the ${tag} research thread, with source-backed explanations and related technical context.`,
+    path: url,
+    keywords: [tag, tag + " research", tag + " guides", ...relatedCategories]
+  });
 }
 
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {

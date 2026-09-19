@@ -1,8 +1,29 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllIndexablePosts, getCategories, categorySlug, getCategoryCounts } from "@/lib/content";
-import { SITE } from "@/lib/site";
 import { PostCard } from "@/components/post-card";
 import { SearchForm } from "@/components/search-form";
+import { SITE } from "@/lib/site";
+import { buildPageMetadata, itemListJsonLd, jsonLd, webPageJsonLd } from "@/lib/seo";
+
+export const metadata: Metadata = buildPageMetadata({
+  title: "Digital Observatory — Computer Science, AI, Security & Student Technology",
+  description:
+    "Explore source-backed technical guides and current research across computer science, AI, web development, data, cybersecurity, open source, cloud systems, finance, and digital culture.",
+  path: "/",
+  keywords: [
+    "computer science guides",
+    "AI research",
+    "software engineering",
+    "web development",
+    "cybersecurity",
+    "data science",
+    "open source",
+    "student technology",
+    "technical research"
+  ],
+  feed: true
+});
 
 const learningPaths = [
   {
@@ -255,6 +276,33 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(
+          webPageJsonLd({
+            name: "Digital Observatory — Computer Science, AI, Security & Student Technology",
+            description:
+              "Open-source research and long-form technical guides across computer science, AI, web development, data, cybersecurity, open source, cloud systems, finance, and digital culture.",
+            url: "/",
+            about: learningPaths.map((item) => item.category)
+          })
+        )}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLd(
+          itemListJsonLd({
+            name: "Digital Observatory learning paths",
+            url: "/",
+            items: learningPaths.map((item, index) => ({
+              name: item.category + " — " + item.title,
+              url: item.href,
+              position: index + 1
+            }))
+          })
+        )}
+      />
     </div>
   );
 }

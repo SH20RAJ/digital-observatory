@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllIndexablePosts, getCategories, categorySlug } from "@/lib/content";
 import { SITE, getCanonicalUrl } from "@/lib/site";
-import { jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
+import { buildPageMetadata, jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
 import { PostCard } from "@/components/post-card";
 import { Pagination } from "@/components/pagination";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -25,24 +25,16 @@ export async function generateMetadata({
   const description = `Digital Observatory research observations filed under ${post.category}.`;
   const url = "/category/" + category;
 
-  return {
-    title,
-    description,
-    alternates: { canonical: getCanonicalUrl(url) },
-    openGraph: {
-      type: "website",
-      title: `${title} | ${SITE.name}`,
-      description,
-      url: getCanonicalUrl(url),
-      images: [{ url: getCanonicalUrl("/og/default.svg"), width: 1200, height: 630, alt: title }]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | ${SITE.name}`,
-      description,
-      images: [getCanonicalUrl("/og/default.svg")]
-    }
-  };
+  const matchingPosts = getAllIndexablePosts().filter((item) => categorySlug(item.category) === category);
+  const tags = [...new Set(matchingPosts.flatMap((item) => item.tags))].slice(0, 10);
+  return buildPageMetadata({
+    title: title + ": Research Guides & Observations",
+    description:
+      `Explore ${matchingPosts.length} source-backed Digital Observatory articles and field guides about ${title}, including its latest concepts, systems, and practical context.`,
+    path: url,
+    keywords: [title, title + " guides", title + " research", ...tags],
+    section: title
+  });
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {

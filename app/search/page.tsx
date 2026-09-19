@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { SearchResults } from "@/components/search-results";
-import { getCanonicalUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Search",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllIndexablePosts } from "@/lib/content";
 import { SITE, getCanonicalUrl } from "@/lib/site";
-import { jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
+import { buildPageMetadata, jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
 import { PostCard } from "@/components/post-card";
 import { Pagination } from "@/components/pagination";
 import { getPageCount, getPageItems, getPageNumbers } from "@/lib/pagination";
@@ -28,24 +28,13 @@ export async function generateMetadata({
   const title = "Research Journal — Page " + current;
   const description = "Page " + current + " of the Digital Observatory research journal archive.";
 
-  return {
+  return buildPageMetadata({
     title,
     description,
-    alternates: { canonical },
-    openGraph: {
-      type: "website",
-      title: `${title} | ${SITE.name}`,
-      description,
-      url: canonical,
-      images: [{ url: getCanonicalUrl("/og/default.svg"), width: 1200, height: 630, alt: title }]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | ${SITE.name}`,
-      description,
-      images: [getCanonicalUrl("/og/default.svg")]
-    }
-  };
+    path,
+    keywords: ["Digital Observatory journal", "technology research archive", "computer science articles"],
+    feed: true
+  });
 }
 
 export default async function BlogPageNumber({

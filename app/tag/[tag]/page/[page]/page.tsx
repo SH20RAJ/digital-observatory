@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllIndexablePosts, getTags, tagSlug } from "@/lib/content";
 import { SITE, getCanonicalUrl } from "@/lib/site";
-import { jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
+import { buildPageMetadata, jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
 import { PostCard } from "@/components/post-card";
 import { Pagination } from "@/components/pagination";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -41,24 +41,12 @@ export async function generateMetadata({
   const title = `#${tag} — Page ${current}`;
   const description = `Page ${current} of the #${tag} tag archive.`;
 
-  return {
+  return buildPageMetadata({
     title,
     description,
-    alternates: { canonical },
-    openGraph: {
-      type: "website",
-      title: `${title} | ${SITE.name}`,
-      description,
-      url: canonical,
-      images: [{ url: getCanonicalUrl("/og/default.svg"), width: 1200, height: 630, alt: title }]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | ${SITE.name}`,
-      description,
-      images: [getCanonicalUrl("/og/default.svg")]
-    }
-  };
+    path,
+    keywords: [tag, tag + " research", "Digital Observatory"],
+  });
 }
 
 export default async function TagPageNumber({

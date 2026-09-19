@@ -2,37 +2,32 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllIndexablePosts, getCategories, categorySlug } from "@/lib/content";
 import { SITE, getCanonicalUrl } from "@/lib/site";
-import { jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
+import { buildPageMetadata, jsonLd, breadcrumbJsonLd, collectionJsonLd } from "@/lib/seo";
 import { PostCard } from "@/components/post-card";
 import { SearchForm } from "@/components/search-form";
 import { Pagination } from "@/components/pagination";
 import { getPageCount, getPageItems } from "@/lib/pagination";
 
-const title = "Research Journal";
-const description = "Verified observations, ecosystem telemetry, and research notes from the Digital Observatory.";
+const title = "Research Journal: Technology, AI & Digital Systems";
+const description =
+  "Browse Digital Observatory's source-backed research journal covering computer science, AI, software engineering, cybersecurity, open source, infrastructure, finance, and digital culture.";
 const url = "/blog";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title,
   description,
-  alternates: {
-    canonical: getCanonicalUrl(url),
-    types: { "application/rss+xml": getCanonicalUrl("/feed.xml") }
-  },
-  openGraph: {
-    type: "website",
-    title: `${title} | ${SITE.name}`,
-    description,
-    url: getCanonicalUrl(url),
-    images: [{ url: getCanonicalUrl("/og/default.svg"), width: 1200, height: 630, alt: title }]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${title} | ${SITE.name}`,
-    description,
-    images: [getCanonicalUrl("/og/default.svg")]
-  }
-};
+  path: url,
+  keywords: [
+    "technology research journal",
+    "AI research",
+    "computer science articles",
+    "software engineering guides",
+    "cybersecurity research",
+    "open source research",
+    "digital systems"
+  ],
+  feed: true
+});
 
 export default function BlogPage() {
   const posts = getAllIndexablePosts();

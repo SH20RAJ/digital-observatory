@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE, getCanonicalUrl } from "@/lib/site";
-import { jsonLd, breadcrumbJsonLd, aboutPageJsonLd } from "@/lib/seo";
+import { buildPageMetadata, jsonLd, breadcrumbJsonLd, aboutPageJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 const title = "Methodology & About";
@@ -9,24 +9,21 @@ const description =
   "How the Digital Observatory tracks public signals and turns them into transparent, source-backed observations.";
 const url = "/about";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: getCanonicalUrl(url) },
-  openGraph: {
-    type: "website",
-    title: `${title} | ${SITE.name}`,
-    description,
-    url: getCanonicalUrl(url),
-    images: [{ url: getCanonicalUrl("/og/default.svg"), width: 1200, height: 630, alt: title }]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${title} | ${SITE.name}`,
-    description,
-    images: [getCanonicalUrl("/og/default.svg")]
-  }
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "About Digital Observatory: Methodology, Sources & Research Standards",
+  description:
+    "Learn how Digital Observatory researches public signals, separates measurements from interpretation, preserves source provenance, and publishes open research in Markdown.",
+  path: "/about",
+  keywords: [
+    "Digital Observatory methodology",
+    "research methodology",
+    "source-backed research",
+    "research provenance",
+    "open research",
+    "technical journalism",
+    "Markdown research"
+  ]
+});
 
 export default function AboutPage() {
   const crumbs = [

@@ -11,7 +11,7 @@ import {
   resolvePostImage
 } from "@/lib/content";
 import { getCanonicalUrl, getAssetUrl } from "@/lib/site";
-import { articleJsonLd, breadcrumbJsonLd, postImageUrl, jsonLd } from "@/lib/seo";
+import { articleJsonLd, breadcrumbJsonLd, buildPageMetadata, postImageUrl, jsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Markdown } from "@/components/markdown";
 import { TableOfContents } from "@/components/table-of-contents";
@@ -37,54 +37,29 @@ export async function generateMetadata({
   const articleUrl = getCanonicalUrl("/blog/" + post.slug);
 
   return {
-    title: post.title,
-    description: post.description,
-    keywords: post.keywords.length ? post.keywords : post.tags,
-    authors: [
-      {
-        name: post.author,
-        url: getCanonicalUrl("/author/" + encodeURIComponent(post.author))
-      }
-    ],
-    alternates: {
-      canonical: post.canonicalUrl || articleUrl
-    },
-    openGraph: {
-      type: "article",
+    ...buildPageMetadata({
       title: post.title,
       description: post.description,
-      url: articleUrl,
+      path: articleUrl,
+      keywords: post.keywords.length ? post.keywords : post.tags,
+      image,
+      imageAlt: post.coverAlt || post.title,
+      type: "article",
+      noIndex: post.noIndex,
       publishedTime: new Date(post.publishedAt).toISOString(),
       modifiedTime: new Date(post.updatedAt || post.publishedAt).toISOString(),
       section: post.category,
       tags: post.tags,
-      images: [
+      authors: [
         {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: post.coverAlt || post.title
+          name: post.author,
+          url: getCanonicalUrl("/author/" + encodeURIComponent(post.author))
         }
       ]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-      images: [image]
-    },
-    robots: post.noIndex
-      ? { index: false, follow: false }
-      : {
-          index: true,
-          follow: true,
-          googleBot: {
-            index: true,
-            follow: true,
-            "max-image-preview": "large",
-            "max-snippet": -1
-          }
-        }
+    }),
+    alternates: {
+      canonical: post.canonicalUrl || articleUrl
+    }
   };
 }
 

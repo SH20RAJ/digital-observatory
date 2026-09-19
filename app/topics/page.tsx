@@ -9,32 +9,29 @@ import {
   getTagCounts,
   getAllIndexablePosts
 } from "@/lib/content";
-import { SITE, getCanonicalUrl, getAssetUrl } from "@/lib/site";
-import { jsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import { SITE, getCanonicalUrl } from "@/lib/site";
+import { buildPageMetadata, itemListJsonLd, jsonLd, breadcrumbJsonLd, webPageJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 const title = "Topics & Research Domains";
 const description = "Explore the Digital Observatory topic directory across artificial intelligence, open source, developer systems, security, internet infrastructure, and digital policy.";
 const url = "/topics";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: { canonical: url },
-  openGraph: {
-    type: "website",
-    title: title + " | " + SITE.name,
-    description,
-    url: getCanonicalUrl(url),
-    images: [{ url: getCanonicalUrl("/og/default.svg"), width: 1200, height: 630, alt: title }]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: title + " | " + SITE.name,
-    description,
-    images: [getCanonicalUrl("/og/default.svg")]
-  }
-};
+export const metadata: Metadata = buildPageMetadata({
+  title: "Topics & Research Domains: AI, Computer Science, Security & More",
+  description:
+    "Explore Digital Observatory research domains and topic threads across computer science, AI, web development, backend systems, cybersecurity, open source, cloud, finance, and student technology.",
+  path: url,
+  keywords: [
+    "technology topics",
+    "computer science topics",
+    "AI topics",
+    "cybersecurity topics",
+    "open source topics",
+    "software engineering topics",
+    "digital research"
+  ]
+});
 
 export default function TopicsPage() {
   const categories = getCategories();
@@ -113,6 +110,31 @@ export default function TopicsPage() {
         </section>
 
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(breadcrumbJsonLd(crumbs))} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLd(
+            webPageJsonLd({
+              name: title,
+              description,
+              url,
+              about: categories
+            })
+          )}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLd(
+            itemListJsonLd({
+              name: "Digital Observatory research categories",
+              url,
+              items: categories.map((category, index) => ({
+                name: category,
+                url: "/category/" + categorySlug(category),
+                position: index + 1
+              }))
+            })
+          )}
+        />
       </div>
     </div>
   );
