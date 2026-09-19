@@ -15,8 +15,16 @@ function slugify(value:string){return value.toLowerCase().trim().replace(/&/g,"a
 function stripMarkdown(value:string){return value.replace(/\x60{3}[\s\S]*?\x60{3}/g," ").replace(/!\[[^\]]*\]\([^)]*\)/g," ").replace(/\[[^\]]*\]\([^)]*\)/g," ").replace(/[#>*_~|-]/g," ").replace(/\s+/g," ").trim();}
 function makeExcerpt(content:string){const paragraphs=content.split(/\n\s*\n/).map(stripMarkdown).filter(Boolean);return paragraphs.find(x=>x.length>80)||paragraphs[0]||"";}
 function makeHeadings(content:string){return content.split("\n").map(line=>{const match=line.match(/^(#{2,3})\s+(.+)$/);if(!match)return null;const text=match[2].replace(/[*_]/g,"").trim();return{id:slugify(text),text,depth:match[1].length};}).filter((x):x is {id:string;text:string;depth:number}=>Boolean(x));}
+export function sanitizeMarkdown(value: string): string {
+  if (!value) return "";
+  return value
+    .replace(/[\uE200-\uE20F]url[\uE200-\uE20F]([^\uE200-\uE20F]*?)[\uE200-\uE20F]([^\uE200-\uE20F]*?)[\uE200-\uE20F]/g, "[$1]($2)")
+    .replace(/[\uE200-\uE20F]cite[\uE200-\uE20F][^\uE200-\uE20F]*?[\uE200-\uE20F]/g, "")
+    .replace(/[\uE200-\uE20F]/g, "");
+}
+
 function parsePost(fileName:string):Post{
-  const raw=fs.readFileSync(path.join(POSTS_DIR,fileName),"utf8"); const parsed=matter(raw); const data=parsed.data as Record<string,unknown>; const slug=fileName.replace(/\.(md|mdown|markdown)$/i,""); const content=parsed.content.trim(); const stats=readingTime(content);
+  const raw=fs.readFileSync(path.join(POSTS_DIR,fileName),"utf8"); const parsed=matter(raw); const data=parsed.data as Record<string,unknown>; const slug=fileName.replace(/\.(md|mdown|markdown)$/i,""); const content=sanitizeMarkdown(parsed.content.trim()); const stats=readingTime(content);
   const sources=Array.isArray(data.sources)?data.sources.map(rawSource=>{const source=rawSource as Record<string,unknown>;return{label:String(source.label||""),url:String(source.url||""),note:source.note?String(source.note):undefined};}).filter(source=>source.label&&source.url):[];
   return{slug,title:String(data.title||slug),description:String(data.description||data.excerpt||"").trim(),excerpt:String(data.excerpt||makeExcerpt(content)).slice(0,320),publishedAt:normalizeDate(data.publishedAt),updatedAt:normalizeDate(data.updatedAt||data.publishedAt),status:data.status==="draft"?"draft":"published",category:String(data.category||"Observatory"),tags:normalizeArray(data.tags),author:String(data.author||"Digital Observatory"),authorRole:String(data.authorRole||"Editorial & Research"),featured:Boolean(data.featured),coverImage:data.coverImage?String(data.coverImage):undefined,coverAlt:data.coverAlt?String(data.coverAlt):undefined,keywords:normalizeArray(data.keywords),canonicalUrl:data.canonicalUrl?String(data.canonicalUrl):undefined,noIndex:Boolean(data.noIndex),sources,readingTime:stats.text,wordCount:stats.words,content,headings:makeHeadings(content)};
 }

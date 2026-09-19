@@ -39,7 +39,7 @@ sources:
     note: "Official model lifecycle reference showing Gemini 3.8 Live and its Extended Thinking variant as released September 15, 2026."
 ---
 
-Google made **Gemini 3.8 Live** and **Gemini 3.8 Live Extended Thinking** generally available on September 15, 2026. The developer-facing change worth watching is bigger than another model-quality upgrade: real-time voice agents can now keep conversation, reasoning, and tool execution moving in parallel. urlGoogle's Gemini 3.8 Live announcementhttps://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/
+Google made **Gemini 3.8 Live** and **Gemini 3.8 Live Extended Thinking** generally available on September 15, 2026. The developer-facing change worth watching is bigger than another model-quality upgrade: real-time voice agents can now keep conversation, reasoning, and tool execution moving in parallel. [Google's Gemini 3.8 Live announcement](https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/)
 
 That changes how a voice agent should be designed. A spoken answer is no longer necessarily the end of the task. For developers, the boundary between "the model is talking" and "the agent is working" is becoming deliberately fuzzy.
 
@@ -50,7 +50,7 @@ Google released two audio-to-audio models for real-time applications through the
 - `gemini-3.8-live` is the default option for most low-latency voice-agent and real-time dialogue experiences.
 - `gemini-3.8-live-extended-thinking` is aimed at interactions where more background reasoning is useful.
 
-Google's official release notes mark both models as generally available and describe asynchronous function calling as a core capability of the default Live model. urlGemini API release noteshttps://ai.google.dev/gemini-api/docs/changelog
+Google's official release notes mark both models as generally available and describe asynchronous function calling as a core capability of the default Live model. [Gemini API release notes](https://ai.google.dev/gemini-api/docs/changelog)
 
 The distinction matters because voice interfaces traditionally make users wait for a complete turn: listen, think, answer, then act. An agentic interface can instead start an action while keeping the conversation alive.
 

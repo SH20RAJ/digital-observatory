@@ -48,7 +48,7 @@ sources:
     note: "June 26, 2026 cache hardening that made cache access read-only for applicable untrusted workflow triggers, reducing cache-poisoning privilege-escalation paths."
 ---
 
-**GitHub is making `pull_request_target` a policy decision rather than a workflow default.** On September 17, 2026, GitHub made Actions workflow execution protections generally available and introduced a default policy that blocks `pull_request_target` in affected public repositories. The policy is currently evaluated in shadow mode and is scheduled for enforcement on **November 2, 2026**. urlGitHub's September 17 announcementhttps://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/
+**GitHub is making `pull_request_target` a policy decision rather than a workflow default.** On September 17, 2026, GitHub made Actions workflow execution protections generally available and introduced a default policy that blocks `pull_request_target` in affected public repositories. The policy is currently evaluated in shadow mode and is scheduled for enforcement on **November 2, 2026**. [GitHub's September 17 announcement](https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/)
 
 This is more significant than another Actions settings update. It moves a long-standing security boundary out of individual workflow authors' judgment and into centrally enforceable policy. For maintainers, the practical question is no longer only "is this workflow written safely?" It is also "does this repository still need a privileged trigger for untrusted pull requests?"
 
@@ -58,15 +58,15 @@ GitHub's **workflow execution protections** are now generally available for GitH
 
 - **Workflow file targeting:** a policy can apply to specific workflow files instead of the entire repository.
 - **Insights:** administrators can see which runs would be affected before enforcing a rule.
-- **REST API management:** execution policies can be created, read, updated, and deleted programmatically, including workflow-path conditions. urlGitHub's workflow-execution announcementhttps://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/
+- **REST API management:** execution policies can be created, read, updated, and deleted programmatically, including workflow-path conditions. [GitHub's workflow-execution announcement](https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/)
 
-The same release also introduces a secure default for `pull_request_target` in public repositories that do not already have an applicable Actions event policy. GitHub says that default is initially in **evaluate mode**, so affected workflows can be identified before the rule becomes blocking. urlGitHub's security documentationhttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+The same release also introduces a secure default for `pull_request_target` in public repositories that do not already have an applicable Actions event policy. GitHub says that default is initially in **evaluate mode**, so affected workflows can be identified before the rule becomes blocking. [GitHub's security documentation](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)
 
 ## Why `pull_request_target` is different
 
 The name can make `pull_request_target` sound like a variant of `pull_request`. The security model is materially different.
 
-A workflow triggered by `pull_request_target` runs using the base repository's workflow context. GitHub's current documentation says such jobs receive the base repository's `GITHUB_TOKEN` and access to repository and organization secrets. That elevated trust is useful for legitimate automation such as labeling or authenticated status updates on fork pull requests. urlGitHub's pull_request_target security guidehttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+A workflow triggered by `pull_request_target` runs using the base repository's workflow context. GitHub's current documentation says such jobs receive the base repository's `GITHUB_TOKEN` and access to repository and organization secrets. That elevated trust is useful for legitimate automation such as labeling or authenticated status updates on fork pull requests. [GitHub's pull_request_target security guide](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)
 
 The danger appears when that privileged workflow also executes code supplied by the pull request.
 
@@ -86,15 +86,15 @@ build / test / dependency install
 attacker-controlled execution
 ```
 
-GitHub Security Lab calls this class of vulnerability a **pwn request**. Its research explains that a malicious pull request can alter build scripts, tests, package configuration, or dependencies so that attacker-controlled commands execute in a workflow with repository privileges. urlGitHub Security Lab's pwn-request researchhttps://securitylab.github.com/resources/github-actions-preventing-pwn-requests/
+GitHub Security Lab calls this class of vulnerability a **pwn request**. Its research explains that a malicious pull request can alter build scripts, tests, package configuration, or dependencies so that attacker-controlled commands execute in a workflow with repository privileges. [GitHub Security Lab's pwn-request research](https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/)
 
 The important distinction is therefore not that `pull_request_target` is inherently malicious. It is that **privileged automation and untrusted code become dangerous when they are allowed to cross the same execution boundary**.
 
 ## The November 2 deadline changes the maintenance question
 
-The new default policy is specifically aimed at public repositories that do not already have an applicable event policy. It does not apply to private or internal repositories, and it does not replace an event policy that a repository or organization has already configured. urlGitHub's pull_request_target documentationhttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+The new default policy is specifically aimed at public repositories that do not already have an applicable event policy. It does not apply to private or internal repositories, and it does not replace an event policy that a repository or organization has already configured. [GitHub's pull_request_target documentation](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)
 
-For affected public repositories, GitHub will enforce the default block on **November 2, 2026**. Until then, evaluate mode can expose the workflows that would fail under the new policy. urlGitHub's September 17 changeloghttps://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/
+For affected public repositories, GitHub will enforce the default block on **November 2, 2026**. Until then, evaluate mode can expose the workflows that would fail under the new policy. [GitHub's September 17 changelog](https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/)
 
 That creates a useful migration window rather than an overnight breaking change.
 
@@ -107,11 +107,11 @@ Maintainers should inventory workflows that contain:
 - secrets or write-capable `GITHUB_TOKEN` permissions;
 - related `workflow_run` or `issue_comment` flows that later execute untrusted artifacts or code.
 
-The last category matters because removing one trigger does not eliminate the broader security problem. GitHub's current documentation explicitly warns that pwn requests can also occur in other privileged events when untrusted code is fetched or executed. urlGitHub's security guidehttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+The last category matters because removing one trigger does not eliminate the broader security problem. GitHub's current documentation explicitly warns that pwn requests can also occur in other privileged events when untrusted code is fetched or executed. [GitHub's security guide](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)
 
 ## The safer path is often `pull_request`
 
-GitHub's guidance is deliberately pragmatic: if a workflow does not need the elevated trust of `pull_request_target`, use `pull_request` instead. For fork pull requests, `pull_request` runs with a read-only `GITHUB_TOKEN`, withholds other secrets, and applies fork approval protections. urlGitHub's security guidehttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+GitHub's guidance is deliberately pragmatic: if a workflow does not need the elevated trust of `pull_request_target`, use `pull_request` instead. For fork pull requests, `pull_request` runs with a read-only `GITHUB_TOKEN`, withholds other secrets, and applies fork approval protections. [GitHub's security guide](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)
 
 That gives a simple decision tree:
 
@@ -122,15 +122,15 @@ That gives a simple decision tree:
 | Build untrusted code and later perform a privileged action | Split the workflows | Keep execution unprivileged and move only the necessary result across the boundary |
 | Privileged fork checkout is genuinely required | Explicitly allow and harden it | This is an exception that needs deliberate security review |
 
-GitHub Security Lab has documented the workflow-splitting pattern for cases where untrusted code must be built but a later step needs write access or secrets. The unprivileged `pull_request` workflow produces results, while a separate `workflow_run` workflow handles the privileged operation. The artifacts crossing that boundary must themselves be treated as untrusted data. urlGitHub Security Lab's workflow-security researchhttps://securitylab.github.com/resources/github-actions-preventing-pwn-requests/
+GitHub Security Lab has documented the workflow-splitting pattern for cases where untrusted code must be built but a later step needs write access or secrets. The unprivileged `pull_request` workflow produces results, while a separate `workflow_run` workflow handles the privileged operation. The artifacts crossing that boundary must themselves be treated as untrusted data. [GitHub Security Lab's workflow-security research](https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/)
 
 ## This is the third layer of hardening, not the first
 
 The September policy change is easier to understand as part of a sequence of GitHub Actions security controls shipped during 2026.
 
-In June, GitHub changed `actions/checkout` so supported versions refuse common patterns that check out fork pull-request code from `pull_request_target` and related privileged workflows. An explicit `allow-unsafe-pr-checkout` opt-out remains for workflows that genuinely need the behavior. urlGitHub's checkout hardening announcementhttps://github.blog/changelog/2026-06-18-safer-pull_request_target-defaults-for-github-actions-checkout/
+In June, GitHub changed `actions/checkout` so supported versions refuse common patterns that check out fork pull-request code from `pull_request_target` and related privileged workflows. An explicit `allow-unsafe-pr-checkout` opt-out remains for workflows that genuinely need the behavior. [GitHub's checkout hardening announcement](https://github.blog/changelog/2026-06-18-safer-pull_request_target-defaults-for-github-actions-checkout/)
 
-Later that month, GitHub changed cache behavior for untrusted triggers so applicable workflows receive read-only cache tokens, reducing a class of cache-poisoning privilege-escalation paths. urlGitHub's read-only cache announcementhttps://github.blog/changelog/2026-06-26-read-only-actions-cache-for-untrusted-triggers/
+Later that month, GitHub changed cache behavior for untrusted triggers so applicable workflows receive read-only cache tokens, reducing a class of cache-poisoning privilege-escalation paths. [GitHub's read-only cache announcement](https://github.blog/changelog/2026-06-26-read-only-actions-cache-for-untrusted-triggers/)
 
 The September rollout adds a different layer:
 
@@ -152,7 +152,7 @@ Traditional Actions security often depends on every workflow author getting seve
 
 That is a difficult governance model for an ecosystem containing thousands of independently maintained repositories.
 
-GitHub's new execution protections introduce a higher-level control plane. An organization can restrict workflow events or actors across repositories, and specific workflow files can receive different rules. Policies can also be managed through the REST API, which makes them compatible with infrastructure-as-code and governance tooling. urlGitHub's workflow-execution announcementhttps://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/
+GitHub's new execution protections introduce a higher-level control plane. An organization can restrict workflow events or actors across repositories, and specific workflow files can receive different rules. Policies can also be managed through the REST API, which makes them compatible with infrastructure-as-code and governance tooling. [GitHub's workflow-execution announcement](https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/)
 
 That changes the security unit from **"this YAML file looks safe"** to **"this class of workflow is permitted to execute under these conditions."**
 
@@ -170,25 +170,25 @@ A trigger that only labels a pull request is materially different from one that 
 
 ### 2. Use evaluate mode as a migration report
 
-GitHub's policy insights can show which workflow runs would be affected before enforcement. That gives maintainers an evidence-based migration list rather than requiring them to guess which repositories matter. urlGitHub's security guidehttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+GitHub's policy insights can show which workflow runs would be affected before enforcement. That gives maintainers an evidence-based migration list rather than requiring them to guess which repositories matter. [GitHub's security guide](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)
 
 ### 3. Prefer least privilege
 
-If the workflow does not need secrets or write access, it probably does not need a privileged event. GitHub's guidance also recommends restricting `GITHUB_TOKEN` permissions and secrets for workflows that legitimately retain `pull_request_target`. urlGitHub's security guidehttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+If the workflow does not need secrets or write access, it probably does not need a privileged event. GitHub's guidance also recommends restricting `GITHUB_TOKEN` permissions and secrets for workflows that legitimately retain `pull_request_target`. [GitHub's security guide](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)
 
 ### 4. Check for hidden execution
 
-The dangerous operation is not necessarily an obvious `./build.sh` command. GitHub notes that commands such as `npm install` and `npm run build`, configuration files, dependencies, and other build machinery can execute attacker-controlled code after an unsafe checkout. urlGitHub's security guidehttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target
+The dangerous operation is not necessarily an obvious `./build.sh` command. GitHub notes that commands such as `npm install` and `npm run build`, configuration files, dependencies, and other build machinery can execute attacker-controlled code after an unsafe checkout. [GitHub's security guide](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target)
 
 ### 5. Treat exceptions as exceptions
 
-If a workflow genuinely needs `pull_request_target`, GitHub allows maintainers to explicitly permit the event through an applicable Actions event policy. The point of the new default is not to make every privileged workflow impossible; it is to make the trust decision explicit. urlGitHub's September 17 announcementhttps://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/
+If a workflow genuinely needs `pull_request_target`, GitHub allows maintainers to explicitly permit the event through an applicable Actions event policy. The point of the new default is not to make every privileged workflow impossible; it is to make the trust decision explicit. [GitHub's September 17 announcement](https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/)
 
 ## What the evidence does—and does not—prove
 
-**Observed:** GitHub made workflow execution protections generally available on September 17, 2026 and introduced a default `pull_request_target` block for affected public repositories, with enforcement scheduled for November 2, 2026. urlGitHub's announcementhttps://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/
+**Observed:** GitHub made workflow execution protections generally available on September 17, 2026 and introduced a default `pull_request_target` block for affected public repositories, with enforcement scheduled for November 2, 2026. [GitHub's announcement](https://github.blog/changelog/2026-09-17-workflow-execution-protections-in-github-actions-generally-available/)
 
-**Documented:** The trigger has elevated access to the base repository's token and secrets, while `pull_request` is designed to process fork contributions with reduced privileges. GitHub documents unsafe checkout-and-execute patterns as a root cause of pwn requests. urlGitHub's security guidehttps://docs.github.com/en/actions/reference/security/securely-using-pull_request_target urlGitHub Security Labhttps://securitylab.github.com/resources/github-actions-preventing-pwn-requests/
+**Documented:** The trigger has elevated access to the base repository's token and secrets, while `pull_request` is designed to process fork contributions with reduced privileges. GitHub documents unsafe checkout-and-execute patterns as a root cause of pwn requests. [GitHub's security guide](https://docs.github.com/en/actions/reference/security/securely-using-pull_request_target) [GitHub Security Lab](https://securitylab.github.com/resources/github-actions-preventing-pwn-requests/)
 
 **Interpretation:** GitHub is shifting Actions security toward centrally enforceable policy and explicit trust boundaries instead of relying solely on workflow authors to avoid dangerous combinations.
 

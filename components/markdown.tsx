@@ -3,7 +3,10 @@ import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
+import { sanitizeMarkdown } from "@/lib/content";
+
 export function Markdown({ content }: { content: string }) {
+  const sanitized = sanitizeMarkdown(content);
   return <div className="prose">
     <ReactMarkdown
       remarkPlugins={[remarkGfm]}
@@ -17,6 +20,6 @@ export function Markdown({ content }: { content: string }) {
         pre({ children }) { return <pre className="code-block">{children}</pre>; },
         blockquote({ children }) { return <blockquote className="quote">{children}</blockquote>; }
       }}
-    >{content}</ReactMarkdown>
+    >{sanitized}</ReactMarkdown>
   </div>;
 }

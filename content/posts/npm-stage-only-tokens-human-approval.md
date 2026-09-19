@@ -48,7 +48,7 @@ sources:
     note: "Independent SLSA analysis of the same 2026 npm supply-chain incident and the limits of provenance when the build platform is compromised."
 ---
 
-**Yes: npm automation can now prepare a package release without having the authority to publish that new version directly.** On September 18, 2026, GitHub announced a new **Read and write (stage only)** option for npm granular access tokens. A workflow using that credential can run `npm stage publish`, but a maintainer must later approve the staged version with two-factor authentication (2FA) before it becomes public. urlGitHub's September 18 announcementhttps://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation/
+**Yes: npm automation can now prepare a package release without having the authority to publish that new version directly.** On September 18, 2026, GitHub announced a new **Read and write (stage only)** option for npm granular access tokens. A workflow using that credential can run `npm stage publish`, but a maintainer must later approve the staged version with two-factor authentication (2FA) before it becomes public. [GitHub's September 18 announcement](https://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation/)
 
 That sounds like a small token-permission change. It is more interesting as a software-supply-chain signal: **npm is increasingly separating release preparation from release authorization.** Automation can build and submit the artifact; a human-controlled step remains at the boundary where the version becomes publicly installable.
 
@@ -72,7 +72,7 @@ maintainer inspection
 public npm version
 ```
 
-npm documents the staged version as unavailable for public access until approval. The maintainer can inspect the stage, download its tarball, approve it, or reject it. The approval step requires 2FA. urlnpm's staged publishing documentationhttps://docs.npmjs.com/cli/v11/commands/npm-stage/
+npm documents the staged version as unavailable for public access until approval. The maintainer can inspect the stage, download its tarball, approve it, or reject it. The approval step requires 2FA. [npm's staged publishing documentation](https://docs.npmjs.com/cli/v11/commands/npm-stage/)
 
 The new token mode is therefore not another kind of read-only credential. It is a **write credential with a narrower publication boundary**.
 
@@ -85,7 +85,7 @@ A normal package-release pipeline often treats these actions as one operation:
 3. run `npm publish`;
 4. the version is live.
 
-With a stage-only token, step 3 changes. The automation submits the version to npm, but the version stops in a staging state. Direct `npm publish` is rejected for that credential with `E_STAGE_REQUIRED`. npm's documentation also makes clear that stage-only does not remove every write capability: the token can still deprecate versions and move dist-tags. urlnpm access-token documentationhttps://docs.npmjs.com/about-access-tokens/
+With a stage-only token, step 3 changes. The automation submits the version to npm, but the version stops in a staging state. Direct `npm publish` is rejected for that credential with `E_STAGE_REQUIRED`. npm's documentation also makes clear that stage-only does not remove every write capability: the token can still deprecate versions and move dist-tags. [npm access-token documentation](https://docs.npmjs.com/about-access-tokens/)
 
 That last detail matters for security analysis. A stage-only token is **not** a universal safety boundary. It specifically narrows the ability to put a new package version on the public registry without human approval.
 
@@ -97,7 +97,7 @@ If that credential is exposed, an attacker may be able to turn a compromised wor
 
 Stage-only publishing changes the failure mode.
 
-A compromised workflow may still be able to prepare a malicious package version and place it in the staging queue. But possession of the stage-only token alone is not enough to make that version public. A maintainer must approve the staged package using 2FA. urlnpm's access-token documentationhttps://docs.npmjs.com/about-access-tokens/
+A compromised workflow may still be able to prepare a malicious package version and place it in the staging queue. But possession of the stage-only token alone is not enough to make that version public. A maintainer must approve the staged package using 2FA. [npm's access-token documentation](https://docs.npmjs.com/about-access-tokens/)
 
 That is a meaningful reduction in direct publishing authority, even though it does not eliminate the underlying compromise.
 
@@ -105,9 +105,9 @@ That is a meaningful reduction in direct publishing authority, even though it do
 
 The September 18 change makes more sense when placed next to npm's other 2026 security changes.
 
-In July, npm announced that granular access tokens configured to bypass 2FA would lose sensitive account and package-management capabilities, and said direct publishing through those tokens would also be removed around January 2027. urlGitHub's July npm security announcementhttps://github.blog/changelog/2026-07-31-restricting-npm-bypass-2fa-granular-access-tokens/
+In July, npm announced that granular access tokens configured to bypass 2FA would lose sensitive account and package-management capabilities, and said direct publishing through those tokens would also be removed around January 2027. [GitHub's July npm security announcement](https://github.blog/changelog/2026-07-31-restricting-npm-bypass-2fa-granular-access-tokens/)
 
-On September 3, npm also expanded trusted publishing so a package could have multiple independent OIDC trust configurations. Those configurations can be restricted to staging, and npm recommends keeping trusted-publishing configurations to stage-only when possible. urlGitHub's September 3 trusted-publishing updatehttps://github.blog/changelog/2026-09-03-multiple-trusted-publishing-configurations-for-npm/
+On September 3, npm also expanded trusted publishing so a package could have multiple independent OIDC trust configurations. Those configurations can be restricted to staging, and npm recommends keeping trusted-publishing configurations to stage-only when possible. [GitHub's September 3 trusted-publishing update](https://github.blog/changelog/2026-09-03-multiple-trusted-publishing-configurations-for-npm/)
 
 The direction is consistent:
 
@@ -118,7 +118,7 @@ The direction is consistent:
 | Trusted publishing | Short-lived OIDC identity | Depends on configured permission | Optional unless configured stage-only |
 | Trusted publishing + stage-only permission | Short-lived OIDC identity | No | Yes, 2FA approval |
 
-The table describes the permission model, not a guarantee of overall supply-chain security. npm itself warns that stage-only permissions do not protect every other write operation available to the credential. urlnpm's current access-token documentationhttps://docs.npmjs.com/about-access-tokens/
+The table describes the permission model, not a guarantee of overall supply-chain security. npm itself warns that stage-only permissions do not protect every other write operation available to the credential. [npm's current access-token documentation](https://docs.npmjs.com/about-access-tokens/)
 
 ## The stronger security pattern is not just “add 2FA”
 
@@ -144,7 +144,7 @@ That is particularly useful for packages with high downstream impact, where a re
 
 There is an important limitation here, and the recent supply-chain record makes it concrete.
 
-OpenSSF and SLSA's analyses of the 2026 “Mini Shai-Hulud” incident describe compromised npm artifacts that still carried cryptographically valid provenance because the attacker abused a legitimate CI/OIDC path. The provenance accurately described the compromised build environment; it did not prove that the resulting artifact was benign. urlOpenSSF's analysishttps://openssf.org/blog/2026/06/10/mini-shai-hulud-where-slsas-boundaries-fall/ urlSLSA's analysishttps://slsa.dev/blog/2026/05/mini-shai-hulud-what-slsa-can-and-cannot-do
+OpenSSF and SLSA's analyses of the 2026 “Mini Shai-Hulud” incident describe compromised npm artifacts that still carried cryptographically valid provenance because the attacker abused a legitimate CI/OIDC path. The provenance accurately described the compromised build environment; it did not prove that the resulting artifact was benign. [OpenSSF's analysis](https://openssf.org/blog/2026/06/10/mini-shai-hulud-where-slsas-boundaries-fall/) [SLSA's analysis](https://slsa.dev/blog/2026/05/mini-shai-hulud-what-slsa-can-and-cannot-do)
 
 That distinction fits the Observatory's broader rule that **signals are evidence, not truth**. A signed provenance statement is valuable evidence about where an artifact came from. It is not a proof that the build inputs, workflow, or source state were uncompromised.
 
@@ -158,25 +158,25 @@ For teams publishing npm packages from automation, the current evidence supports
 
 ### Prefer trusted publishing when it fits
 
-npm recommends OIDC trusted publishing over traditional long-lived publishing tokens. Its current documentation describes short-lived, workflow-specific credentials and automatic provenance generation for supported public-repository publishing flows. urlnpm trusted publishing documentationhttps://docs.npmjs.com/trusted-publishers/
+npm recommends OIDC trusted publishing over traditional long-lived publishing tokens. Its current documentation describes short-lived, workflow-specific credentials and automatic provenance generation for supported public-repository publishing flows. [npm trusted publishing documentation](https://docs.npmjs.com/trusted-publishers/)
 
 ### If you still need a token, remove direct-publish authority
 
-The new stage-only granular token is the migration path npm explicitly describes for token-based automation that cannot yet move to trusted publishing. GitHub says the transition is opt-in today and does not change existing token behavior. urlGitHub's stage-only token announcementhttps://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation/
+The new stage-only granular token is the migration path npm explicitly describes for token-based automation that cannot yet move to trusted publishing. GitHub says the transition is opt-in today and does not change existing token behavior. [GitHub's stage-only token announcement](https://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation/)
 
 ### Treat the January 2027 date as a migration deadline, not a distant idea
 
-npm currently says direct publishing through bypass-2FA granular access tokens will be removed in **January 2027**. The September 18 announcement therefore changes what a migration can look like before that deadline: automation can move to staging now rather than waiting for direct publishing to disappear. urlnpm's access-token documentationhttps://docs.npmjs.com/about-access-tokens/
+npm currently says direct publishing through bypass-2FA granular access tokens will be removed in **January 2027**. The September 18 announcement therefore changes what a migration can look like before that deadline: automation can move to staging now rather than waiting for direct publishing to disappear. [npm's access-token documentation](https://docs.npmjs.com/about-access-tokens/)
 
 ### Audit the remaining permissions
 
-A stage-only token can still perform other package write operations. If the goal is strong separation, npm's own guidance recommends moving toward trusted publishing, restricting package-level token publishing, and avoiding unnecessary bypass-2FA credentials. urlnpm's npm-stage best practiceshttps://docs.npmjs.com/cli/v11/commands/npm-stage/
+A stage-only token can still perform other package write operations. If the goal is strong separation, npm's own guidance recommends moving toward trusted publishing, restricting package-level token publishing, and avoiding unnecessary bypass-2FA credentials. [npm's npm-stage best practices](https://docs.npmjs.com/cli/v11/commands/npm-stage/)
 
 ## What this signal does—and does not—prove
 
-**Observed:** On September 18, 2026, GitHub announced stage-only npm granular access tokens. They can stage a version but cannot directly publish a new version; approval with 2FA is required for the staged release. urlGitHub's announcementhttps://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation/
+**Observed:** On September 18, 2026, GitHub announced stage-only npm granular access tokens. They can stage a version but cannot directly publish a new version; approval with 2FA is required for the staged release. [GitHub's announcement](https://github.blog/changelog/2026-09-18-stage-only-npm-tokens-for-safer-automation/)
 
-**Documented:** npm supports staged publishing through `npm stage publish`, inspection commands, and 2FA-protected approval. urlnpm-stage documentationhttps://docs.npmjs.com/cli/v11/commands/npm-stage/
+**Documented:** npm supports staged publishing through `npm stage publish`, inspection commands, and 2FA-protected approval. [npm-stage documentation](https://docs.npmjs.com/cli/v11/commands/npm-stage/)
 
 **Interpretation:** npm is moving toward a clearer separation between automated release preparation and authorization to publish.
 

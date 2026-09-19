@@ -56,17 +56,17 @@ sources:
     note: "Independent September 16, 2026 reporting that contextualizes Cloudflare's separation of Search, Training, and Agent controls and notes the platform-specific limits."
 ---
 
-**AI crawling is becoming a policy layer rather than a single robots.txt decision.** Cloudflare's September 15, 2026 rollout separates website-owner controls for search, AI training, and user-directed AI agents, while Google already exposes a distinct `Google-Extended` control and the IETF is developing a standards-track vocabulary for expressing AI usage preferences. urlCloudflare's September 15 announcementhttps://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/ urlIETF AI Preferences working grouphttps://datatracker.ietf.org/group/aipref/
+**AI crawling is becoming a policy layer rather than a single robots.txt decision.** Cloudflare's September 15, 2026 rollout separates website-owner controls for search, AI training, and user-directed AI agents, while Google already exposes a distinct `Google-Extended` control and the IETF is developing a standards-track vocabulary for expressing AI usage preferences. [Cloudflare's September 15 announcement](https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/) [IETF AI Preferences working group](https://datatracker.ietf.org/group/aipref/)
 
 The durable signal is not that one provider shipped another crawler toggle. It is that **the web is starting to distinguish why an automated system accesses a page**. Search indexing, model training, and an agent retrieving information for a user can involve the same URL but have different economic and governance implications.
 
 ## What changed on September 15, 2026
 
-Cloudflare replaced its broad AI-bot control model with separate controls for **Search**, **Training**, and **Agent** traffic. For new domains, its recommended settings now vary according to whether pages carry advertising. Cloudflare also introduced a **Disallow AI Training** setting intended to let publishers refuse training while remaining available to search crawlers that meet its transparency requirements. urlCloudflare's AI crawling announcementhttps://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/
+Cloudflare replaced its broad AI-bot control model with separate controls for **Search**, **Training**, and **Agent** traffic. For new domains, its recommended settings now vary according to whether pages carry advertising. Cloudflare also introduced a **Disallow AI Training** setting intended to let publishers refuse training while remaining available to search crawlers that meet its transparency requirements. [Cloudflare's AI crawling announcement](https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/)
 
-The distinction matters because a crawler can be used for more than one purpose. Cloudflare says mixed-use crawlers represented **36.6% of verified crawler traffic on its network** in the data behind its announcement. It also reports that fewer than 1% of its sites block search crawlers while 17% use some mechanism to restrict AI training. Those figures describe Cloudflare's observed network, not the entire Internet. urlCloudflare's announcement and measurementshttps://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/
+The distinction matters because a crawler can be used for more than one purpose. Cloudflare says mixed-use crawlers represented **36.6% of verified crawler traffic on its network** in the data behind its announcement. It also reports that fewer than 1% of its sites block search crawlers while 17% use some mechanism to restrict AI training. Those figures describe Cloudflare's observed network, not the entire Internet. [Cloudflare's announcement and measurements](https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/)
 
-Cloudflare's new **Accountable** designation is aimed at the mixed-use problem. Its stated criteria include a training opt-out, a mechanism for opting out of AI summaries, URL-level visibility into use, and assurance that refusing training does not affect traditional search. Cloudflare says Apple, Google, and Microsoft meet the criteria or have made time-bound commitments to do so. urlCloudflare's Accountable criteriahttps://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/
+Cloudflare's new **Accountable** designation is aimed at the mixed-use problem. Its stated criteria include a training opt-out, a mechanism for opting out of AI summaries, URL-level visibility into use, and assurance that refusing training does not affect traditional search. Cloudflare says Apple, Google, and Microsoft meet the criteria or have made time-bound commitments to do so. [Cloudflare's Accountable criteria](https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/)
 
 ## Why one “AI bot” switch is becoming inadequate
 
@@ -97,27 +97,27 @@ Those categories are not interchangeable.
 
 **Search** generally exists to help a person discover a page. **Training** uses content as input to model development. **Agents** can retrieve content while acting on a user's request in real time. A publisher may reasonably want different permissions for each even when the same underlying page is involved.
 
-Cloudflare's July 2026 announcement had already established these three classifications; the September release makes the distinction operational for site owners and adds a transparency framework for mixed-use crawlers. urlCloudflare's July AI traffic controls announcementhttps://blog.cloudflare.com/content-independence-day-ai-options/
+Cloudflare's July 2026 announcement had already established these three classifications; the September release makes the distinction operational for site owners and adds a transparency framework for mixed-use crawlers. [Cloudflare's July AI traffic controls announcement](https://blog.cloudflare.com/content-independence-day-ai-options/)
 
 ## Google shows why the distinction is technically possible
 
-Google's current crawling documentation describes **Google-Extended** as a standalone robots.txt product token. It can be used to control certain uses of content crawled by Google for Gemini model training and grounding without affecting a site's inclusion in Google Search. urlGoogle's crawler documentationhttps://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers
+Google's current crawling documentation describes **Google-Extended** as a standalone robots.txt product token. It can be used to control certain uses of content crawled by Google for Gemini model training and grounding without affecting a site's inclusion in Google Search. [Google's crawler documentation](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers)
 
 That is an important precedent.
 
 The technical question is not simply whether a crawler can be blocked. It is whether the operator can expose a **purpose-specific control** that does not unnecessarily disable other services.
 
-Cloudflare's new controls extend that idea at the network-policy layer: a site owner can express different preferences and, where Cloudflare can identify and enforce the traffic class, have those preferences applied at the edge. urlCloudflare's AI traffic controlshttps://blog.cloudflare.com/content-independence-day-ai-options/
+Cloudflare's new controls extend that idea at the network-policy layer: a site owner can express different preferences and, where Cloudflare can identify and enforce the traffic class, have those preferences applied at the edge. [Cloudflare's AI traffic controls](https://blog.cloudflare.com/content-independence-day-ai-options/)
 
 ## Robots.txt remains useful, but it is not enforcement by itself
 
 This shift does not make `robots.txt` obsolete.
 
-Cloudflare's **Bot Preference Sync** is explicitly designed to translate site-level Search, Agent, and Training preferences into robots.txt directives while preserving existing rules. Cloudflare says new customers will have the synchronization enabled by default, subject to the product's configuration and crawler classifications. urlCloudflare's Bot Preference Sync announcementhttps://blog.cloudflare.com/bot-preference-sync/
+Cloudflare's **Bot Preference Sync** is explicitly designed to translate site-level Search, Agent, and Training preferences into robots.txt directives while preserving existing rules. Cloudflare says new customers will have the synchronization enabled by default, subject to the product's configuration and crawler classifications. [Cloudflare's Bot Preference Sync announcement](https://blog.cloudflare.com/bot-preference-sync/)
 
 But robots.txt is still a preference signal. It depends on crawler compliance.
 
-Cloudflare makes the distinction explicit: a network provider can identify crawler behavior and block traffic that does not respect a site's preference. That gives the policy an enforcement layer that a text file alone cannot provide. urlCloudflare's September 15 announcementhttps://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/
+Cloudflare makes the distinction explicit: a network provider can identify crawler behavior and block traffic that does not respect a site's preference. That gives the policy an enforcement layer that a text file alone cannot provide. [Cloudflare's September 15 announcement](https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/)
 
 This creates two separate questions for a publisher:
 
@@ -130,7 +130,7 @@ They are related, but they are not the same problem.
 
 The most important reason to treat this as more than a Cloudflare product story is the parallel standards work.
 
-The IETF's **AI Preferences Working Group** currently lists `draft-ietf-aipref-vocab-06` as an active standards-track Internet-Draft. The draft defines vocabulary for expressing restrictions or permissions around how digital assets are used by automated processing systems. urlIETF AI Preferences working grouphttps://datatracker.ietf.org/group/aipref/ urlIETF AI Preferences vocabulary drafthttps://datatracker.ietf.org/doc/html/draft-ietf-aipref-vocab
+The IETF's **AI Preferences Working Group** currently lists `draft-ietf-aipref-vocab-06` as an active standards-track Internet-Draft. The draft defines vocabulary for expressing restrictions or permissions around how digital assets are used by automated processing systems. [IETF AI Preferences working group](https://datatracker.ietf.org/group/aipref/) [IETF AI Preferences vocabulary draft](https://datatracker.ietf.org/doc/html/draft-ietf-aipref-vocab)
 
 That is not a finished Internet standard. The document remains an Internet-Draft and can change before any eventual standardization.
 
@@ -140,7 +140,7 @@ The exact syntax, semantics, enforcement model, and scope are still unsettled.
 
 ## Bing adds another piece: measuring AI visibility
 
-Microsoft's Bing Webmaster Tools has already moved in the opposite direction from pure blocking: its **AI Performance** preview gives publishers information about how their pages are cited in AI-generated answers, including citation counts, cited pages, and sampled grounding queries. Bing says the metrics describe citation activity rather than ranking or authority, and that it respects robots.txt and other supported content-owner preferences. urlBing AI Performance documentationhttps://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview
+Microsoft's Bing Webmaster Tools has already moved in the opposite direction from pure blocking: its **AI Performance** preview gives publishers information about how their pages are cited in AI-generated answers, including citation counts, cited pages, and sampled grounding queries. Bing says the metrics describe citation activity rather than ranking or authority, and that it respects robots.txt and other supported content-owner preferences. [Bing AI Performance documentation](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)
 
 Put together, these developments describe a more complete control loop:
 
@@ -168,7 +168,7 @@ AI systems introduce other outcomes. A page may be used to train a model, summar
 
 Those outcomes do not have identical value to the publisher.
 
-Cloudflare's approach explicitly treats them as separate categories and says it wants URL-level visibility into how mixed-use crawlers use content. Its stated longer-term goal is to give site owners more granular control over how much content appears in AI summaries. That future control is a stated goal, not a capability established by the September 15 release. urlCloudflare's announcementhttps://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/
+Cloudflare's approach explicitly treats them as separate categories and says it wants URL-level visibility into how mixed-use crawlers use content. Its stated longer-term goal is to give site owners more granular control over how much content appears in AI summaries. That future control is a stated goal, not a capability established by the September 15 release. [Cloudflare's announcement](https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/)
 
 The important analytical point is that **access is becoming multidimensional**. “The bot visited my page” is no longer enough information to describe what happened.
 
@@ -182,11 +182,11 @@ Decide whether your default position differs for search indexing, AI training, a
 
 ### Treat crawler identity and crawler purpose separately
 
-A crawler's name does not necessarily tell you every purpose it serves. Cloudflare's mixed-use crawler work demonstrates why purpose classification matters. urlCloudflare's Accountable crawler frameworkhttps://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/
+A crawler's name does not necessarily tell you every purpose it serves. Cloudflare's mixed-use crawler work demonstrates why purpose classification matters. [Cloudflare's Accountable crawler framework](https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/)
 
 ### Keep machine-readable preferences aligned
 
-If you use robots.txt or another policy mechanism, keep it consistent with the access rules enforced by your infrastructure. Cloudflare's Bot Preference Sync is one implementation of that principle; it is not a universal standard. urlCloudflare's Bot Preference Sync documentationhttps://blog.cloudflare.com/bot-preference-sync/
+If you use robots.txt or another policy mechanism, keep it consistent with the access rules enforced by your infrastructure. Cloudflare's Bot Preference Sync is one implementation of that principle; it is not a universal standard. [Cloudflare's Bot Preference Sync documentation](https://blog.cloudflare.com/bot-preference-sync/)
 
 ### Measure the trade-off
 
@@ -194,17 +194,17 @@ A training opt-out may have no direct search effect for a crawler that supports 
 
 ### Watch the IETF work before betting on one syntax
 
-The AI Preferences vocabulary is still a draft. Publishers should not treat today's draft vocabulary as a guaranteed permanent interface. urlIETF AI Preferences working grouphttps://datatracker.ietf.org/group/aipref/
+The AI Preferences vocabulary is still a draft. Publishers should not treat today's draft vocabulary as a guaranteed permanent interface. [IETF AI Preferences working group](https://datatracker.ietf.org/group/aipref/)
 
 ## What the evidence does—and does not—prove
 
-**Observed:** Cloudflare launched separate Search, Training, and Agent controls and a Disallow AI Training setting on September 15, 2026. It also introduced an Accountable designation for crawler operators meeting stated transparency criteria. urlCloudflare's primary announcementhttps://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/
+**Observed:** Cloudflare launched separate Search, Training, and Agent controls and a Disallow AI Training setting on September 15, 2026. It also introduced an Accountable designation for crawler operators meeting stated transparency criteria. [Cloudflare's primary announcement](https://blog.cloudflare.com/accountable-mixed-use-ai-crawlers/)
 
-**Documented:** Google provides a `Google-Extended` robots.txt control for certain Gemini-related content uses without changing Google Search inclusion, while Bing provides AI citation-performance measurements and says it respects supported publisher controls. urlGoogle crawler documentationhttps://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers urlBing AI Performance documentationhttps://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview
+**Documented:** Google provides a `Google-Extended` robots.txt control for certain Gemini-related content uses without changing Google Search inclusion, while Bing provides AI citation-performance measurements and says it respects supported publisher controls. [Google crawler documentation](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers) [Bing AI Performance documentation](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)
 
-**Standards signal:** The IETF AI Preferences Working Group has an active standards-track vocabulary draft. It is not yet a final Internet standard. urlIETF AI Preferences vocabulary drafthttps://datatracker.ietf.org/doc/html/draft-ietf-aipref-vocab
+**Standards signal:** The IETF AI Preferences Working Group has an active standards-track vocabulary draft. It is not yet a final Internet standard. [IETF AI Preferences vocabulary draft](https://datatracker.ietf.org/doc/html/draft-ietf-aipref-vocab)
 
-**Independent confirmation:** TechNode reported on September 16, 2026 that Cloudflare's new controls separate search, training, and agent traffic, while noting that the controls remain platform-specific and that the IETF work is still under development. citeturn1news8
+**Independent confirmation:** TechNode reported on September 16, 2026 that Cloudflare's new controls separate search, training, and agent traffic, while noting that the controls remain platform-specific and that the IETF work is still under development. 
 
 **Interpretation:** The strongest defensible reading is that AI access to the open web is becoming a distinct policy surface with multiple purposes, controls, and measurement needs.
 

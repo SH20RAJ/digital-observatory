@@ -26,6 +26,9 @@ for (const file of files) {
     }
   }
 
+  if (/[\uE200-\uE20F]/.test(fs.readFileSync(path.join(dir, file), "utf8"))) {
+    errors.push(file + ": contains raw AI citation unicode artifacts (\\uE200-\\uE20F). Clean them into Markdown links.");
+  }
   if (parsed.content.trim().length < 500) errors.push(file + ": article body is too short");
 }
 

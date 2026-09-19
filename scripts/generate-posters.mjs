@@ -145,7 +145,10 @@ const feedItems = posts
       xmlEscape(post.description) +
       "</description><pubDate>" +
       new Date(post.publishedAt).toUTCString() +
-      "</pubDate></item>"
+      "</pubDate>" +
+      (post.category ? "<category>" + xmlEscape(post.category) + "</category>" : "") +
+      (post.author ? "<author>" + xmlEscape(post.author) + "</author>" : "") +
+      "</item>"
   )
   .join("");
 
@@ -157,6 +160,12 @@ fs.writeFileSync(
     feedItems +
     "</channel></rss>"
 );
+
+const slugifySimple = (value) =>
+  value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+const categoriesList = [...new Set(posts.map((p) => p.category))].sort();
+const authorsList = [...new Set(posts.map((p) => p.author))].sort();
 
 const llms = [
   "# Digital Observatory",
@@ -170,6 +179,14 @@ const llms = [
   "- About: " + publicBase + "/about",
   "- RSS: " + publicBase + "/feed.xml",
   "- Full index: " + publicBase + "/llms-full.txt",
+  "",
+  "## Research Domains",
+  "",
+  ...categoriesList.map((cat) => "- [" + cat + "](" + publicBase + "/category/" + slugifySimple(cat) + ")"),
+  "",
+  "## Authors",
+  "",
+  ...authorsList.map((author) => "- [" + author + "](" + publicBase + "/author/" + encodeURIComponent(author) + ")"),
   "",
   "## Articles",
   ""
@@ -197,48 +214,76 @@ for (const post of posts) {
 }
 fs.writeFileSync(path.join(publicDir, "llms-full.txt"), full.join("\n"));
 
-const slugifySimple = (value) =>
-  value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-
+const latestPostDate = posts[0]?.updatedAt || posts[0]?.publishedAt || null;
 const urls = new Map([
-  ["/", null],
-  ["/blog", null],
-  ["/about", null],
-  ["/search", null]
+  ["/", latestPostDate],
+  ["/blog", latestPostDate],
+  ["/about", latestPostDate]
 ]);
 
 const categoryCounts = new Map();
+const categoryLatest = new Map();
 const tagCounts = new Map();
+const tagLatest = new Map();
+const authorCounts = new Map();
+const authorLatest = new Map();
 
 for (const post of posts) {
-  urls.set("/blog/" + post.slug, post.updatedAt || post.publishedAt);
+  const date = post.updatedAt || post.publishedAt;
+  urls.set("/blog/" + post.slug, date);
 
   const category = slugifySimple(post.category);
-  urls.set("/category/" + category, null);
   categoryCounts.set(category, (categoryCounts.get(category) || 0) + 1);
+  if (!categoryLatest.has(category) || date > categoryLatest.get(category)) {
+    categoryLatest.set(category, date);
+  }
 
   for (const tag of post.tags) {
     const slug = slugifySimple(tag);
-    urls.set("/tag/" + slug, null);
     tagCounts.set(slug, (tagCounts.get(slug) || 0) + 1);
+    if (!tagLatest.has(slug) || date > tagLatest.get(slug)) {
+      tagLatest.set(slug, date);
+    }
   }
+
+  if (post.author) {
+    const authorEnc = encodeURIComponent(post.author);
+    authorCounts.set(authorEnc, (authorCounts.get(authorEnc) || 0) + 1);
+    if (!authorLatest.has(authorEnc) || date > authorLatest.get(authorEnc)) {
+      authorLatest.set(authorEnc, date);
+    }
+  }
+}
+
+for (const [category, date] of categoryLatest) {
+  urls.set("/category/" + category, date);
+}
+
+for (const [tag, date] of tagLatest) {
+  urls.set("/tag/" + tag, date);
+}
+
+for (const [author, date] of authorLatest) {
+  urls.set("/author/" + author, date);
 }
 
 const pageCount = (count) => Math.ceil(count / 12);
 
 for (let page = 2; page <= pageCount(posts.length); page += 1) {
-  urls.set("/blog/page/" + page, null);
+  urls.set("/blog/page/" + page, latestPostDate);
 }
 
 for (const [slug, count] of categoryCounts) {
+  const date = categoryLatest.get(slug) || null;
   for (let page = 2; page <= pageCount(count); page += 1) {
-    urls.set("/category/" + slug + "/page/" + page, null);
+    urls.set("/category/" + slug + "/page/" + page, date);
   }
 }
 
 for (const [slug, count] of tagCounts) {
+  const date = tagLatest.get(slug) || null;
   for (let page = 2; page <= pageCount(count); page += 1) {
-    urls.set("/tag/" + slug + "/page/" + page, null);
+    urls.set("/tag/" + slug + "/page/" + page, date);
   }
 }
 

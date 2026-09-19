@@ -96,7 +96,7 @@ A useful default:
 7. Connect to related Observatory articles.
 8. End with the actual implication for the reader.
 
-Do not force a fixed word count. Google's guidance explicitly says there is no preferred word count target. urlGoogle people-first content guidancehttps://developers.google.com/search/docs/fundamentals/creating-helpful-content
+Do not force a fixed word count. Google's guidance explicitly says there is no preferred word count target. [Google people-first content guidance](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
 
 ## Quality gate
 

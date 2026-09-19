@@ -14,7 +14,7 @@ Digital Observatory is a Markdown-first, open-source research journal for tracki
 
 ## GitHub Pages
 
-The Pages workflow builds a static Next.js export and deploys `out/` using GitHub's Pages artifact deployment. Next.js documents `output: "export"` for static hosting and notes that server-only runtime features are not available on a static host. urlNext.js static exportshttps://nextjs.org/docs/app/guides/static-exports
+The Pages workflow builds a static Next.js export and deploys `out/` using GitHub's Pages artifact deployment. Next.js documents `output: "export"` for static hosting and notes that server-only runtime features are not available on a static host. [Next.js static exports](https://nextjs.org/docs/app/guides/static-exports)
 
 The Markdown corpus remains canonical. The Keystatic CMS remains available for local/server-capable deployments; GitHub Pages itself only serves the resulting static site.
 
