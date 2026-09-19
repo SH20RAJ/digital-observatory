@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { SITE, getAssetUrl } from "@/lib/site";
-import { VisitorCounter } from "./visitor-counter";
 
 export function SiteFooter() {
   return (
@@ -36,9 +35,6 @@ export function SiteFooter() {
       </div>
       <div className="shell footer-bottom">
         <span>MIT Licensed. Source-specific data terms always apply.</span>
-        <span className="footer-counter">
-          <VisitorCounter />
-        </span>
         <span>Built for evidence, not noise.</span>
       </div>
     </footer>

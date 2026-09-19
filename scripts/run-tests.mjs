@@ -222,6 +222,13 @@ if (indexable.length > 0) {
   const jsonLdData = articleJsonLd(indexable[0]);
   assert(jsonLdData.inLanguage === "en-US", `articleJsonLd sets inLanguage: "en-US"`);
   assert(jsonLdData.speakable && jsonLdData.speakable["@type"] === "SpeakableSpecification", `articleJsonLd specifies speakable configuration for AI/voice assistants`);
+  const speakableSelectors = jsonLdData.speakable?.cssSelector || [];
+  assert(
+    speakableSelectors.includes(".article-header h1") &&
+      speakableSelectors.includes(".article-dek") &&
+      speakableSelectors.includes(".article-main > p:first-of-type"),
+    `articleJsonLd speakable selectors match the rendered article structure`
+  );
   assert(Array.isArray(jsonLdData.image) && jsonLdData.image.length === 2, `articleJsonLd provides rich ImageObject array`);
 }
 

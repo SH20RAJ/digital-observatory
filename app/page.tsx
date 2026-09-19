@@ -20,7 +20,7 @@ export default function HomePage() {
             <p className="eyebrow">Digital Observatory / Open Research Journal</p>
             <span className="status-chip">
               <span className="status-dot" aria-hidden="true" />
-              Source-backed &amp; Git-verified
+              Source-backed &amp; inspectable
             </span>
           </div>
           <h1>Observe the digital world without losing the plot.</h1>

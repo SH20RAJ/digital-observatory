@@ -2,7 +2,6 @@ export { Breadcrumbs } from "./breadcrumbs";
 export { Markdown } from "./markdown";
 export { Pagination } from "./pagination";
 export { PostCard } from "./post-card";
-export { PwaRegister } from "./pwa-register";
 export { SearchForm } from "./search-form";
 export { SearchResults } from "./search-results";
 export { SiteFooter } from "./site-footer";

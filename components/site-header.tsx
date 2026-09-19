@@ -12,7 +12,7 @@ export function SiteHeader() {
           </span>
           <span className="brand-copy">
             <strong>{SITE.name}</strong>
-            <small>Signals &rarr; context &rarr; understanding</small>
+            <small>Signals &rarr; context &rarr; evidence</small>
           </span>
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
@@ -21,7 +21,7 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link href="/search" className="nav-link nav-search-btn" aria-label="Search">
+          <Link href="/search" className="nav-link nav-search-btn" aria-label="Search the journal">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8"/>
               <line x1="21" y1="21" x2="16.65" y2="16.65"/>

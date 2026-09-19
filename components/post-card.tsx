@@ -10,7 +10,6 @@ export function PostCard({ post, featured = false }: { post: Post; featured?: bo
     <article className={featured ? "post-card post-card-featured" : "post-card"}>
       <Link href={"/blog/" + post.slug} className="post-card-media" aria-label={post.title}>
         <Image src={poster} alt={post.coverAlt || post.title} fill sizes={featured ? "(max-width: 920px) 100vw, 70vw" : "(max-width: 640px) 100vw, (max-width: 920px) 50vw, 33vw"} priority={featured} className="card-image" />
-        <span className="media-label">{post.category}</span>
       </Link>
       <div className="post-card-body">
         <div className="post-meta-row"><Link href={"/category/" + categorySlug(post.category)}>{post.category}</Link><span>{post.readingTime}</span></div>

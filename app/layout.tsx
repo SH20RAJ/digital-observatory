@@ -3,7 +3,6 @@ import { SITE, getCanonicalUrl, getAssetUrl } from "@/lib/site";
 import { jsonLd, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { PwaRegister } from "@/components/pwa-register";
 import "./globals.css";
 
 const googleVerification = process.env.GOOGLE_SITE_VERIFICATION || "_rPi-600gMFYjNa9qzMTuIQg1_aey417EeAdaiIqgFg";
@@ -45,6 +44,8 @@ export const metadata: Metadata = {
     "security"
   ],
   verification: Object.keys(verification).length ? verification : undefined,
+  formatDetection: { telephone: false },
+  referrer: "strict-origin-when-cross-origin",
   openGraph: {
     type: "website",
     siteName: SITE.name,
@@ -94,7 +95,6 @@ export default function RootLayout({
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />
-        <PwaRegister />
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(websiteJsonLd())} />
         <script type="application/ld+json" dangerouslySetInnerHTML={jsonLd(organizationJsonLd())} />
       </body>

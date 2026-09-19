@@ -84,7 +84,7 @@ export function articleJsonLd(post: Post) {
     dateModified: new Date(post.updatedAt || post.publishedAt).toISOString(),
     speakable: {
       "@type": "SpeakableSpecification",
-      cssSelector: [".post-hero h1", ".post-hero-dek", ".post-body > p:first-of-type"]
+      cssSelector: [".article-header h1", ".article-dek", ".article-main > p:first-of-type"]
     },
     author: {
       "@type": "Person",
